@@ -1,1 +1,0 @@
-{"virtualbox":{"/var/code":{"nfs":{"mount_options":["dmode=777","fmode=666"]},"guestpath":"/var/code","hostpath":"C:/Users/aroar/Documents/Week20/ProjectTres/code","disabled":false,"__vagrantfile":true},"/vagrant":{"guestpath":"/vagrant","hostpath":"C:/Users/aroar/Documents/Week20/ProjectTres","disabled":false,"__vagrantfile":true}}}
