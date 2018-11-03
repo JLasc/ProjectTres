@@ -10,24 +10,63 @@ class App extends React.Component {
 
     this.state = {
       displayLogin: true,
-      displaySignup: false
+      displaySignup: false,
+      firstName: "",
+      lastName: "",
+      email: "",
+      password: ""
     };
+
+    this.handleChange = this.handleChange.bind(this)
   }
 
-  LoginClick() {
+  handleSubmit() {
+    fetch("/api/signup", {
+      method: "POST",
+      body: {
+        firstName: this.state.firstName,
+        lastName: this.state.lastName,
+        email: this.state.email,
+        password: this.state.password
+      }
+    }).then(data =>{
+      console.log("signup" + data);
+    })
+  };
+
+  handleLogin(){
+    fetch("/api/login", {
+      method: "POST",
+      body: {
+        email: this.state.email,
+        password: this.state.password
+      }
+    }).then(data =>{
+      console.log("login" + data);
+    })
+  }
+  
+  handleChange = (event) =>{
+    const {name, value} = event.target;
+    this.setState({
+      [name]:value
+    })
+  };
+
+  loginClick() {
     this.setState({
       displayLogin: true,
       displaySignup: false
     });
-  }
+  };
 
-  SignUpClick() {
+  signUpClick() {
     this.setState({
       displayLogin: false,
       displaySignup: true
     });
-    
-  }
+  };
+
   render() {
 
     const {displayLogin, displaySignup} = this.state;
@@ -38,16 +77,16 @@ class App extends React.Component {
         </div>
         <div className="form right">
         <div className="formcontainer">
-        <Login active={displayLogin}/>
+        <Login active={displayLogin} change={this.handleChange}/>
         <div id="login-btns" active={displayLogin} className={"right" + (displayLogin ? " active-comp" : " inactive-comp")}>
-        <Button waves="light" className="button" id="login-btn">Login</Button>
-        <Button waves="light" className="no-button" id="signup-btn"onClick={()=> this.SignUpClick()}>Sign Up</Button>
+        <Button waves="light" className="button" id="1" onClick={this.handleLogin()}>Login</Button>
+        <Button waves="light" className="no-button" id="2"onClick={()=> this.signUpClick()}>Sign Up</Button>
         </div>
         
-        <Signup active={displaySignup} />
+        <Signup active={displaySignup} change={this.handleChange}/>
         <div id="signup-btns" className={"right" + (displaySignup ? " active-comp" : " inactive-comp")}>
-        <Button waves="light" className="no-button" id="login-btn" onClick={()=> this.LoginClick()}>Login</Button>
-        <Button waves="light" className="button" id="signup-btn">Sign Up</Button>
+        <Button waves="light" className="no-button" id="3" onClick={()=> this.loginClick()}>Login</Button>
+        <Button waves="light" className="button" id="4" onClick={this.handleSubmit()}>Sign Up</Button>
         </div>
         
         </div>
