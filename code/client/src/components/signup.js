@@ -1,8 +1,7 @@
 import React from 'react';
-import {Button,Row, Input} from 'react-materialize';
-import Buttons from "./signupButtons";
+import {Row, Input} from 'react-materialize';
 
-// funcional component
+
 const Signup = ({active}) => {
         return(
     <div id="sign" className={active ? "active-comp" : "inactive-comp"}>
