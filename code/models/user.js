@@ -36,15 +36,15 @@ module.exports = (sequelize, DataTypes) => {
         });
     };
 
-    // // Used to check if the unhashed password is the same as the hashed one
-    // User.prototype.validPassword = function (password) {
-    //     return bcrypt.compareSync(password, this.password);
-    // };
+    // Used to check if the unhashed password is the same as the hashed one
+    User.prototype.validPassword = function (password) {
+        return bcrypt.compareSync(password, this.password);
+    };
 
-    // // Hashes the password before being put in the db
-    // User.hook("beforeCreate", (user) => {
-    //     user.password = bcrypt.hashSync(user.password, bcrypt.genSaltSync(saltRounds), null);
-    // });
+    // Hashes the password before being put in the db
+    User.hook("beforeCreate", (user) => {
+        user.password = bcrypt.hashSync(user.password, bcrypt.genSaltSync(saltRounds), null);
+    });
 
     return User;
 };

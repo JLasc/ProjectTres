@@ -19,12 +19,16 @@
     "nodemon": "^1.11.0"
   },
   "dependencies": {
+    "bcrypt": "^3.0.2",
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.18.2",
     "express": "^4.15.4",
+    "express-session": "^1.15.6",
     "if-env": "^1.0.4",
     "mysql": "^2.16.0",
     "mysql2": "^1.6.1",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0",
     "sequelize": "^4.41.0",
     "sequelize-cli": "^5.2.0",
     "yarn": "^1.12.1"
