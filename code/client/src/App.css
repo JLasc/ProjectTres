@@ -11,6 +11,15 @@ body{
 
 .infowidth{
  width: calc(100% - .75em);
+ 
+}
+
+.inactive-comp{
+  display:none;
+}
+
+.active-comp{
+  display:block;
 }
 
 .no-button{
@@ -71,7 +80,7 @@ body{
 .form{
   width: 40%;
   height: 100%;
-  max-width: 600px;
+  max-width: 700px;
   background-color: white;
   color: rgb(38, 38, 65);
 }
