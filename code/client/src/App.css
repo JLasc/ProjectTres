@@ -76,6 +76,17 @@ body{
   color: rgb(38, 38, 65);
 }
 
+.banner{
+  background: 
+  /* top, transparent red, faked with gradient */ 
+  linear-gradient(
+    rgba(38, 38, 65, 0.75), 
+    rgba(38, 38, 65, 0.75)
+  ),
+  /* bottom, image */
+  url("./1.jpg");
+  overflow:hidden;
+}
 #firstname{
   width: 100%;
 }

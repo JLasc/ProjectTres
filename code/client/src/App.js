@@ -1,39 +1,38 @@
 import React from "react";
 import "./App.css";
-import Signup from "./components/signup";
-import Login from "./components/login";
-import {Button,Row, Input} from 'react-materialize';
+import Forms from "./components/forms";
 
 class App extends React.Component {
-  constructor (props) {
-  super(props);
-  
-  this.state ={
-    displayLogin: true
+  constructor() {
+    super();
+
+    this.state = {
+      displayLogin: true
+    };
   }
 
-}
+  falseClick() {
+    this.setState({
+      displayLogin: false
+    });
+  }
 
-handleClick = () =>{
-  this.setState({
-    displayLogin: false
-  })
-  
-}
-  
+  trueClick() {
+    this.setState({
+      displayLogin: true
+    });
+  }
 
   render() {
-    
     return (
       <div className="App">
-        <div className="banner left"></div>
-        <div className="form right">
+        <div className="banner left">
         
-       {this.state.displayLogin === true ? <Login /> : <Signup />}
-       <div id="btns" className="right">
-          
-    </div>
         </div>
+        <div className="form right">
+        <Forms />
+          
+      </div>
       </div>
     );
   }
