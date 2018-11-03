@@ -9,8 +9,8 @@ const Login = ({active}) => {
         <span>Login to your company's 3nterprise Catalog</span>
       </Row>
       <Row>
-        <Input placeholder="example@example.com" type="email" s={12} label="E-mail" id="username"/>
-        <Input placeholder="Password" autoComplete="new-password" type="password" s={12} label="Password" id="password"/>
+        <Input required placeholder="example@example.com" type="email" s={12} label="E-mail" id="username"/>
+        <Input required placeholder="Password" autoComplete="new-password" type="password" s={12} label="Password" id="password"/>
       </Row>
     </div>
   );
