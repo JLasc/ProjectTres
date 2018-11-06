@@ -4,7 +4,7 @@ import { Row, Input } from "react-materialize";
 const Signup = (props) => {
     console.log(props);
   return (
-    <form id="sign" className={props.active ? "active-comp" : "inactive-comp"}>
+    <form id="sign" className={props.displaySignup ? "active-comp" : "inactive-comp"}>
       <Row className="infowidth">
         <h4>Sign Up</h4>
         <span>Fill out the form to join your company's 3nterprise Catalog</span>
@@ -18,7 +18,7 @@ const Signup = (props) => {
           id="firstname"
           name="firstName"
           value={props.firstName}
-          onChange={props.change}
+          onChange={props.handleChange}
         />
         <Input
           required
@@ -28,7 +28,7 @@ const Signup = (props) => {
           id="lastname"
           name="lastName"
           value={props.lastName}
-          onChange={props.change}
+          onChange={props.handleChange}
         />
         <Input
           required
@@ -40,7 +40,7 @@ const Signup = (props) => {
           id="pass"
           name="password"
           value={props.password}
-          onChange={props.change}
+          onChange={props.handleChange}
         />
         <Input
           required
@@ -51,7 +51,7 @@ const Signup = (props) => {
           id="email"
           name="email"
           value={props.email}
-          onChange={props.change}
+          onChange={props.handleChange}
         />
       </Row>
     </form>
