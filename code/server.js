@@ -4,6 +4,7 @@ const bodyParser = require("body-parser");
 const PORT = process.env.PORT || 3001;
 const app = express();
 const db = require("./models");
+const routes = require("./routes");
 const session = require("express-session");
 const passport = require("./config/passport/passport.js")
 
@@ -26,6 +27,7 @@ app.use(passport.session())
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
+app.use(routes);
 
 // Define API routes here
 
