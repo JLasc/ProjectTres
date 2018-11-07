@@ -78,9 +78,10 @@ body{
 
 .banner{
   min-width: 60%;
-  height: 100%!important;
-  background-color: rgb(38, 38, 65);
+  height: 100vh;
   color: white;
+  background: linear-gradient(rgba(38, 38, 65, 0.75), rgba(38, 38, 65, 0.75)),url("./1.jpg");
+  overflow:hidden;
 }
 
 .form{
@@ -91,17 +92,6 @@ body{
   color: rgb(38, 38, 65);
 }
 
-.banner{
-  background: 
-  /* top, transparent red, faked with gradient */ 
-  linear-gradient(
-    rgba(38, 38, 65, 0.75), 
-    rgba(38, 38, 65, 0.75)
-  ),
-  /* bottom, image */
-  url("./1.jpg");
-  overflow:hidden;
-}
 #firstname{
   width: 100%;
 }

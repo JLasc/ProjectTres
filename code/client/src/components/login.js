@@ -3,7 +3,7 @@ import { Row, Input } from "react-materialize";
 
 const Login = (props) => {
   return (
-    <form className={props.active ? "active-comp" : "inactive-comp"}>
+    <form className={props.displayLogin ? "active-comp" : "inactive-comp"}>
       <Row className="infowidth">
         <h4>Login</h4>
         <span>Login to your company's 3nterprise Catalog</span>
@@ -18,7 +18,7 @@ const Login = (props) => {
           id="username"
           name="email"
           value={props.email}
-          onChange={props.change}
+          onChange={props.handleChange}
         />
         <Input
           required
@@ -30,7 +30,7 @@ const Login = (props) => {
           id="password"
           name="password"
           value={props.password}
-          onChange={props.change}
+          onChange={props.handleChange}
         />
       </Row>
     </form>

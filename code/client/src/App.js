@@ -1,8 +1,11 @@
 import React from "react";
 import "./App.css";
-import {Button} from "react-materialize";
-import Signup from "./components/signup";
-import Login from "./components/login";
+import { Router, Route, Switch } from "react-router-dom";
+// import {Button} from "react-materialize";
+// import Signup from "./components/signup";
+// import Login from "./components/login";
+// import Banner from "./components/banner";
+import Forms from "./components/forms"
 
 class App extends React.Component {
   constructor() {
@@ -20,7 +23,7 @@ class App extends React.Component {
     this.handleChange = this.handleChange.bind(this)
   }
 
-  handleSubmit() {
+  handleSignup = () => {
     fetch("/api/signup", {
       method: "POST",
       body: {
@@ -53,14 +56,14 @@ class App extends React.Component {
     })
   };
 
-  loginClick() {
+  loginClick = () => {
     this.setState({
       displayLogin: true,
       displaySignup: false
     });
   };
 
-  signUpClick() {
+  signUpClick = () => {
     this.setState({
       displayLogin: false,
       displaySignup: true
@@ -72,25 +75,8 @@ class App extends React.Component {
     const {displayLogin, displaySignup} = this.state;
     return (
       <div className="App">
-        <div className="banner left">
-        
-        </div>
-        <div className="form right">
-        <div className="formcontainer">
-        <Login active={displayLogin} change={this.handleChange}/>
-        <div id="login-btns" active={displayLogin} className={"right" + (displayLogin ? " active-comp" : " inactive-comp")}>
-        <Button waves="light" className="button" id="1" onClick={this.handleLogin()}>Login</Button>
-        <Button waves="light" className="no-button" id="2"onClick={()=> this.signUpClick()}>Sign Up</Button>
-        </div>
-        
-        <Signup active={displaySignup} change={this.handleChange}/>
-        <div id="signup-btns" className={"right" + (displaySignup ? " active-comp" : " inactive-comp")}>
-        <Button waves="light" className="no-button" id="3" onClick={()=> this.loginClick()}>Login</Button>
-        <Button waves="light" className="button" id="4" onClick={this.handleSubmit()}>Sign Up</Button>
-        </div>
-        
-        </div>
-      </div>
+      <Forms displayLogin={displayLogin} displaySignup={displaySignup} loginClick={this.loginClick} handleChange={this.handleChange} handleLogin={this.handleLogin} signUpClick={this.signUpClick} handleSignup={this.handleSignup}/>
+
       </div>
     );
   }
