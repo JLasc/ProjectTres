@@ -5,6 +5,7 @@ const db = require("../../models");
 
 passport.use(new LocalStrategy(
     (username, password, done) => {
+        console.log("got here")
         db.User.findOne({
             where: {
                 email: username
@@ -27,7 +28,7 @@ passport.use(new LocalStrategy(
   });
   
   passport.deserializeUser(function(id, cb) {
-    db.users.findById(id, function (err, user) {
+    db.User.findById(id, function (err, user) {
       if (err) { return cb(err); }
       cb(null, user);
     });

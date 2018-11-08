@@ -1,5 +1,4 @@
 const express = require("express");
-const path = require("path");
 const bodyParser = require("body-parser");
 const PORT = process.env.PORT || 3001;
 const app = express();
@@ -27,11 +26,10 @@ app.use(passport.session())
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
+require("./routes/api/authenticate.js")(app);
 app.use(routes);
 
 // Define API routes here
-
-require("./routes/api/authenticate")(app);
 
 const syncOptions = { force: false };
 // Starting the server, syncing our models ------------------------------------/
