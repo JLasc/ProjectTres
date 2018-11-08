@@ -34,6 +34,20 @@ class App extends React.Component {
     });
   };
 
+  // handleSignup = () => {
+  //   fetch("/api/signup", {
+  //     method: "POST",
+  //     body: {
+  //       firstName: this.state.firstName,
+  //       lastName: this.state.lastName,
+  //       email: this.state.email,
+  //       password: this.state.password
+  //     }
+  //   }).then(data =>{
+  //     console.log("signup" + data);
+  //   })
+  // };
+
   handleLogin() {
     fetch("/api/login", {
       method: "POST",
