@@ -8,7 +8,7 @@
   },
   "devDependencies": {},
   "scripts": {
-    "start": "cd code && npm start:prod"
+    "start": "cd code && npm run start:prod"
   },
   "repository": {
     "type": "git",
