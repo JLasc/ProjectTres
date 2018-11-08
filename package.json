@@ -1,0 +1,24 @@
+{
+  "name": "ProjectTres",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "express-session": "^1.15.6"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "cd code && if-env NODE_ENV=production && npm run start:prod || npm run start:dev"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JLasc/ProjectTres.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JLasc/ProjectTres/issues"
+  },
+  "homepage": "https://github.com/JLasc/ProjectTres#readme"
+}
