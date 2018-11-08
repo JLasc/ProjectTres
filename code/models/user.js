@@ -21,6 +21,14 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.STRING,
             allowNull: false
         },
+        firstName: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+        lastName : {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
         admin: {
             type: DataTypes.BOOLEAN,
             defaultValue: false
