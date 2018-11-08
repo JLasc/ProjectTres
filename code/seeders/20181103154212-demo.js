@@ -20,6 +20,8 @@ module.exports = {
         id: uuidv4(),
         email: 'demoadmin@democompany.com',
         password: '$2a$10$QFV/0p9UPt983bPsEAQal.A6BgP.rQ./TmPEFHJfap3/n5bcBdxla',
+        firstName: 'Demo',
+        lastName: 'Admin',
         admin: true,
         companyID: companyRows[0].id,
         createdAt: new Date(),
