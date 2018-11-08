@@ -1,11 +1,13 @@
 import React from "react";
 import "./App.css";
-import { Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+//import { Router, Route, Switch } from "react-router-dom";
 // import {Button} from "react-materialize";
 // import Signup from "./components/signup";
 // import Login from "./components/login";
 // import Banner from "./components/banner";
 import Forms from "./components/forms"
+import Dashboard from "./components/dashboard"
 
 class App extends React.Component {
   constructor() {
@@ -74,10 +76,18 @@ class App extends React.Component {
 
     const {displayLogin, displaySignup} = this.state;
     return (
+      
       <div className="App">
-      <Forms displayLogin={displayLogin} displaySignup={displaySignup} loginClick={this.loginClick} handleChange={this.handleChange} handleLogin={this.handleLogin} signUpClick={this.signUpClick} handleSignup={this.handleSignup}/>
-
+      
+         <Router>
+           <div>
+         <Route exact path="/" render={(props) => <Forms {...props} displayLogin={displayLogin} displaySignup={displaySignup} loginClick={this.loginClick} handleChange={this.handleChange} handleLogin={this.handleLogin} signUpClick={this.signUpClick} handleSignup={this.handleSignup}/>} />
+         <Route exact path="/Dashboard" component={Dashboard}/>
+         </div>
+      </Router>
+      
       </div>
+    
     );
   }
 }

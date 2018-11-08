@@ -119,3 +119,116 @@ body{
   color: blue;
 }
 
+.dashboardcontainer{
+  width: calc(100% - 225px);
+  float: right;
+  height: 100vh;
+  background-color: rgb(192, 192, 192);
+  
+}
+
+#companylogo{
+  text-transform: uppercase;
+  padding: 5px 0;
+  display: inline-block;
+  font-size: 18px;
+  color: #3c4858;
+  white-space: nowrap;
+  font-weight: 400;
+  line-height: 30px;
+  overflow: hidden;
+  text-align: center;
+  display: block;
+}
+
+#companylogo:after{
+  content: "";
+  position: absolute;
+  bottom: 0;
+  right: 15px;
+  height: 1px;
+  width: calc(100% - 30px);
+  background-color: hsla(0,0%,71%,.3);
+  box-sizing: border-box;
+}
+
+.dashboardtitle{
+  margin-left: 20px;
+  float: left;
+  color: black;
+  line-height: 32px;
+  
+}
+
+nav ul a{
+  color: black!important;
+}
+nav{
+  box-shadow: none!important;
+}
+.nav-wrapper{
+  color: black;
+  background-color: rgb(192, 192, 192);
+  position: inherit!important;
+  
+}
+
+.sidebar {
+  margin: 0;
+  padding: 15px;
+  width: 225px;
+  background: linear-gradient(rgba(38, 38, 65, 0.75), rgba(38, 38, 65, 0.75)),url("./1.jpg");
+  position: fixed;
+  height: 100%;
+  overflow: auto;
+}
+
+/* Sidebar links */
+.sidebar a {
+  border-radius: 3px;
+  transition: all .15s ease-in;
+  display: block;
+  color: white;
+  padding: 16px;
+  text-decoration: none;
+}
+
+/* Active/current link */
+.sidebar a.active {
+  background-color: rgb(76, 172, 175);
+  text-transform: capitalize;
+  color: white;
+}
+
+/* Links on mouse-over */
+.sidebar a:hover:not(.active) {
+  background-color: hsla(0,0%,78%,.2);
+  color: white;
+  box-shadow: none;
+}
+
+/* Page content. The value of the margin-left property should match the value of the sidebar's width property */
+div.content {
+  margin-left: 200px;
+  padding: 1px 16px;
+  height: 1000px;
+}
+
+/* On screens that are less than 700px wide, make the sidebar into a topbar */
+@media screen and (max-width: 700px) {
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+  }
+  .sidebar a {float: left;}
+  div.content {margin-left: 0;}
+}
+
+/* On screens that are less than 400px, display the bar vertically, instead of horizontally */
+@media screen and (max-width: 400px) {
+  .sidebar a {
+    text-align: center;
+    float: none;
+  }
+}
