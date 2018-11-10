@@ -15,7 +15,7 @@ const Login = (props) => {
           type="email"
           s={12}
           label="E-mail"
-          id="username"
+          id="email"
           name="email"
           value={props.email}
           onChange={props.handleChange}
