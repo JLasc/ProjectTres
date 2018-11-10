@@ -66,7 +66,7 @@ class App extends React.Component {
     });
   };
 
-  handleLogin() {
+  handleLogin = () => {
     fetch("/api/login", {
       method: "POST",
       body: {
