@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-import {BrowserRouter as Router,Route,Redirect} from "react-router-dom";
+import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 import Forms from "./components/forms";
 import Dashboard from "./components/dashboard";
 import Market from "./components/market";
@@ -24,21 +24,27 @@ class App extends React.Component {
     this.handleChange = this.handleChange.bind(this);
   }
 
-//   handleSignup = () => {
-//       this.setState({
-//       authenticated: true,
-//       admin: false
-//     });
-//   };
+  //   handleSignup = () => {
+  //       this.setState({
+  //       authenticated: true,
+  //       admin: false
+  //     });
+  //   };
 
-//   handleLogin = () => {
-//     this.setState({
-//     authenticated: true,
-//     admin: true
-//   });
-// };
+  //   handleLogin = () => {
+  //     this.setState({
+  //     authenticated: true,
+  //     admin: true
+  //   });
+  // };
 
   handleSignup = () => {
+    this.setState({
+      email: this.state.email,
+      firstName: this.state.firstName,
+      lastName: this.state.lastName,
+      password: this.state.password
+    });
     fetch("/api/signup", {
       method: "POST",
       body: {
@@ -47,9 +53,17 @@ class App extends React.Component {
         email: this.state.email,
         password: this.state.password
       }
-    }).then(data =>{
-      console.log("signup" + data);
-    })
+    }).then(data => {
+      this.setState({
+        authenticated: true,
+        uid: data.id,
+        email: data.email,
+        firstName: data.firstName,
+        lastName: data.lastName,
+        admin: false
+      });
+      this.handleLogin();
+    });
   };
 
   handleLogin() {
@@ -67,7 +81,7 @@ class App extends React.Component {
         firstName: data.firstName,
         lastName: data.lastName,
         admin: data.admin
-      })
+      });
     });
   }
 
@@ -104,8 +118,16 @@ class App extends React.Component {
       <div className="App">
         <Router>
           <div>
-            {this.state.authenticated && this.state.admin ? <Redirect to="/dashboard" /> : <Redirect to="/" />}
-            {this.state.authenticated && !this.state.admin ? <Redirect to= "/market" /> : <Redirect to="/" /> }
+            {this.state.authenticated && this.state.admin ? (
+              <Redirect to="/dashboard" />
+            ) : (
+              <Redirect to="/" />
+            )}
+            {this.state.authenticated && !this.state.admin ? (
+              <Redirect to="/market" />
+            ) : (
+              <Redirect to="/" />
+            )}
             <Route
               exact
               path="/"
@@ -127,11 +149,7 @@ class App extends React.Component {
               path="/dashboard"
               render={props => <Dashboard signOut={this.signOut} />}
             />
-            <Route
-              exact
-              path="/market"
-              render={props => <Market />}
-            />
+            <Route exact path="/market" render={props => <Market />} />
           </div>
         </Router>
       </div>
