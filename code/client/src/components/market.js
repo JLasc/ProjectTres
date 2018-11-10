@@ -2,12 +2,12 @@ import React from "react";
 import Navigation from "./navigation";
 import Sidebar from "./sidebar";
 
-const Market = () => {
+const Market = (props) => {
     return (
        <div>
   <Sidebar  />
   <div className="dashboardcontainer">
-  <Navigation />
+  <Navigation signOut={props.signOut} />
   <h1>Market</h1>
   </div>
   </div> 

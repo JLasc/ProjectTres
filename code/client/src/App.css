@@ -130,26 +130,51 @@ body{
 #companylogo{
   text-transform: uppercase;
   padding: 5px 0;
+  padding-bottom: 21px;
+  margin-bottom: 0;
   display: inline-block;
   font-size: 18px;
-  color: #3c4858;
+  color: White;
   white-space: nowrap;
   font-weight: 400;
   line-height: 30px;
   overflow: hidden;
   text-align: center;
   display: block;
+  border-bottom: 1px solid rgba(180,180,180,.3);
 }
 
-#companylogo:after{
-  content: "";
-  position: absolute;
-  bottom: 0;
-  right: 15px;
-  height: 1px;
-  width: calc(100% - 30px);
-  background-color: hsla(0,0%,71%,.3);
+#account{
+  text-transform: uppercase;
+  padding: 10px 0;
+  margin-bottom: 0;
+  display: inline-block;
+  font-size: 18px;
+  color: White;
+  white-space: nowrap;
+  font-weight: 400;
+  line-height: 30px;
+  overflow: hidden;
+  text-align: center;
+  display: block;
+  border-bottom: 1px solid rgba(180,180,180,.3);
+  font-family: 'Montserrat', sans-serif;
+  font-size: 10px;
   
+}
+
+#userinfo{
+  line-height: 32px;
+  height: 32px;
+  align-items: center;
+}
+
+#userinfo span{
+ padding: 13px;
+}
+
+.links{
+  margin-top: 15px;
 }
 
 .dashboardtitle{
@@ -175,7 +200,6 @@ nav{
 
 .sidebar {
   margin: 0;
-  padding: 15px;
   width: 225px;
   background: linear-gradient(rgba(38, 38, 65, 0.75), rgba(38, 38, 65, 0.75)),url("./1.jpg");
   position: fixed;
@@ -185,7 +209,6 @@ nav{
 
 /* Sidebar links */
 .sidebar a {
-  border-radius: 3px;
   transition: all .15s ease-in;
   display: block;
   color: white;
@@ -195,7 +218,8 @@ nav{
 
 /* Active/current link */
 .sidebar a.active {
-  background-color: rgb(76, 172, 175);
+  border-left: 5px solid blue;
+  background-color: hsla(0,0%,78%,.4);
   text-transform: capitalize;
   color: white;
 }
