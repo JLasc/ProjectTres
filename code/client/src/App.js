@@ -1,14 +1,9 @@
 import React from "react";
 import "./App.css";
-import {
-  BrowserRouter as Router,
-  Route,
-  Link,
-  Redirect
-} from "react-router-dom";
-
+import {BrowserRouter as Router,Route,Redirect} from "react-router-dom";
 import Forms from "./components/forms";
 import Dashboard from "./components/dashboard";
+import Market from "./components/market";
 
 class App extends React.Component {
   constructor() {
@@ -21,32 +16,41 @@ class App extends React.Component {
       lastName: "",
       email: "",
       password: "",
-      authenticated: false
+      authenticated: false,
+      uid: "",
+      admin: false
     };
 
     this.handleChange = this.handleChange.bind(this);
   }
 
-  handleSignup = () => {
-    console.log("this fired");
-    this.setState({
-      authenticated: true
-    });
-  };
+//   handleSignup = () => {
+//       this.setState({
+//       authenticated: true,
+//       admin: false
+//     });
+//   };
 
-  // handleSignup = () => {
-  //   fetch("/api/signup", {
-  //     method: "POST",
-  //     body: {
-  //       firstName: this.state.firstName,
-  //       lastName: this.state.lastName,
-  //       email: this.state.email,
-  //       password: this.state.password
-  //     }
-  //   }).then(data =>{
-  //     console.log("signup" + data);
-  //   })
-  // };
+//   handleLogin = () => {
+//     this.setState({
+//     authenticated: true,
+//     admin: true
+//   });
+// };
+
+  handleSignup = () => {
+    fetch("/api/signup", {
+      method: "POST",
+      body: {
+        firstName: this.state.firstName,
+        lastName: this.state.lastName,
+        email: this.state.email,
+        password: this.state.password
+      }
+    }).then(data =>{
+      console.log("signup" + data);
+    })
+  };
 
   handleLogin() {
     fetch("/api/login", {
@@ -56,7 +60,14 @@ class App extends React.Component {
         password: this.state.password
       }
     }).then(data => {
-      console.log("login" + data);
+      this.setState({
+        authenticated: true,
+        uid: data.id,
+        email: data.email,
+        firstName: data.firstName,
+        lastName: data.lastName,
+        admin: data.admin
+      })
     });
   }
 
@@ -93,8 +104,8 @@ class App extends React.Component {
       <div className="App">
         <Router>
           <div>
-            {this.state.authenticated === true && <Redirect to="/dashboard" />}
-            {this.state.authenticated === false && <Redirect to="/" />}
+            {this.state.authenticated && this.state.admin ? <Redirect to="/dashboard" /> : <Redirect to="/" />}
+            {this.state.authenticated && !this.state.admin ? <Redirect to= "/market" /> : <Redirect to="/" /> }
             <Route
               exact
               path="/"
@@ -115,6 +126,11 @@ class App extends React.Component {
               exact
               path="/dashboard"
               render={props => <Dashboard signOut={this.signOut} />}
+            />
+            <Route
+              exact
+              path="/market"
+              render={props => <Market />}
             />
           </div>
         </Router>
