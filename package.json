@@ -1,0 +1,37 @@
+{
+  "name": "ent3rprise",
+  "version": "1.0.0",
+  "description": "Entreprise requisition management tool.  Based and built in the cloud.",
+  "main": "server.js",
+  "scripts": {
+    "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
+    "start:prod": "node code/server.js",
+    "start:dev": "concurrently \"nodemon --ignore 'client/*'\" \"npm run client\"",
+    "client": "cd code/client && npm run start",
+    "install": "cd code/client && yarn install",
+    "build": "cd code/client && npm run build",
+    "heroku-postbuild": "npm run build"
+  },
+  "author": "DreamTeam",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^3.5.0",
+    "nodemon": "^1.11.0"
+  },
+  "dependencies": {
+    "bcrypt": "^3.0.2",
+    "bcrypt-nodejs": "0.0.3",
+    "body-parser": "^1.18.2",
+    "express": "^4.15.4",
+    "express-session": "^1.15.6",
+    "if-env": "^1.0.4",
+    "mysql": "^2.16.0",
+    "mysql2": "^1.6.1",
+    "passport": "^0.4.0",
+    "uuid": "^3.3.2",
+    "passport-local": "^1.0.0",
+    "sequelize": "^4.41.0",
+    "sequelize-cli": "^5.2.0",
+    "yarn": "^1.12.1"
+  }
+}
