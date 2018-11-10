@@ -1,13 +1,14 @@
 import React from "react";
 import "./App.css";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-//import { Router, Route, Switch } from "react-router-dom";
-// import {Button} from "react-materialize";
-// import Signup from "./components/signup";
-// import Login from "./components/login";
-// import Banner from "./components/banner";
-import Forms from "./components/forms"
-import Dashboard from "./components/dashboard"
+import {
+  BrowserRouter as Router,
+  Route,
+  Link,
+  Redirect
+} from "react-router-dom";
+
+import Forms from "./components/forms";
+import Dashboard from "./components/dashboard";
 
 class App extends React.Component {
   constructor() {
@@ -19,43 +20,51 @@ class App extends React.Component {
       firstName: "",
       lastName: "",
       email: "",
-      password: ""
+      password: "",
+      authenticated: false
     };
 
-    this.handleChange = this.handleChange.bind(this)
+    this.handleChange = this.handleChange.bind(this);
   }
 
   handleSignup = () => {
-    fetch("/api/signup", {
-      method: "POST",
-      body: {
-        firstName: this.state.firstName,
-        lastName: this.state.lastName,
-        email: this.state.email,
-        password: this.state.password
-      }
-    }).then(data =>{
-      console.log("signup" + data);
-    })
+    console.log("this fired");
+    this.setState({
+      authenticated: true
+    });
   };
 
-  handleLogin(){
+  // handleSignup = () => {
+  //   fetch("/api/signup", {
+  //     method: "POST",
+  //     body: {
+  //       firstName: this.state.firstName,
+  //       lastName: this.state.lastName,
+  //       email: this.state.email,
+  //       password: this.state.password
+  //     }
+  //   }).then(data =>{
+  //     console.log("signup" + data);
+  //   })
+  // };
+
+  handleLogin() {
     fetch("/api/login", {
       method: "POST",
       body: {
         email: this.state.email,
         password: this.state.password
       }
-    }).then(data =>{
+    }).then(data => {
       console.log("login" + data);
-    })
+    });
   }
-  
-  handleChange = (event) =>{
-    const {name, value} = event.target;
+
+  handleChange = event => {
+    const { name, value } = event.target;
     this.setState({
-      [name]:value
-    })
+      [name]: value
+    });
   };
 
   loginClick = () => {
@@ -72,22 +81,44 @@ class App extends React.Component {
     });
   };
 
-  render() {
+  signOut = () => {
+    this.setState({
+      authenticated: false
+    });
+  };
 
-    const {displayLogin, displaySignup} = this.state;
+  render() {
+    const { displayLogin, displaySignup } = this.state;
     return (
-      
       <div className="App">
-      
-         <Router>
-           <div>
-         <Route exact path="/" render={(props) => <Forms {...props} displayLogin={displayLogin} displaySignup={displaySignup} loginClick={this.loginClick} handleChange={this.handleChange} handleLogin={this.handleLogin} signUpClick={this.signUpClick} handleSignup={this.handleSignup}/>} />
-         <Route exact path="/Dashboard" component={Dashboard}/>
-         </div>
-      </Router>
-      
+        <Router>
+          <div>
+            {this.state.authenticated === true && <Redirect to="/dashboard" />}
+            {this.state.authenticated === false && <Redirect to="/" />}
+            <Route
+              exact
+              path="/"
+              render={props => (
+                <Forms
+                  displayLogin={displayLogin}
+                  displaySignup={displaySignup}
+                  loginClick={this.loginClick}
+                  handleChange={this.handleChange}
+                  handleLogin={this.handleLogin}
+                  signUpClick={this.signUpClick}
+                  handleSignup={this.handleSignup}
+                  signOut={this.signOut}
+                />
+              )}
+            />
+            <Route
+              exact
+              path="/dashboard"
+              render={props => <Dashboard signOut={this.signOut} />}
+            />
+          </div>
+        </Router>
       </div>
-    
     );
   }
 }

@@ -22,7 +22,7 @@ const Forms = (props) => {
         <Signup displaySignup={props.displaySignup} handleChange={props.handleChange}/>
         <div id="signup-btns" className={"right" + (props.displaySignup ? " active-comp" : " inactive-comp")}>
         <Button waves="light" className="no-button" id="3" onClick={props.loginClick}>Login</Button>
-        <Button waves="light" className="button" id="4" onClick={props.handleSubmit}>Sign Up</Button>
+        <Button waves="light" className="button" id="4" onClick={props.handleSignup}>Sign Up</Button>
         </div>
         
         </div>

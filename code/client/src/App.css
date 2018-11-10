@@ -149,7 +149,7 @@ body{
   height: 1px;
   width: calc(100% - 30px);
   background-color: hsla(0,0%,71%,.3);
-  box-sizing: border-box;
+  
 }
 
 .dashboardtitle{
