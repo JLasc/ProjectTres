@@ -131,7 +131,7 @@ class App extends React.Component {
             <Route
               exact
               path="/"
-              render={props => (
+              render={() => (
                 <Forms
                   displayLogin={displayLogin}
                   displaySignup={displaySignup}
@@ -147,9 +147,9 @@ class App extends React.Component {
             <Route
               exact
               path="/dashboard"
-              render={props => <Dashboard signOut={this.signOut} />}
+              render={() => <Dashboard signOut={this.signOut} />}
             />
-            <Route exact path="/market" render={props => <Market />} />
+            <Route exact path="/market" render={() => <Market />} />
           </div>
         </Router>
       </div>
