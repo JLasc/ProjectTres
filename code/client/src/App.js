@@ -1,9 +1,12 @@
 import React from "react";
 import "./App.css";
-import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
+import { BrowserRouter as Router, Route, Redirect, Link, Switch } from "react-router-dom";
 import Forms from "./components/forms";
 import Dashboard from "./components/dashboard";
 import Market from "./components/market";
+import axios from "axios";
+import Login from "./components/login";
+import PrivateRoute from './helpers/PrivateRoute';
 
 class App extends React.Component {
   constructor() {
@@ -23,20 +26,6 @@ class App extends React.Component {
 
     this.handleChange = this.handleChange.bind(this);
   }
-
-  //   handleSignup = () => {
-  //       this.setState({
-  //       authenticated: true,
-  //       admin: false
-  //     });
-  //   };
-
-  //   handleLogin = () => {
-  //     this.setState({
-  //     authenticated: true,
-  //     admin: true
-  //   });
-  // };
 
   handleSignup = () => {
     this.setState({
@@ -67,22 +56,28 @@ class App extends React.Component {
   };
 
   handleLogin = () => {
-    fetch("/api/login", {
-      method: "POST",
-      body: {
-        email: this.state.email,
+    axios({
+      method: 'post',
+      url: '/api/login',
+      headers: {
+        "content-type": "application/json"
+      },
+      data: {
+        username: this.state.email,
         password: this.state.password
       }
-    }).then(data => {
-      this.setState({
-        authenticated: true,
-        uid: data.id,
-        email: data.email,
-        firstName: data.firstName,
-        lastName: data.lastName,
-        admin: data.admin
+    })
+      .then(data => {
+        console.log(data.data.data);
+        this.setState({
+          authenticated: true,
+          uid: data.data.data.id,
+          email: data.data.data.email,
+          firstName: data.data.data.firstName,
+          lastName: data.data.data.lastName,
+          admin: data.data.data.admin
+        });
       });
-    });
   }
 
   handleChange = event => {
@@ -112,6 +107,12 @@ class App extends React.Component {
     });
   };
 
+  grabUsers = () => {
+    console.log("test")
+  }
+
+
+
   render() {
     const { displayLogin, displaySignup } = this.state;
     return (
@@ -121,13 +122,13 @@ class App extends React.Component {
             {this.state.authenticated && this.state.admin ? (
               <Redirect to="/dashboard" />
             ) : (
-              <Redirect to="/" />
-            )}
+                <Redirect to="/" />
+              )}
             {this.state.authenticated && !this.state.admin ? (
               <Redirect to="/market" />
             ) : (
-              <Redirect to="/" />
-            )}
+                <Redirect to="/" />
+              )}
             <Route
               exact
               path="/"
