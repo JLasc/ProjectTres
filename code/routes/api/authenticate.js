@@ -18,7 +18,7 @@ module.exports = (app) => {
             firstName: req.body.firstName,
             lastName: req.body.lastName
         }).then((data) => {
-            res.json(data);
+            res.json({data:data});
         })
             .catch((err) => {
                 console.log("Error:", err);
