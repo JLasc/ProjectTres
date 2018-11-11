@@ -33,10 +33,18 @@ class App extends React.Component {
   //   };
 
   //   handleLogin = () => {
-  //     this.setState({
-  //     authenticated: true,
-  //     admin: true
-  //   });
+  //     if (this.state.authenticated && this.state.admin){
+  //       window.location.href ="/Dashboard";
+  //       this.setState({
+  //         state: this.state 
+  //       });
+  //     }
+  //     else if (this.state.authenticated && !this.state.admin){
+  //       window.location.href ="/Market";
+  //       this.setState({
+  //         state: this.state 
+  //      });
+  //   };
   // };
 
   handleSignup = () => {
@@ -69,31 +77,6 @@ class App extends React.Component {
     });
   };
 
-  // handleLogin = () => {
-  //   this.setState({
-  //     email: this.state.email
-  //   });
-  //   axios("/api/login", {
-  //     method: "POST",
-  //     body: {
-  //       email: this.state.email,
-  //       password: this.state.password
-  //     }
-  //   }).then(data => {
-  //     console.log("working" + data);
-  //     this.setState({
-  //       displayLogin: false,
-  //       authenticated: true,
-  //       password: "",
-  //       uid: data.id,
-  //       email: data.email,
-  //       firstName: data.firstName,
-  //       lastName: data.lastName,
-  //       admin: data.admin
-  //     });
-  //   });
-  // }
-
     handleLogin = () => {
     this.setState({
       email: this.state.email
@@ -114,6 +97,18 @@ class App extends React.Component {
         lastName: data.lastName,
         admin: data.admin
       });
+      if (data.data.data.authenticated && data.data.data.admin){
+        window.location.href("/Dashboard");
+        this.setState({
+          state: this.state 
+        });
+      }
+      else if (data.data.data.authenticated && !data.data.data.admin){
+        window.location.href("/Market");
+        this.setState({
+          state: this.state 
+        });
+      }
     })
    }
 
@@ -150,8 +145,8 @@ class App extends React.Component {
       <div className="App">
         <Router>
           <div>
-            {this.state.authenticated && this.state.admin ? (<Redirect to="/dashboard" />) : (<Redirect to="/" />)}
-            {this.state.authenticated && !this.state.admin ? (<Redirect to="/market" />) : (<Redirect to="/" />)}
+            {/* {this.state.authenticated && this.state.admin ? (<Redirect to="/dashboard" />) : (<Redirect to="/" />)}
+            {this.state.authenticated && !this.state.admin ? (<Redirect to="/market" />) : (<Redirect to="/" />)} */}
             <Route
               exact
               path="/"

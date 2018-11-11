@@ -8,7 +8,6 @@ const Market = (props) => {
   <Sidebar  />
   <div className="dashboardcontainer">
   <Navigation signOut={props.signOut} />
-  <h1>Market</h1>
   </div>
   </div> 
     );
