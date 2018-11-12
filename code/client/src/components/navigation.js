@@ -1,23 +1,20 @@
 import React from "react";
-import { Navbar, NavItem, Icon, Button } from "react-materialize";
+import { Navbar, NavItem, Icon, Button, Input, Row } from "react-materialize";
 
 const Navigation = (props) => {
   return (
     <div>
       <p className="dashboardtitle">Purchasing & Ordering Admin Dashboard</p>
     <Navbar right>
-      <Button onClick={props.signOut}>Logout</Button>
+      <Button className="button" onClick={props.signOut}>Logout</Button>
+     
+
+        <li id="search"><Input placeholder="Search" /><Icon>search</Icon></li>
       <NavItem href="get-started.html">
-        <Icon>search</Icon>
+        <Icon>shopping_cart</Icon>
       </NavItem>
       <NavItem href="get-started.html">
-        <Icon>view_module</Icon>
-      </NavItem>
-      <NavItem href="get-started.html">
-        <Icon>refresh</Icon>
-      </NavItem>
-      <NavItem href="get-started.html">
-        <Icon>more_vert</Icon>
+        <Icon>perm_identity</Icon>
       </NavItem>
     </Navbar>
     </div>

@@ -66,6 +66,8 @@ body {
   padding-right: 15px;
   padding-left: 15px;
   background-color: blue;
+  font-family: "Montserrat", sans-serif;
+  font-weight: bold;
 }
 
 .button:hover {
@@ -125,7 +127,7 @@ body {
   width: calc(100% - 225px);
   float: right;
   height: 100vh;
-  background-color: rgb(192, 192, 192);
+  background-color: rgb(240, 240, 240);
 }
 
 #username {
@@ -184,8 +186,8 @@ body {
   width: 32px;
 }
 .useroptions {
-  font-family: "Montserrat", sans-serif;
-  font-size: 10px;
+  font-family: 'Archivo', sans-serif;
+  font-size: 11px;
   background: linear-gradient(rgba(22, 22, 37, 0.9), rgba(38, 38, 65, 0.75));
   border-bottom: 1px solid rgba(180, 180, 180, 0.3);
 }
@@ -216,6 +218,17 @@ body {
   margin-top: 15px;
 }
 
+.links img{
+  margin: 16px 10px 0px 12px;
+  width: 18px;
+  float: left;
+  opacity: .5;
+}
+
+.sidebar .link a {
+  float: left;
+}
+
 .dashboardtitle {
   margin-left: 20px;
   float: left;
@@ -231,15 +244,61 @@ nav {
 }
 .nav-wrapper {
   color: black;
-  background-color: rgb(192, 192, 192);
+  background-color: rgb(240, 240, 240);
   position: inherit !important;
 }
 
+#search{
+  border-radius: 5px;
+  background-color: rgb(219, 219, 219);
+  margin-top: 13px;
+  margin-right: 10px;
+  height: 41px;
+  width: 270px;
+  position: relative;
+  color: white;
+}
+
+#search input{
+  float: left;
+  margin: 0;
+  padding: 0;
+  padding: 10px;
+  padding-left: 20px;
+  height: 20px;
+  width: 200px;
+  font-size: 14px;
+}
+
+#search input::placeholder{
+  color:rgb(241, 241, 241);
+}
+
+#search i{
+  position: absolute;
+  margin-bottom: 3px;
+  margin-right: 5px;
+  bottom: 0;
+  right: 0;
+  float: right!important;
+  line-height: 41px;
+  cursor:pointer;
+  color: blue;
+  
+}
+
+nav i.material-icons{
+  height: 36px!important;
+  color: blue;
+}
+
+nav ul a:hover{
+  background-color: rgb(240, 240, 240)
+}
 .sidebar {
   margin: 0;
   width: 225px;
-  background: linear-gradient(rgba(38, 38, 65, 0.75), rgba(38, 38, 65, 0.75)),
-    url("./1.jpg");
+  background: linear-gradient(rgba(38, 38, 65), rgba(22, 22, 37));
   position: fixed;
   height: 100%;
   overflow: auto;
@@ -253,6 +312,7 @@ nav {
   display: block;
   color: white;
   padding: 16px;
+  padding-left: 0;
   text-decoration: none;
 }
 
