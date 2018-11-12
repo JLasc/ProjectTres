@@ -50,29 +50,25 @@ class App extends React.Component {
   // };
 
   handleSignup = () => {
-    this.setState({
-      email: this.state.email,
-      firstName: this.state.firstName,
-      lastName: this.state.lastName,
-      password: this.state.password,
-      admin: false
-    });
-    fetch("/api/signup", {
-      method: "POST",
-      body: {
-        firstName: this.state.firstName,
-        lastName: this.state.lastName,
+    axios({
+      method: 'post',
+      url: '/api/signup',
+      headers: {
+        "content-type": "application/json"
+      },
+      data: {
         email: this.state.email,
         password: this.state.password,
-        admin: false
+        firstName: this.state.firstName,
+        lastName: this.state.lastName
       }
     }).then(data => {
       this.setState({
         authenticated: true,
-        uid: data.id,
-        email: data.email,
-        firstName: data.firstName,
-        lastName: data.lastName,
+        uid: data.data.data.id,
+        email: data.data.data.email,
+        firstName: data.data.data.firstName,
+        lastName: data.data.data.lastName,
         admin: false
       });
       this.handleLogin();
