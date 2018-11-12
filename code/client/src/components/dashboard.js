@@ -3,9 +3,13 @@ import Sidebar from "./sidebar";
 import Navigation from "./navigation";
 
 const Dashboard = props => {
+  
   return (
     <div>
-      <Sidebar />
+      <Sidebar
+        displayOptions={props.displayOptions}
+        userOptions={props.userOptions}
+      />
       <div className="dashboardcontainer">
         <Navigation signOut={props.signOut} />
       </div>

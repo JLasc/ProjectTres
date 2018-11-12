@@ -7,7 +7,6 @@ import {Button} from "react-materialize";
 
 
 const Forms = (props) => {
-    console.log(props);
      return(
         <div>
         <Banner />

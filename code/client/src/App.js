@@ -1,12 +1,11 @@
 import React from "react";
 import "./App.css";
-import { BrowserRouter as Router, Route, Redirect, Link, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route} from "react-router-dom";
 import Forms from "./components/forms";
 import Dashboard from "./components/dashboard";
 import Market from "./components/market";
 import axios from "axios";
-import Login from "./components/login";
-import PrivateRoute from './helpers/PrivateRoute';
+//import PrivateRoute from './helpers/PrivateRoute';
 
 class App extends React.Component {
   constructor() {
@@ -15,6 +14,7 @@ class App extends React.Component {
     this.state = {
       displayLogin: true,
       displaySignup: false,
+      displayOptions: false,
       firstName: "",
       lastName: "",
       email: "",
@@ -27,12 +27,35 @@ class App extends React.Component {
     this.handleChange = this.handleChange.bind(this);
   }
 
+  //   handleSignup = () => {
+  //       this.setState({
+  //       authenticated: true,
+  //       admin: false
+  //     });
+  //   };
+
+  //   handleLogin = () => {
+  //     if (this.state.authenticated && this.state.admin){
+  //       window.location.href ="/Dashboard";
+  //       this.setState({
+  //         state: this.state 
+  //       });
+  //     }
+  //     else if (this.state.authenticated && !this.state.admin){
+  //       window.location.href ="/Market";
+  //       this.setState({
+  //         state: this.state 
+  //      });
+  //   };
+  // };
+
   handleSignup = () => {
     this.setState({
       email: this.state.email,
       firstName: this.state.firstName,
       lastName: this.state.lastName,
-      password: this.state.password
+      password: this.state.password,
+      admin: false
     });
     fetch("/api/signup", {
       method: "POST",
@@ -40,7 +63,8 @@ class App extends React.Component {
         firstName: this.state.firstName,
         lastName: this.state.lastName,
         email: this.state.email,
-        password: this.state.password
+        password: this.state.password,
+        admin: false
       }
     }).then(data => {
       this.setState({
@@ -77,6 +101,18 @@ class App extends React.Component {
           lastName: data.data.data.lastName,
           admin: data.data.data.admin
         });
+        if (data.data.data.authenticated && data.data.data.admin){
+          window.location.href("/dashboard");
+          this.setState({
+            state: this.state 
+          });
+        }
+        else if (data.data.data.authenticated && !data.data.data.admin){
+          window.location.href("/market");
+          this.setState({
+            state: this.state 
+          });
+        }
       });
   }
 
@@ -111,24 +147,32 @@ class App extends React.Component {
     console.log("test")
   }
 
+  userOptions = () => {
+    if (this.state.displayOptions){
+      this.setState({
+        displayOptions: false
+      });
+    }
+    else if (!this.state.displayOptions){
+      this.setState({
+        displayOptions: true
+      });
+    }
+    
+  }
+  
+
+
 
 
   render() {
-    const { displayLogin, displaySignup } = this.state;
+    const { displayLogin, displaySignup, displayOptions } = this.state;
     return (
       <div className="App">
         <Router>
           <div>
-            {this.state.authenticated && this.state.admin ? (
-              <Redirect to="/dashboard" />
-            ) : (
-                <Redirect to="/" />
-              )}
-            {this.state.authenticated && !this.state.admin ? (
-              <Redirect to="/market" />
-            ) : (
-                <Redirect to="/" />
-              )}
+            {/* {this.state.authenticated && this.state.admin ? (<Redirect to="/dashboard" />) : (<Redirect to="/" />)}
+            {this.state.authenticated && !this.state.admin ? (<Redirect to="/market" />) : (<Redirect to="/" />)} */}
             <Route
               exact
               path="/"
@@ -148,9 +192,11 @@ class App extends React.Component {
             <Route
               exact
               path="/dashboard"
-              render={() => <Dashboard signOut={this.signOut} />}
+              render={() => <Dashboard signOut={this.signOut} displayOptions={displayOptions} userOptions={this.userOptions} />}
             />
-            <Route exact path="/market" render={() => <Market />} />
+            <Route exact path="/market" 
+            render={() => <Market signOut={this.signOut} displayOptions={displayOptions} userOptions={this.userOptions}/>} 
+            />
           </div>
         </Router>
       </div>

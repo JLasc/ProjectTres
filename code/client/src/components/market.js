@@ -2,17 +2,15 @@ import React from "react";
 import Navigation from "./navigation";
 import Sidebar from "./sidebar";
 
-const Market = () => {
-    return (
-       <div>
-  <Sidebar  />
-  <div className="dashboardcontainer">
-  <Navigation />
-  <h1>Market</h1>
-  </div>
-  </div> 
-    );
-  };
-  
-  export default Market;
-  
+const Market = (props) => {
+  return (
+    <div>
+      <Sidebar displayOptions={props.displayOptions} userOptions={props.userOptions}/>
+      <div className="dashboardcontainer">
+        <Navigation signOut={props.signOut} />
+      </div>
+    </div>
+  );
+};
+
+export default Market;

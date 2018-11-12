@@ -2,34 +2,43 @@ body > #root > div {
   height: 100vh;
 }
 
-body{
+body {
   height: 100%;
   width: 100%;
   padding: 0;
   margin: 0;
 }
 
-.infowidth{
- width: calc(100% - .75em);
+.infowidth {
+  width: calc(100% - 0.75em);
 }
 
-#username:focus, #password:focus, #firstname:focus, #lastname:focus, #pass:focus, #email:focus{
-  border-bottom:1px solid rgb(38, 38, 65);
-  box-shadow: 0 1px 0 0 rgb(38, 38, 65);
+#username:focus,
+#password:focus,
+#firstname:focus,
+#lastname:focus,
+#pass:focus,
+#email:focus,
+#loginEmail:focus {
+  border-bottom: 1px solid blue;
+  box-shadow: 0 1px 0 0 blue;
 }
 
 .input-field input:focus + label {
   color: blue !important;
 }
-.inactive-comp{
-  display:none;
+.inactive-comp {
+  display: none;
+ 
 }
 
-.active-comp{
-  display:block;
+.active-comp {
+  display: block;
+  animation: slide-down .5s ease-in;
+  
 }
 
-.no-button{
+.no-button {
   background-color: white;
   color: blue;
   box-shadow: none;
@@ -40,51 +49,54 @@ body{
   padding-left: 15px;
 }
 
-.no-button:hover{
+.no-button:hover {
   font-weight: bold;
   background-color: white;
- 
 }
 
-.no-button:active, .no-button:focus{
+.no-button:active,
+.no-button:focus {
   background-color: white;
 }
 
-
-.button{
+.button {
   font-size: 13px;
   font-weight: bold;
   width: 100px;
   padding-right: 15px;
   padding-left: 15px;
   background-color: blue;
+  font-family: "Montserrat", sans-serif;
+  font-weight: bold;
 }
 
-.button:hover{
+.button:hover {
   background-color: blue;
 }
 
-.button:active, .button:focus{
+.button:active,
+.button:focus {
   background-color: rgb(2, 2, 207);
 }
 
-.left{
-  float:left;
+.left {
+  float: left;
 }
 
-.right{
-  float:right;
+.right {
+  float: right;
 }
 
-.banner{
+.banner {
   min-width: 60%;
   height: 100vh;
   color: white;
-  background: linear-gradient(rgba(38, 38, 65, 0.75), rgba(38, 38, 65, 0.75)),url("./1.jpg");
-  overflow:hidden;
+  background: linear-gradient(rgba(38, 38, 65, 0.75), rgba(38, 38, 65, 0.75)),
+    url("./1.jpg");
+  overflow: hidden;
 }
 
-.form{
+.form {
   width: 40%;
   height: 100%;
   max-width: 700px;
@@ -92,117 +104,229 @@ body{
   color: rgb(38, 38, 65);
 }
 
-#firstname{
+#firstname,
+#lastname,
+#pass,
+#email,
+#loginEmail {
   width: 100%;
 }
 
-#lastname{
-  width: 100%;
-}
-
-#pass{
-  width: 100%;
-}
-
-#email{
-  width: 100%;
-}
-
-.formcontainer{
-  font-family: 'Montserrat', sans-serif;
+.formcontainer {
+  font-family: "Montserrat", sans-serif;
   width: 60%;
-  margin:auto;
-  margin-top: 125px;
+  margin: auto;
+  margin-top: 23%;
 }
 
-.formcontainer h4{
+.formcontainer h4 {
   color: blue;
 }
 
-.dashboardcontainer{
+.dashboardcontainer {
   width: calc(100% - 225px);
   float: right;
   height: 100vh;
-  background-color: rgb(192, 192, 192);
-  
+  background-color: rgb(240, 240, 240);
 }
 
-#companylogo{
+#username {
+  float: left;
+  margin-left: 7px;
+}
+
+#companylogo {
   text-transform: uppercase;
   padding: 5px 0;
+  padding-bottom: 21px;
+  margin-bottom: 0;
   display: inline-block;
   font-size: 18px;
-  color: #3c4858;
+  color: White;
   white-space: nowrap;
   font-weight: 400;
   line-height: 30px;
   overflow: hidden;
   text-align: center;
   display: block;
+  border-bottom: 1px solid rgba(180, 180, 180, 0.3);
 }
 
-#companylogo:after{
-  content: "";
-  position: absolute;
-  bottom: 0;
-  right: 15px;
-  height: 1px;
-  width: calc(100% - 30px);
-  background-color: hsla(0,0%,71%,.3);
-  
+#account {
+  text-transform: uppercase;
+  padding: 10px 0;
+  margin-bottom: 0;
+  display: inline-block;
+  font-size: 18px;
+  color: White;
+  white-space: nowrap;
+  font-weight: 400;
+  line-height: 32px;
+  overflow: hidden;
+  text-align: center;
+  display: block;
+  border-bottom: 1px solid rgba(180, 180, 180, 0.3);
+  font-family: "Montserrat", sans-serif;
+  font-size: 10px;
 }
 
-.dashboardtitle{
+#userinfo {
+  float: left;
+  width: 70%;
+  max-width: 160px;
+  overflow: hidden;
+  height: 32px;
+  margin-left: 15px;
+  align-items: center;
+}
+
+#userinfo img {
+  float: left;
+  margin-right: 5px;
+  width: 32px;
+}
+.useroptions {
+  font-family: 'Archivo', sans-serif;
+  font-size: 11px;
+  background: linear-gradient(rgba(22, 22, 37, 0.9), rgba(38, 38, 65, 0.75));
+  border-bottom: 1px solid rgba(180, 180, 180, 0.3);
+}
+
+.sidebar .useroptions a{
+  padding-left: 20px;
+}
+
+#arrow {
+  float: right;
+  height: 24px;
+  margin-top: 4px;
+  margin-right: 5px;
+  filter: invert(100%);
+}
+
+.down {
+  transform: rotate(0deg);
+  transition: transform 0.25s linear;
+}
+
+.up {
+  transform: rotate(180deg);
+  transition: transform 0.25s linear;
+}
+
+.links {
+  margin-top: 15px;
+}
+
+.links img{
+  margin: 16px 10px 0px 12px;
+  width: 18px;
+  float: left;
+  opacity: .5;
+}
+
+.sidebar .link a {
+  float: left;
+}
+
+.dashboardtitle {
   margin-left: 20px;
   float: left;
   color: black;
   line-height: 32px;
-  
 }
 
-nav ul a{
-  color: black!important;
+nav ul a {
+  color: black !important;
 }
-nav{
-  box-shadow: none!important;
+nav {
+  box-shadow: none !important;
 }
-.nav-wrapper{
+.nav-wrapper {
   color: black;
-  background-color: rgb(192, 192, 192);
-  position: inherit!important;
+  background-color: rgb(240, 240, 240);
+  position: inherit !important;
+}
+
+#search{
+  border-radius: 5px;
+  background-color: rgb(219, 219, 219);
+  margin-top: 13px;
+  margin-right: 10px;
+  height: 41px;
+  width: 270px;
+  position: relative;
+  color: white;
+}
+
+#search input{
+  float: left;
+  margin: 0;
+  padding: 0;
+  padding: 10px;
+  padding-left: 20px;
+  height: 20px;
+  width: 200px;
+  font-size: 14px;
+}
+
+#search input::placeholder{
+  color:rgb(241, 241, 241);
+}
+
+#search i{
+  position: absolute;
+  margin-bottom: 3px;
+  margin-right: 5px;
+  bottom: 0;
+  right: 0;
+  float: right!important;
+  line-height: 41px;
+  cursor:pointer;
+  color: blue;
   
 }
 
+nav i.material-icons{
+  height: 36px!important;
+  color: blue;
+}
+
+nav ul a:hover{
+  background-color: rgb(240, 240, 240)
+}
 .sidebar {
   margin: 0;
-  padding: 15px;
   width: 225px;
-  background: linear-gradient(rgba(38, 38, 65, 0.75), rgba(38, 38, 65, 0.75)),url("./1.jpg");
+  background: linear-gradient(rgba(38, 38, 65), rgba(22, 22, 37));
   position: fixed;
   height: 100%;
   overflow: auto;
+  font-family: "Montserrat", sans-serif;
+  font-size: 13px;
 }
 
 /* Sidebar links */
 .sidebar a {
-  border-radius: 3px;
-  transition: all .15s ease-in;
+  transition: all 0.15s ease-in;
   display: block;
   color: white;
   padding: 16px;
+  padding-left: 0;
   text-decoration: none;
 }
 
 /* Active/current link */
 .sidebar a.active {
-  background-color: rgb(76, 172, 175);
+  border-left: 4px solid blue;
+  background-color: hsla(0, 0%, 78%, 0.4);
   text-transform: capitalize;
   color: white;
 }
 
 /* Links on mouse-over */
 .sidebar a:hover:not(.active) {
-  background-color: hsla(0,0%,78%,.2);
+  background-color: hsla(0, 0%, 78%, 0.2);
   color: white;
   box-shadow: none;
 }
@@ -214,6 +338,14 @@ div.content {
   height: 1000px;
 }
 
+@keyframes slide-down {
+  0% { opacity: 0; -webkit-transform: translateY(0); }   
+100% { opacity: 1; -webkit-transform: translateY(0); }
+}
+@-moz-keyframes slide-down {
+  0% { opacity: 0; -moz-transform: translateY(0); }   
+100% { opacity: 1; -moz-transform: translateY(0); }
+}
 /* On screens that are less than 700px wide, make the sidebar into a topbar */
 @media screen and (max-width: 700px) {
   .sidebar {
@@ -221,8 +353,12 @@ div.content {
     height: auto;
     position: relative;
   }
-  .sidebar a {float: left;}
-  div.content {margin-left: 0;}
+  .sidebar a {
+    float: left;
+  }
+  div.content {
+    margin-left: 0;
+  }
 }
 
 /* On screens that are less than 400px, display the bar vertically, instead of horizontally */
