@@ -50,13 +50,6 @@ class App extends React.Component {
   // };
 
   handleSignup = () => {
-    // this.setState({
-    //   email: this.state.email,
-    //   firstName: this.state.firstName,
-    //   lastName: this.state.lastName,
-    //   password: this.state.password,
-    //   admin: false
-    // });
     axios({
       method: 'post',
       url: '/api/signup',
