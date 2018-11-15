@@ -1,11 +1,12 @@
 import React from "react";
 import "./App.css";
-import { BrowserRouter as Router, Route} from "react-router-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import Forms from "./components/forms";
 import Dashboard from "./components/dashboard";
 import Market from "./components/market";
 import axios from "axios";
 //import PrivateRoute from './helpers/PrivateRoute';
+
 
 class App extends React.Component {
   constructor() {
@@ -15,39 +16,19 @@ class App extends React.Component {
       displayLogin: true,
       displaySignup: false,
       displayOptions: false,
+      displayProducts: true,
       firstName: "",
       lastName: "",
       email: "",
       password: "",
       authenticated: false,
       uid: "",
-      admin: false
+      admin: false,
+      showProducts: true
     };
 
     this.handleChange = this.handleChange.bind(this);
   }
-
-  //   handleSignup = () => {
-  //       this.setState({
-  //       authenticated: true,
-  //       admin: false
-  //     });
-  //   };
-
-  //   handleLogin = () => {
-  //     if (this.state.authenticated && this.state.admin){
-  //       window.location.href ="/Dashboard";
-  //       this.setState({
-  //         state: this.state 
-  //       });
-  //     }
-  //     else if (this.state.authenticated && !this.state.admin){
-  //       window.location.href ="/Market";
-  //       this.setState({
-  //         state: this.state 
-  //      });
-  //   };
-  // };
 
   handleSignup = () => {
     this.setState({
@@ -81,8 +62,8 @@ class App extends React.Component {
 
   handleLogin = () => {
     axios({
-      method: 'post',
-      url: '/api/login',
+      method: "post",
+      url: "/api/login",
       headers: {
         "content-type": "application/json"
       },
@@ -90,31 +71,29 @@ class App extends React.Component {
         username: this.state.email,
         password: this.state.password
       }
-    })
-      .then(data => {
-        console.log(data.data.data);
-        this.setState({
-          authenticated: true,
-          uid: data.data.data.id,
-          email: data.data.data.email,
-          firstName: data.data.data.firstName,
-          lastName: data.data.data.lastName,
-          admin: data.data.data.admin
-        });
-        if (data.data.data.authenticated && data.data.data.admin){
-          window.location.href("/dashboard");
-          this.setState({
-            state: this.state 
-          });
-        }
-        else if (data.data.data.authenticated && !data.data.data.admin){
-          window.location.href("/market");
-          this.setState({
-            state: this.state 
-          });
-        }
+    }).then(data => {
+      console.log(data.data.data);
+      this.setState({
+        authenticated: true,
+        uid: data.data.data.id,
+        email: data.data.data.email,
+        firstName: data.data.data.firstName,
+        lastName: data.data.data.lastName,
+        admin: data.data.data.admin
       });
-  }
+      if (data.data.data.authenticated && data.data.data.admin) {
+        window.location.href("/dashboard");
+        this.setState({
+          state: this.state
+        });
+      } else if (data.data.data.authenticated && !data.data.data.admin) {
+        window.location.href("/market");
+        this.setState({
+          state: this.state
+        });
+      }
+    });
+  };
 
   handleChange = event => {
     const { name, value } = event.target;
@@ -128,6 +107,18 @@ class App extends React.Component {
       displayLogin: true,
       displaySignup: false
     });
+  };
+
+  activeLink = () => {
+    if (this.state.active) {
+      this.setState({
+        active: false
+      });
+    } else if (!this.state.active) {
+      this.setState({
+        active: true
+      });
+    }
   };
 
   signUpClick = () => {
@@ -144,35 +135,30 @@ class App extends React.Component {
   };
 
   grabUsers = () => {
-    console.log("test")
-  }
+    console.log("test");
+  };
 
   userOptions = () => {
-    if (this.state.displayOptions){
+    if (this.state.displayOptions) {
       this.setState({
         displayOptions: false
       });
-    }
-    else if (!this.state.displayOptions){
+    } else if (!this.state.displayOptions) {
       this.setState({
         displayOptions: true
       });
     }
-    
-  }
+  };
+
   
 
-
-
-
   render() {
-    const { displayLogin, displaySignup, displayOptions } = this.state;
+  
+    const { displayLogin, displaySignup, displayOptions, showProducts } = this.state;
     return (
       <div className="App">
         <Router>
           <div>
-            {/* {this.state.authenticated && this.state.admin ? (<Redirect to="/dashboard" />) : (<Redirect to="/" />)}
-            {this.state.authenticated && !this.state.admin ? (<Redirect to="/market" />) : (<Redirect to="/" />)} */}
             <Route
               exact
               path="/"
@@ -192,10 +178,13 @@ class App extends React.Component {
             <Route
               exact
               path="/dashboard"
-              render={() => <Dashboard signOut={this.signOut} displayOptions={displayOptions} userOptions={this.userOptions} />}
+              render={() => (<Dashboard showProducts={showProducts} signOut={this.signOut} displayOptions={displayOptions} userOptions={this.userOptions} />
+              )}
             />
-            <Route exact path="/market" 
-            render={() => <Market signOut={this.signOut} displayOptions={displayOptions} userOptions={this.userOptions}/>} 
+            <Route
+              path="/market"
+              render={() => (<Market showProducts={showProducts} signOut={this.signOut} displayOptions={displayOptions} userOptions={this.userOptions} />
+              )}
             />
           </div>
         </Router>
