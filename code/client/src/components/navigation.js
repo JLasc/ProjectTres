@@ -4,24 +4,31 @@ import { Navbar, NavItem, Icon, Button, Input, Row } from "react-materialize";
 const Navigation = props => {
   return (
     <div>
-      <p className="dashboardtitle">ENT3RPRISE</p>
-      <Navbar right>
-        <Button className="button" onClick={props.signOut}>
-          Logout
-        </Button>
+      
 
-        <li id="search">
+      <div className="test-nav">
+        <p>ENT3RPRISE</p>
+
+        <div>
           <Input placeholder="Search" />
           <Icon>search</Icon>
-        </li>
+        </div>
 
-        <NavItem href="get-started.html">
-          <Icon>shopping_cart</Icon>
-        </NavItem>
-        <NavItem href="get-started.html">
-          <Icon>perm_identity</Icon>
-        </NavItem>
-      </Navbar>
+        <div className="nested-grid">
+          <a href="get-started.html">
+            <Icon>shopping_cart</Icon>
+          </a>
+
+          <a href="get-started.html">
+            <Icon>perm_identity</Icon>
+          </a>
+
+          <Button className="button" onClick={props.signOut}>
+            Logout
+          </Button>
+        </div>
+
+      </div>
     </div>
   );
 };

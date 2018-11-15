@@ -3,12 +3,18 @@ import Navigation from "./navigation";
 import Sidebar from "./sidebar";
 import OrderHistory from "./orderhistory";
 import Products from "./products";
+import axios from "axios";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 
 
+
 const Market = props => {
+  const displayProducts = props.productsData.map((each, i )=>
+  <p>{each.price}</p>
+  )
   return (
+    
     <div>
       <Sidebar
         activeLink={props.activeLink}
@@ -22,6 +28,7 @@ const Market = props => {
         <Router>
           <Switch>
             <Route path="/market/orderhistory" component={OrderHistory} />
+            {displayProducts}
           </Switch>
         </Router>
       </div>

@@ -24,10 +24,27 @@ class App extends React.Component {
       authenticated: false,
       uid: "",
       admin: false,
-      showProducts: true
+      showProducts: true,
+      productsData:[]
     };
 
     this.handleChange = this.handleChange.bind(this);
+  }
+
+  componentDidMount(){
+    this.getData();
+  }
+
+  getData = () => {
+    axios({
+      method: "get",
+      url: "/api/products",
+  
+  }).then((data)=>{
+this.setState({
+  productsData: data.data
+})
+  })
   }
 
   handleSignup = () => {
@@ -55,6 +72,8 @@ class App extends React.Component {
       this.handleLogin();
     });
   };
+
+
 
   handleLogin = () => {
     axios({
@@ -150,7 +169,7 @@ class App extends React.Component {
 
   render() {
   
-    const { displayLogin, displaySignup, displayOptions, showProducts } = this.state;
+    const { displayLogin, displaySignup, displayOptions, showProducts, productsData } = this.state;
     return (
       <div className="App">
         <Router>
@@ -174,12 +193,12 @@ class App extends React.Component {
             <Route
               exact
               path="/dashboard"
-              render={() => (<Dashboard showProducts={showProducts} signOut={this.signOut} displayOptions={displayOptions} userOptions={this.userOptions} />
+              render={() => (<Dashboard productsData={productsData} showProducts={showProducts} signOut={this.signOut} displayOptions={displayOptions} userOptions={this.userOptions} />
               )}
             />
             <Route
               path="/market"
-              render={() => (<Market showProducts={showProducts} signOut={this.signOut} displayOptions={displayOptions} userOptions={this.userOptions} />
+              render={() => (<Market productsData={productsData} showProducts={showProducts} signOut={this.signOut} displayOptions={displayOptions} userOptions={this.userOptions} />
               )}
             />
           </div>
