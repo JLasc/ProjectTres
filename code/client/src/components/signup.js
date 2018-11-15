@@ -2,7 +2,7 @@ import React from "react";
 import { Row, Input } from "react-materialize";
 
 const Signup = (props) => {
-    console.log(props);
+    // console.log(props);
   return (
     <form id="sign" className={props.displaySignup ? "active-comp" : "inactive-comp"}>
       <Row className="infowidth">
