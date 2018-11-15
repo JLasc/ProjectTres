@@ -5,7 +5,7 @@ import Forms from "./components/forms";
 import Dashboard from "./components/dashboard";
 import Market from "./components/market";
 import axios from "axios";
-import AllUsers from "./views/Allusers";
+import AllUsers from "./views/AllUsers";
 import SingleUser from "./views/SingleUser";
 
 class App extends React.Component {
@@ -159,51 +159,51 @@ class App extends React.Component {
   }
 
   render() {
-    // const { displayLogin, displaySignup, displayOptions } = this.state;
-    // return (
-      // <Router>
-      //   <div className="App">
-      //     <Switch>
-      //       <Route exact path='/' component={Dashboard} />
-      //       <Route exact path='/users' component={AllUsers} />
-      //       <Route path='/users/:id' component={SingleUser} />
-      //     </Switch>
-      //   </div>
-      // </Router>
-      const { displayLogin, displaySignup, displayOptions } = this.state;
-      return (
+    const { displayLogin, displaySignup, displayOptions } = this.state;
+    return (
+      <Router>
         <div className="App">
-          <Router>
-            <div>
-              {/* {this.state.authenticated && this.state.admin ? (<Redirect to="/dashboard" />) : (<Redirect to="/" />)}
-              {this.state.authenticated && !this.state.admin ? (<Redirect to="/market" />) : (<Redirect to="/" />)} */}
-              <Route
-                exact
-                path="/"
-                render={() => (
-                  <Forms
-                    displayLogin={displayLogin}
-                    displaySignup={displaySignup}
-                    loginClick={this.loginClick}
-                    handleChange={this.handleChange}
-                    handleLogin={this.handleLogin}
-                    signUpClick={this.signUpClick}
-                    handleSignup={this.handleSignup}
-                    signOut={this.signOut}
-                  />
-                )}
-              />
-              <Route
-                exact
-                path="/dashboard"
-                render={() => <Dashboard signOut={this.signOut} displayOptions={displayOptions} userOptions={this.userOptions} />}
-              />
-              <Route exact path="/market" 
-              render={() => <Market signOut={this.signOut} displayOptions={displayOptions} userOptions={this.userOptions}/>} 
-              />
-            </div>
-          </Router>
+          <Switch>
+            <Route exact path='/' component={Dashboard} />
+            <Route exact path='/users' component={AllUsers} />
+            <Route path='/users/:id' component={SingleUser} />
+          </Switch>
         </div>
+      </Router>
+      // const { displayLogin, displaySignup, displayOptions } = this.state;
+      // return (
+      //   <div className="App">
+      //     <Router>
+      //       <div>
+      //         {/* {this.state.authenticated && this.state.admin ? (<Redirect to="/dashboard" />) : (<Redirect to="/" />)}
+      //         {this.state.authenticated && !this.state.admin ? (<Redirect to="/market" />) : (<Redirect to="/" />)} */}
+      //         <Route
+      //           exact
+      //           path="/"
+      //           render={() => (
+      //             <Forms
+      //               displayLogin={displayLogin}
+      //               displaySignup={displaySignup}
+      //               loginClick={this.loginClick}
+      //               handleChange={this.handleChange}
+      //               handleLogin={this.handleLogin}
+      //               signUpClick={this.signUpClick}
+      //               handleSignup={this.handleSignup}
+      //               signOut={this.signOut}
+      //             />
+      //           )}
+      //         />
+      //         <Route
+      //           exact
+      //           path="/dashboard"
+      //           render={() => <Dashboard signOut={this.signOut} displayOptions={displayOptions} userOptions={this.userOptions} />}
+      //         />
+      //         <Route exact path="/market" 
+      //         render={() => <Market signOut={this.signOut} displayOptions={displayOptions} userOptions={this.userOptions}/>} 
+      //         />
+      //       </div>
+      //     </Router>
+      //   </div>
     );
   }
 }

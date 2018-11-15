@@ -6,28 +6,28 @@ import UserItem from "./UserItem";
 function UserList(props) {
   return (
     <div>
-      {props.searchUsers.map((user, index) => (
-        <table>
-          <thead>
-            <tr>
-              <th></th>
-              <th>First Name</th>
-              <th>Last Name</th>
-              <th>Email</th>
-            </tr>
-          </thead>
+      <table>
+        <thead>
+          <tr>
+            <th></th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+          </tr>
+        </thead>
+        {props.searchUsers.map((user, index) => (
           <tbody>
-              <UserItem
-                key={index}
-                id={user.id}
-                firstName={user.firstName}
-                lastName={user.lastName}
-                email={user.email}
-              />
+            <UserItem
+              key={index}
+              id={user.id}
+              firstName={user.firstName}
+              lastName={user.lastName}
+              email={user.email}
+            />
           </tbody>
-        </table>
-      )
-      )}
+        )
+        )}
+      </table>
     </div>
   );
 }
