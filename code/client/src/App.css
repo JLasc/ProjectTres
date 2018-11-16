@@ -13,6 +13,21 @@ body {
   width: calc(100% - 0.75em);
 }
 
+
+.test-nav{
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  grid-gap: 20px;
+}
+
+.nested-grid{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 5px;
+  text-align:center;
+  margin: 20px;
+}
+
 #username:focus,
 #password:focus,
 #firstname:focus,
@@ -252,9 +267,9 @@ nav {
   border-radius: 5px;
   background-color: rgb(219, 219, 219);
   margin-top: 13px;
-  margin-right: 10px;
+  margin-right: 150px;
   height: 41px;
-  width: 270px;
+  width: 500px;
   position: relative;
   color: white;
 }

@@ -1,6 +1,6 @@
 import React from "react";
-import Sidebar from "./sidebar";
-import Navigation from "./navigation";
+import Sidebar from "./adminSidebar";
+import Navigation from "./adminNavigation";
 
 const Dashboard = props => {
   

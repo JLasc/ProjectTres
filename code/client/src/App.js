@@ -8,6 +8,7 @@ import axios from "axios";
 import AllUsers from "./views/AllUsers";
 import SingleUser from "./views/SingleUser";
 
+
 class App extends React.Component {
   constructor() {
     super();
@@ -16,39 +17,36 @@ class App extends React.Component {
       displayLogin: true,
       displaySignup: false,
       displayOptions: false,
+      displayProducts: true,
       firstName: "",
       lastName: "",
       email: "",
       password: "",
       authenticated: false,
       uid: "",
-      admin: false
+      admin: false,
+      showProducts: true,
+      productsData:[]
     };
 
     this.handleChange = this.handleChange.bind(this);
   }
 
-  //   handleSignup = () => {
-  //       this.setState({
-  //       authenticated: true,
-  //       admin: false
-  //     });
-  //   };
+  componentDidMount(){
+    this.getData();
+  }
 
-  //   handleLogin = () => {
-  //     if (this.state.authenticated && this.state.admin){
-  //       window.location.href ="/Dashboard";
-  //       this.setState({
-  //         state: this.state 
-  //       });
-  //     }
-  //     else if (this.state.authenticated && !this.state.admin){
-  //       window.location.href ="/Market";
-  //       this.setState({
-  //         state: this.state 
-  //      });
-  //   };
-  // };
+  getData = () => {
+    axios({
+      method: "get",
+      url: "/api/products",
+  
+  }).then((data)=>{
+this.setState({
+  productsData: data.data
+})
+  })
+  }
 
   handleSignup = () => {
     axios({
@@ -76,10 +74,12 @@ class App extends React.Component {
     });
   };
 
+
+
   handleLogin = () => {
     axios({
-      method: 'post',
-      url: '/api/login',
+      method: "post",
+      url: "/api/login",
       headers: {
         "content-type": "application/json"
       },
@@ -87,31 +87,30 @@ class App extends React.Component {
         username: this.state.email,
         password: this.state.password
       }
-    })
-      .then(data => {
-        console.log(data.data.data);
-        this.setState({
-          authenticated: true,
-          uid: data.data.data.id,
-          email: data.data.data.email,
-          firstName: data.data.data.firstName,
-          lastName: data.data.data.lastName,
-          admin: data.data.data.admin
-        });
-        if (data.data.data.authenticated && data.data.data.admin) {
-          window.location.href("/dashboard");
-          this.setState({
-            state: this.state
-          });
-        }
-        else if (data.data.data.authenticated && !data.data.data.admin) {
-          window.location.href("/market");
-          this.setState({
-            state: this.state
-          });
-        }
+    }).then(data => {
+      console.log(data.data.data);
+      this.setState({
+        authenticated: true,
+        uid: data.data.data.id,
+        email: data.data.data.email,
+        firstName: data.data.data.firstName,
+        lastName: data.data.data.lastName,
+        admin: data.data.data.admin
       });
-  }
+      if (data.data.data.authenticated && data.data.data.admin) {
+        window.location.href("/dashboard");
+        this.setState({
+          state: this.state
+        });
+
+      } else if (data.data.data.authenticated && !data.data.data.admin) {
+        window.location.href("/market");
+        this.setState({
+          state: this.state
+        });
+      }
+    });
+  };
 
   handleChange = event => {
     const { name, value } = event.target;
@@ -125,6 +124,18 @@ class App extends React.Component {
       displayLogin: true,
       displaySignup: false
     });
+  };
+
+  activeLink = () => {
+    if (this.state.active) {
+      this.setState({
+        active: false
+      });
+    } else if (!this.state.active) {
+      this.setState({
+        active: true
+      });
+    }
   };
 
   signUpClick = () => {
@@ -141,8 +152,8 @@ class App extends React.Component {
   };
 
   grabUsers = () => {
-    console.log("test")
-  }
+    console.log("test");
+  };
 
   userOptions = () => {
     if (this.state.displayOptions) {
@@ -155,10 +166,48 @@ class App extends React.Component {
         displayOptions: true
       });
     }
+  };
 
-  }
 
   render() {
+  
+    const { displayLogin, displaySignup, displayOptions, showProducts, productsData } = this.state;
+    return (
+      <div className="App">
+        <Router>
+          <div>
+            <Route
+              exact
+              path="/"
+              render={() => (
+                <Forms
+                  displayLogin={displayLogin}
+                  displaySignup={displaySignup}
+                  loginClick={this.loginClick}
+                  handleChange={this.handleChange}
+                  handleLogin={this.handleLogin}
+                  signUpClick={this.signUpClick}
+                  handleSignup={this.handleSignup}
+                  signOut={this.signOut}
+                />
+              )}
+            />
+            <Route
+              exact
+              path="/dashboard"
+              render={() => (<Dashboard productsData={productsData} showProducts={showProducts} signOut={this.signOut} displayOptions={displayOptions} userOptions={this.userOptions} />
+              )}
+            />
+            <Route
+              path="/market"
+              render={() => (<Market productsData={productsData} showProducts={showProducts} signOut={this.signOut} displayOptions={displayOptions} userOptions={this.userOptions} />
+              )}
+            />
+          </div>
+        </Router>
+      </div>
+
+  }
     // const { displayLogin, displaySignup, displayOptions } = this.state;
     // return (
     //   <Router>
@@ -170,40 +219,7 @@ class App extends React.Component {
     //       </Switch>
     //     </div>
     //   </Router>
-      const { displayLogin, displaySignup, displayOptions } = this.state;
-      return (
-        <div className="App">
-          <Router>
-            <div>
-              {/* {this.state.authenticated && this.state.admin ? (<Redirect to="/dashboard" />) : (<Redirect to="/" />)}
-              {this.state.authenticated && !this.state.admin ? (<Redirect to="/market" />) : (<Redirect to="/" />)} */}
-              <Route
-                exact
-                path="/"
-                render={() => (
-                  <Forms
-                    displayLogin={displayLogin}
-                    displaySignup={displaySignup}
-                    loginClick={this.loginClick}
-                    handleChange={this.handleChange}
-                    handleLogin={this.handleLogin}
-                    signUpClick={this.signUpClick}
-                    handleSignup={this.handleSignup}
-                    signOut={this.signOut}
-                  />
-                )}
-              />
-              <Route
-                exact
-                path="/dashboard"
-                render={() => <Dashboard signOut={this.signOut} displayOptions={displayOptions} userOptions={this.userOptions} />}
-              />
-              <Route exact path="/market" 
-              render={() => <Market signOut={this.signOut} displayOptions={displayOptions} userOptions={this.userOptions}/>} 
-              />
-            </div>
-          </Router>
-        </div>
+
     );
   }
 }
