@@ -5,8 +5,8 @@ import Forms from "./components/forms";
 import Dashboard from "./components/dashboard";
 import Market from "./components/market";
 import axios from "axios";
-import AllUsers from "./views/AllUsers";
-import SingleUser from "./views/SingleUser";
+// import AllUsers from "./views/AllUsers";
+// import SingleUser from "./views/SingleUser";
 
 
 class App extends React.Component {
@@ -175,7 +175,7 @@ this.setState({
     return (
       <div className="App">
         <Router>
-          <div>
+        <Switch>
             <Route
               exact
               path="/"
@@ -203,11 +203,13 @@ this.setState({
               render={() => (<Market productsData={productsData} showProducts={showProducts} signOut={this.signOut} displayOptions={displayOptions} userOptions={this.userOptions} />
               )}
             />
-          </div>
+             {/* <Route exact path="/users" component={AllUsers} />
+            <Route path="/users/:id" component={SingleUser} /> */}
+          </Switch>
         </Router>
       </div>
 
-  }
+  
     // const { displayLogin, displaySignup, displayOptions } = this.state;
     // return (
     //   <Router>

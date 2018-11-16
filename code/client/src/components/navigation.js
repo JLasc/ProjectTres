@@ -1,25 +1,25 @@
 import React from "react";
-import { Navbar, NavItem, Icon, Button, Input, Row } from "react-materialize";
+import {Icon, Button, Input} from "react-materialize";
 
 const Navigation = props => {
   return (
     <div>
       
 
-      <div className="test-nav">
+      <div className="market-nav">
         <p>ENT3RPRISE</p>
 
-        <div>
+        <div id="search">
           <Input placeholder="Search" />
           <Icon>search</Icon>
         </div>
 
         <div className="nested-grid">
-          <a href="get-started.html">
+          <a id="cart" href="get-started.html">
             <Icon>shopping_cart</Icon>
           </a>
 
-          <a href="get-started.html">
+          <a id="profile" href="get-started.html">
             <Icon>perm_identity</Icon>
           </a>
 

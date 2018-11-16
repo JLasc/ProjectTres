@@ -13,21 +13,6 @@ body {
   width: calc(100% - 0.75em);
 }
 
-
-.test-nav{
-  display: grid;
-  grid-template-columns: 1fr 2fr 1fr;
-  grid-gap: 20px;
-}
-
-.nested-grid{
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-gap: 5px;
-  text-align:center;
-  margin: 20px;
-}
-
 #username:focus,
 #password:focus,
 #firstname:focus,
@@ -44,13 +29,11 @@ body {
 }
 .inactive-comp {
   display: none;
- 
 }
 
 .active-comp {
   display: block;
-  animation: slide-down .5s ease-in;
-  
+  animation: slide-down 0.5s ease-in;
 }
 
 .no-button {
@@ -201,13 +184,13 @@ body {
   width: 32px;
 }
 .useroptions {
-  font-family: 'Archivo', sans-serif;
+  font-family: "Archivo", sans-serif;
   font-size: 11px;
   background: linear-gradient(rgba(22, 22, 37, 0.9), rgba(38, 38, 65, 0.75));
   border-bottom: 1px solid rgba(180, 180, 180, 0.3);
 }
 
-.sidebar .useroptions a{
+.sidebar .useroptions a {
   padding-left: 20px;
 }
 
@@ -233,11 +216,11 @@ body {
   margin-top: 15px;
 }
 
-.links img{
+.links img {
   margin: 16px 10px 0px 12px;
   width: 18px;
   float: left;
-  opacity: .5;
+  opacity: 0.5;
 }
 
 .sidebar .link a {
@@ -263,52 +246,99 @@ nav {
   position: inherit !important;
 }
 
-#search{
-  border-radius: 5px;
-  background-color: rgb(219, 219, 219);
+.marketContainer {
+  width: 100%;
+  margin: 0 auto;
+  margin-top: 40px;
+  height: 100vh;
+  padding: 35px;
+  background-color: rgb(240, 240, 240);
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-gap: 30px;
+}
+
+.market-nav {
+  background-color: rgb(0, 0, 199);
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  grid-gap: 20px;
+}
+
+.nested-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  margin: 20px;
+  margin-top: 15px;
+  text-align: left;
+}
+
+#cart {
+  margin-top: 7px;
+  text-align: right;
+}
+
+#profile {
+  margin-top: 7px;
+  margin-left: 35px;
+}
+
+#search {
+  margin: 0 auto;
+  width: 90%;
+  border-radius: 10px;
+  background: linear-gradient(rgb(0, 0, 146), rgb(0, 0, 173));
+  border:1px solid blue;
   margin-top: 13px;
-  margin-right: 150px;
   height: 41px;
-  width: 500px;
   position: relative;
   color: white;
 }
 
-#search input{
+#search input {
+  width: calc(100% - 50px);
   float: left;
   margin: 0;
   padding: 0;
   padding: 10px;
+  padding-right: 0px;
   padding-left: 20px;
   height: 20px;
-  width: 200px;
+  border-bottom: 0px !important;
   font-size: 14px;
+  overflow: hidden;
 }
 
-#search input::placeholder{
-  color:rgb(241, 241, 241);
+.input-field {
+  margin-top: 0px !important;
 }
 
-#search i{
+#search input[type="text"]:focus,
+#search input[type="text"]:active {
+  border-bottom: 0px;
+  box-shadow: none;
+}
+
+#search input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+#search i {
   position: absolute;
-  margin-bottom: 3px;
   margin-right: 5px;
   bottom: 0;
   right: 0;
-  float: right!important;
+  float: right !important;
   line-height: 41px;
-  cursor:pointer;
-  color: blue;
-  
+  cursor: pointer;
 }
 
-nav i.material-icons{
-  height: 36px!important;
-  color: blue;
+.market-nav i.material-icons {
+  color: white;
 }
 
-nav ul a:hover{
-  background-color: rgb(240, 240, 240)
+nav ul a:hover {
+  background-color: rgb(240, 240, 240);
 }
 .sidebar {
   margin: 0;
@@ -353,13 +383,87 @@ div.content {
   height: 1000px;
 }
 
+.eachProduct {
+  padding: 20px;
+  background-color: white;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  box-shadow: 0 6px 10px -4px rgba(0, 0, 0, 0.3);
+  position: relative;
+}
+
+.eachProduct a{
+  font-size: 13px;
+  color: black;
+}
+
+.productPrice{
+  width: 86%;
+  border-top: 1px solid hsla(0, 0%, 78%, 0.8);
+  padding: 10px;
+  font-family: "Montserrat", sans-serif;
+  position: absolute;
+  bottom: 0;
+  color: green;
+}
+
+.productPrice .material-icons{
+  float: left;
+  margin-top: -2px;
+}
+
+.money{
+  margin-top: 7px;
+  float: left;
+}
+
+.money p{
+  float: right;
+  margin: 0;
+}
+
+.productPrice .button{
+  float: right;
+}
+
+.productName {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  background: linear-gradient(left, rgb(0, 0, 146), rgb(0, 0, 199));
+  box-shadow: 0 6px 10px -4px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  margin-top: -35px;
+  margin-bottom: 7px;
+  border-radius: 3px;
+  color: white;
+  font-size: 14px;
+  text-align: left;
+  font-family: "Montserrat", sans-serif;
+}
+
+.nameText {
+  margin-left: 15px;
+}
+
 @keyframes slide-down {
-  0% { opacity: 0; -webkit-transform: translateY(0); }   
-100% { opacity: 1; -webkit-transform: translateY(0); }
+  0% {
+    opacity: 0;
+    -webkit-transform: translateY(0);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: translateY(0);
+  }
 }
 @-moz-keyframes slide-down {
-  0% { opacity: 0; -moz-transform: translateY(0); }   
-100% { opacity: 1; -moz-transform: translateY(0); }
+  0% {
+    opacity: 0;
+    -moz-transform: translateY(0);
+  }
+  100% {
+    opacity: 1;
+    -moz-transform: translateY(0);
+  }
 }
 /* On screens that are less than 700px wide, make the sidebar into a topbar */
 @media screen and (max-width: 700px) {
