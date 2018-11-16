@@ -5,9 +5,8 @@ import Forms from "./components/forms";
 import Dashboard from "./components/dashboard";
 import Market from "./components/market";
 import axios from "axios";
-import AllUsers from "./views/AllUsers";
+import AllUsers from "./views/allusers";
 import SingleUser from "./views/SingleUser";
-
 
 class App extends React.Component {
   constructor() {
@@ -97,14 +96,14 @@ this.setState({
         lastName: data.data.data.lastName,
         admin: data.data.data.admin
       });
-      if (data.data.data.authenticated && data.data.data.admin) {
-        window.location.href("/dashboard");
+      if (data.data.data.id && data.data.data.admin) {
+        window.location.href = "/dashboard";
         this.setState({
           state: this.state
         });
 
-      } else if (data.data.data.authenticated && !data.data.data.admin) {
-        window.location.href("/market");
+      } else if (data.data.data.id && !data.data.data.admin) {
+        window.location.href = "/market";
         this.setState({
           state: this.state
         });
@@ -146,8 +145,16 @@ this.setState({
   };
 
   signOut = () => {
-    this.setState({
-      authenticated: false
+    axios.get('api/logout').then( (response) => {
+      window.location.href = "http://192.168.15.10:3000/";
+      this.setState({
+        authenticated: false,
+        uid: '',
+        email: '',
+        firstName: '',
+        lastName: '',
+        admin: ''
+      });
     });
   };
 
@@ -206,8 +213,6 @@ this.setState({
           </div>
         </Router>
       </div>
-
-  }
     // const { displayLogin, displaySignup, displayOptions } = this.state;
     // return (
     //   <Router>
