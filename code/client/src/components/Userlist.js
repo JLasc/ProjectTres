@@ -5,8 +5,30 @@ import UserItem from "./UserItem";
 
 function UserList(props) {
   return (
-    <div>{props.users.map(u => 
-    <UserItem key={u.email} firstName={u.firstName} lastName={u.lastName}/>)}</div>
+    <div>
+      <table>
+        <thead>
+          <tr>
+            <th></th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+          </tr>
+        </thead>
+        {props.searchUsers.map((user, index) => (
+          <tbody>
+            <UserItem
+              key={index}
+              id={user.id}
+              firstName={user.firstName}
+              lastName={user.lastName}
+              email={user.email}
+            />
+          </tbody>
+        )
+        )}
+      </table>
+    </div>
   );
 }
 

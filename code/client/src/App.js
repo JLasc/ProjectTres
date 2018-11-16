@@ -1,11 +1,12 @@
 import React from "react";
 import "./App.css";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Forms from "./components/forms";
 import Dashboard from "./components/dashboard";
 import Market from "./components/market";
 import axios from "axios";
-//import PrivateRoute from './helpers/PrivateRoute';
+import AllUsers from "./views/AllUsers";
+import SingleUser from "./views/SingleUser";
 
 
 class App extends React.Component {
@@ -101,6 +102,7 @@ this.setState({
         this.setState({
           state: this.state
         });
+
       } else if (data.data.data.authenticated && !data.data.data.admin) {
         window.location.href("/market");
         this.setState({
@@ -158,14 +160,14 @@ this.setState({
       this.setState({
         displayOptions: false
       });
-    } else if (!this.state.displayOptions) {
+    }
+    else if (!this.state.displayOptions) {
       this.setState({
         displayOptions: true
       });
     }
   };
 
-  
 
   render() {
   
@@ -204,6 +206,20 @@ this.setState({
           </div>
         </Router>
       </div>
+
+  }
+    // const { displayLogin, displaySignup, displayOptions } = this.state;
+    // return (
+    //   <Router>
+    //     <div className="App">
+    //       <Switch>
+    //         <Route exact path='/' component={Dashboard} />
+    //         <Route exact path='/users' component={AllUsers} />
+    //         <Route path='/users/:id' component={SingleUser} />
+    //       </Switch>
+    //     </div>
+    //   </Router>
+
     );
   }
 }
