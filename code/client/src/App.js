@@ -182,7 +182,7 @@ this.setState({
     return (
       <div className="App">
         <Router>
-          <div>
+        <Switch>
             <Route
               exact
               path="/"
@@ -210,9 +210,12 @@ this.setState({
               render={() => (<Market productsData={productsData} showProducts={showProducts} signOut={this.signOut} displayOptions={displayOptions} userOptions={this.userOptions} />
               )}
             />
-          </div>
+             {/* <Route exact path="/users" component={AllUsers} />
+            <Route path="/users/:id" component={SingleUser} /> */}
+          </Switch>
         </Router>
       </div>
+
     // const { displayLogin, displaySignup, displayOptions } = this.state;
     // return (
     //   <Router>
