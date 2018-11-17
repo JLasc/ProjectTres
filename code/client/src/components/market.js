@@ -9,6 +9,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 
 const Market = props => {
+
     const displayProducts = props.productsData.map((each, i )=>
   <div className="eachProduct">
   <div className="productName">
@@ -26,8 +27,10 @@ const Market = props => {
     
     <div>
       <Sidebar
-        activeLink={props.activeLink}
-        active={props.active}
+        market={props.market} 
+        history={props.history} 
+        support={props.support} 
+        cart={props.cart}
         displayOptions={props.displayOptions}
         userOptions={props.userOptions}
       />

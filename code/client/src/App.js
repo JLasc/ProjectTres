@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
 import Forms from "./components/forms";
 import Dashboard from "./components/dashboard";
 import Market from "./components/market";
@@ -25,7 +25,11 @@ class App extends React.Component {
       uid: "",
       admin: false,
       showProducts: true,
-      productsData:[]
+      productsData:[],
+      market: true,
+      history: false,
+      cart: false,
+      support: false
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -178,7 +182,7 @@ this.setState({
 
   render() {
   
-    const { displayLogin, displaySignup, displayOptions, showProducts, productsData } = this.state;
+    const { displayLogin, displaySignup, displayOptions, showProducts, productsData, market, cart, history, support } = this.state;
     return (
       <div className="App">
         <Router>
@@ -200,17 +204,22 @@ this.setState({
               )}
             />
             <Route
-              exact
-              path="/dashboard"
-              render={() => (<Dashboard productsData={productsData} showProducts={showProducts} signOut={this.signOut} displayOptions={displayOptions} userOptions={this.userOptions} />
+            exact
+            path="/dashboard" render={() => !this.state.authenticated ? (<Dashboard authenticated={this.state.authenticated} market={market} history={history} support={support} cart={cart} productsData={productsData} showProducts={showProducts} signOut={this.signOut} displayOptions={displayOptions} userOptions={this.userOptions} />
+              ) : (<Redirect to={{pathname: "/"}} 
+              />
               )}
             />
+            
             <Route
-              path="/market"
-              render={() => (<Market productsData={productsData} showProducts={showProducts} signOut={this.signOut} displayOptions={displayOptions} userOptions={this.userOptions} />
+            exact
+            path="/market" render={() => !this.state.authenticated ? (<Market authenticated={this.state.authenticated} market={market} history={history} support={support} cart={cart} productsData={productsData} showProducts={showProducts} signOut={this.signOut} displayOptions={displayOptions} userOptions={this.userOptions} />
+              ) : (<Redirect to={{pathname: "/"}} 
+              />
               )}
             />
-             {/* <Route exact path="/users" component={AllUsers} />
+          
+            {/* <Route exact path="/users" component={AllUsers} />
             <Route path="/users/:id" component={SingleUser} /> */}
           </Switch>
         </Router>
