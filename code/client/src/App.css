@@ -9,6 +9,10 @@ body {
   margin: 0;
 }
 
+select {
+  display: block;
+}
+
 .infowidth {
   width: calc(100% - 0.75em);
 }
@@ -258,6 +262,14 @@ nav {
   grid-gap: 30px;
 }
 
+.shoppingContainer {
+  width: 100%;
+  margin: 0 auto;
+  margin-top: 40px;
+  height: 100vh;
+  padding: 35px;
+  background-color: rgb(240, 240, 240);
+}
 .market-nav {
   background-color: rgb(0, 0, 199);
   display: grid;
@@ -395,6 +407,27 @@ div.content {
 .eachProduct a{
   font-size: 13px;
   color: black;
+}
+
+.eachOrder {
+  padding: 20px;
+  background-color: white;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  box-shadow: 0 6px 10px -4px rgba(0, 0, 0, 0.3);
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr 2fr 1fr 1fr
+}
+
+.eachOrder a{
+  font-size: 13px;
+  color: black;
+}
+
+.orderModel{
+  width: 50%;
+  margin-left: auto;
 }
 
 .productPrice{
