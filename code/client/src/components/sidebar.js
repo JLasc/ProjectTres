@@ -2,9 +2,9 @@ import React from "react";
 import usericon from "../default_pic.svg";
 import downArrow from "../arrow_down.svg";
 import support from "../support.svg";
-import cart from "../orders.svg";
 import LinkMarket from "./linkMarket";
 import LinkHistory from "./linkHistory"
+import LinkCart from "./linkCart"
 
 const Sidebar = props => {
 
@@ -30,9 +30,9 @@ const Sidebar = props => {
           
         </div>
         <div className="links">
-        <LinkMarket onClick={props.displayProducts}/>
-        <LinkHistory onClick={props.displayProducts}/>
-          <span><img src={cart}/><a href="/market/cart">Shopping Cart</a></span>
+        <LinkMarket onClick={props.displayProducts} market={props.market}/>
+        <LinkHistory onClick={props.displayProducts}history={props.history}/>
+          <LinkCart onClick={props.displayProducts} market={props.market} history={props.history} support={props.support} cart={props.cart}/>
           <span><img src={support}/><a href="/market/support">Support</a></span>
         </div>
       </div>

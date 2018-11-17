@@ -5,7 +5,7 @@ const linkMarket = props => {
   return (
     <span>
       <img src={market} />
-      <a className="active" href="/Market">Market</a>
+      <a href="/Market" className={props.market ? "active" : " "}>Market</a>
     </span>
   );
 };

@@ -441,6 +441,10 @@ div.content {
   font-family: "Montserrat", sans-serif;
 }
 
+.productImg img{
+  width: 100px;
+}
+
 .nameText {
   margin-left: 15px;
 }
