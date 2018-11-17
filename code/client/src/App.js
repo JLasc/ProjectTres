@@ -5,8 +5,9 @@ import Forms from "./components/forms";
 import Dashboard from "./components/dashboard";
 import Market from "./components/market";
 import axios from "axios";
-import AllUsers from "./views/allusers";
-import SingleUser from "./views/SingleUser";
+// import AllUsers from "./views/AllUsers";
+// import SingleUser from "./views/SingleUser";
+
 
 class App extends React.Component {
   constructor() {
@@ -29,7 +30,8 @@ class App extends React.Component {
       market: true,
       history: false,
       cart: false,
-      support: false
+      support: false,
+      redirect: false
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -100,14 +102,16 @@ this.setState({
         lastName: data.data.data.lastName,
         admin: data.data.data.admin
       });
+
       if (data.data.data.id && data.data.data.admin) {
-        window.location.href = "/dashboard";
         this.setState({
-          state: this.state
+          authenticated: true,
+          admin: true,
+          redirect: true
         });
 
       } else if (data.data.data.id && !data.data.data.admin) {
-        window.location.href = "/market";
+        window.location.href("/market");
         this.setState({
           state: this.state
         });
@@ -149,16 +153,8 @@ this.setState({
   };
 
   signOut = () => {
-    axios.get('api/logout').then( (response) => {
-      window.location.href = "http://192.168.15.10:3000/";
-      this.setState({
-        authenticated: false,
-        uid: '',
-        email: '',
-        firstName: '',
-        lastName: '',
-        admin: ''
-      });
+    this.setState({
+      authenticated: false
     });
   };
 
@@ -181,7 +177,7 @@ this.setState({
 
 
   render() {
-  
+    
     const { displayLogin, displaySignup, displayOptions, showProducts, productsData, market, cart, history, support } = this.state;
     return (
       <div className="App">
@@ -199,13 +195,8 @@ this.setState({
                   handleLogin={this.handleLogin}
                   signUpClick={this.signUpClick}
                   handleSignup={this.handleSignup}
-                  signOut={this.signOut}
-                />
-              )}
-            />
-            <Route
-            exact
-            path="/dashboard" render={() => !this.state.authenticated ? (<Dashboard authenticated={this.state.authenticated} market={market} history={history} support={support} cart={cart} productsData={productsData} showProducts={showProducts} signOut={this.signOut} displayOptions={displayOptions} userOptions={this.userOptions} />
+                  signOut={this.signOut} />)}/>
+            <Route exact path="/dashboard" render={() => !this.state.authenticated ? (<Dashboard authenticated={this.state.authenticated} market={market} history={history} support={support} cart={cart} productsData={productsData} showProducts={showProducts} signOut={this.signOut} displayOptions={displayOptions} userOptions={this.userOptions} />
               ) : (<Redirect to={{pathname: "/"}} 
               />
               )}
@@ -225,6 +216,7 @@ this.setState({
         </Router>
       </div>
 
+  
     // const { displayLogin, displaySignup, displayOptions } = this.state;
     // return (
     //   <Router>

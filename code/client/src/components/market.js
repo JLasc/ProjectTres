@@ -1,12 +1,10 @@
 import React from "react";
 import Navigation from "./navigation";
 import Sidebar from "./sidebar";
+import ShoppingCart from "./shoppingCart";
 import OrderHistory from "./orderhistory";
 import {Icon, Button, Input} from "react-materialize";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-
-
-
 
 const Market = props => {
 
@@ -36,15 +34,15 @@ const Market = props => {
       />
       <div className="dashboardcontainer">
         <Navigation signOut={props.signOut} />
-          
+        <div className="marketContainer">
+         {displayProducts}
         <Router>
           <Switch>
-          <div className="marketContainer">
             <Route path="/market/orderhistory" component={OrderHistory} />
-               {displayProducts}
-            </div>
+            <Route path="/market/cart" component={ShoppingCart} />
           </Switch>
         </Router>
+        </div>
       </div>
     </div>
   );

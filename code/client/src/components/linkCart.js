@@ -1,11 +1,13 @@
 import React from "react";
-import cart from "../orders.svg";
+import cart from "../cart.svg";
+import {Link} from "react-router-dom";
 
 const linkCart = props => {
   return (
     <span>
       <img src={cart} />
-      <a href="/market/cart" className={props.cart ? "active" : " "}>Shopping Cart</a>
+      
+      <Link to="/market/cart" className={props.cart ? "active" : " "}>Shopping Cart</Link>
     </span>
   );
 };

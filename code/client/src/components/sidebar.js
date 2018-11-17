@@ -1,9 +1,9 @@
 import React from "react";
 import usericon from "../default_pic.svg";
 import downArrow from "../arrow_down.svg";
-import support from "../support.svg";
 import LinkMarket from "./linkMarket";
 import LinkHistory from "./linkHistory"
+import LinkSupport from "./linkSupport";
 import LinkCart from "./linkCart"
 
 const Sidebar = props => {
@@ -30,10 +30,10 @@ const Sidebar = props => {
           
         </div>
         <div className="links">
-        <LinkMarket onClick={props.displayProducts} market={props.market}/>
-        <LinkHistory onClick={props.displayProducts}history={props.history}/>
-          <LinkCart onClick={props.displayProducts} market={props.market} history={props.history} support={props.support} cart={props.cart}/>
-          <span><img src={support}/><a href="/market/support">Support</a></span>
+          <LinkMarket market={props.market}/>
+          <LinkHistory history={props.history}/>
+          <LinkCart cart={props.cart}/>
+          <LinkSupport support={props.support}/>
         </div>
       </div>
     </div>
