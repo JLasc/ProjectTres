@@ -26,7 +26,7 @@ module.exports = (sequelize, DataTypes) => {
             foreignKey: "UserID"
         });
         Order.belongsTo(models.Company, {
-            foreignKey: "CompnayID"
+            foreignKey: "CompanyID"
         });
     };
 
