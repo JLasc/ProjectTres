@@ -3,7 +3,6 @@ import Navigation from "./navigation";
 import Sidebar from "./sidebar";
 import OrderHistory from "../views/OrderHistory";
 import {Icon, Button, Input} from "react-materialize";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import mbp15 from "../mbp_15.jpg";
 import iphoneXR from "../iphone_xr.jpg";
 import mbp13 from "../mbp_13.jpg";
@@ -52,6 +51,7 @@ const Market = props => {
         <Navigation signOut={props.signOut} />
           
       </div> */}
+      
     </div>
   );
 };

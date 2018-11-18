@@ -10,10 +10,12 @@ import AppliedRoute from "../components/AppliedRoute";
 import Market from "../components/market";
 import Orders from "../views/OrderHistory";
 import ShoppingCart from "../views/ShoppingCart";
+import UserPage from "../containers/UserPage";
+import AdminPage from "../containers/AdminPage";
 
 export default ({childProps}) =>
   <Switch>
-    <AppliedRoute path="/" exact component={AdminDashboard} props={childProps} />
+    <AppliedRoute path="/" exact component={AdminPage} props={childProps} />
     <AppliedRoute path="/users" exact component={Users} props={childProps} />
     <AppliedRoute path="/orders" exact component={Orders} props={childProps} />
     <AppliedRoute path="/cart" exact component={ShoppingCart} props={childProps} />
