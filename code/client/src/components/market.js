@@ -1,17 +1,14 @@
 import React from "react";
 import Navigation from "./navigation";
 import Sidebar from "./sidebar";
-import ShoppingCart from "./shoppingCart";
-import OrderHistory from "./orderhistory";
+import OrderHistory from "../views/OrderHistory";
 import {Icon, Button, Input} from "react-materialize";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import mbp15 from '../mbp_15.jpg';
-import iphoneXR from '../iphone_xr.jpg';
-import mbp13 from '../mbp_13.jpg';
-import magicKeyboard from '../magic_keyboard.jpg';
-import magicMouse from '../magic_mouse.jpg';
-
-
+import mbp15 from "../mbp_15.jpg";
+import iphoneXR from "../iphone_xr.jpg";
+import mbp13 from "../mbp_13.jpg";
+import magicKeyboard from "../magic_keyboard.jpg";
+import magicMouse from "../magic_mouse.jpg";
 
 const Market = props => {
   const pickImage = (imgString) => {
@@ -45,28 +42,16 @@ const Market = props => {
   return (
     
     <div>
-      <Sidebar
-        market={props.market} 
-        history={props.history} 
-        support={props.support} 
-        cart={props.cart}
+      {/* <Sidebar
+        activeLink={props.activeLink}
+        active={props.active}
         displayOptions={props.displayOptions}
         userOptions={props.userOptions}
       />
       <div className="dashboardcontainer">
         <Navigation signOut={props.signOut} />
-        <ShoppingCart productsData={props.productsData} />
-        <div className="marketContainer">
-         {/* {displayProducts} */}
-        {/* <Router>
-          <Switch>
-            <Route path="/market/orderhistory" component={OrderHistory} />
-            <Route path="/market/cart" component={ShoppingCart} />
-          </Switch>
-        </Router> */}
-        
-        </div>
-      </div>
+          
+      </div> */}
     </div>
   );
 };

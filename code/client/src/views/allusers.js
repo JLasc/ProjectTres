@@ -33,8 +33,6 @@ class AllUsers extends React.Component {
   render() {
     return (
       <div>
-        <Navigation />
-        <input type="text" onChange={this.handleSearch} />
         <UserList 
           users={this.state.users}
           searchUsers={this.state.searchUsers}

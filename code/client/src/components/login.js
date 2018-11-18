@@ -1,7 +1,7 @@
 import React from "react";
 import { Row, Input } from "react-materialize";
 
-const Login = (props) => {
+const LoginForm = (props) => {
   return (
     <form className={props.displayLogin ? "active-comp" : "inactive-comp"}>
       <Row className="infowidth">
@@ -37,4 +37,4 @@ const Login = (props) => {
   );
 };
 
-export default Login;
+export default LoginForm;

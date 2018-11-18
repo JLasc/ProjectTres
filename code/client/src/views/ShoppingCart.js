@@ -7,7 +7,8 @@ import magicKeyboard from "../magic_keyboard.jpg";
 import magicMouse from "../magic_mouse.jpg";
 
 const ShoppingCart = props => {
-  const pickImage = imgString => {
+  console.log(props.productsData)
+   const pickImage = imgString => {
     switch (imgString) {
       case "mbp15":
         return <img src={mbp15} alt={mbp15} />;

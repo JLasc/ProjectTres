@@ -7,7 +7,7 @@ const linkCart = props => {
     <span>
       <img src={cart} />
       
-      <Link to="/market/cart" className={props.cart ? "active" : " "}>Shopping Cart</Link>
+      <Link to="/cart" className={props.cart ? "active" : " "}>Shopping Cart</Link>
     </span>
   );
 };

@@ -30,6 +30,17 @@ const Signup = (props) => {
           value={props.lastName}
           onChange={props.handleChange}
         />
+         <Input
+          required
+          placeholder="example@example.com"
+          type="email"
+          s={12}
+          label="E-mail"
+          id="email"
+          name="email"
+          value={props.email}
+          onChange={props.handleChange}
+        />
         <Input
           required
           placeholder="Password"
@@ -40,17 +51,6 @@ const Signup = (props) => {
           id="pass"
           name="password"
           value={props.password}
-          onChange={props.handleChange}
-        />
-        <Input
-          required
-          placeholder="example@example.com"
-          type="email"
-          s={12}
-          label="E-mail"
-          id="email"
-          name="email"
-          value={props.email}
           onChange={props.handleChange}
         />
       </Row>

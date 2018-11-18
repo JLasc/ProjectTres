@@ -1,24 +1,33 @@
 import React from "react";
-import { Navbar, NavItem, Icon, Button, Input, Row } from "react-materialize";
+import { Icon, Button, Input } from "react-materialize";
 
-const Navigation = (props) => {
+const AdminNavigation = props => {
   return (
     <div>
-      <p className="dashboardtitle">Purchasing & Ordering Admin Dashboard</p>
-    <Navbar right>
-      <Button className="button" onClick={props.signOut}>Logout</Button>
-     
+      <div className="market-nav">
+        <p>ENT3RPRISE</p>
 
-        <li id="search"><Input placeholder="Search" /><Icon>search</Icon></li>
-      <NavItem href="get-started.html">
-        <Icon>shopping_cart</Icon>
-      </NavItem>
-      <NavItem href="get-started.html">
-        <Icon>perm_identity</Icon>
-      </NavItem>
-    </Navbar>
+        <div id="search">
+          <Input placeholder="Search" />
+          <Icon>search</Icon>
+        </div>
+
+        <div className="nested-grid">
+          <a id="cart" href="get-started.html">
+            <Icon>shopping_cart</Icon>
+          </a>
+
+          <a id="profile" href="get-started.html">
+            <Icon>perm_identity</Icon>
+          </a>
+
+          <Button className="button" onClick={props.signOut}>
+            Logout
+          </Button>
+        </div>
+      </div>
     </div>
   );
 };
 
-export default Navigation;
+export default AdminNavigation;
