@@ -27,7 +27,6 @@ class SingleUser extends React.Component {
   render() {
     return (
       <div>
-        <Navigation />
         {/* make new component */}
         <p>{this.state.userData.firstName}</p>
         <p>{this.state.userData.lastName}</p>

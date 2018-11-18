@@ -1,11 +1,9 @@
 import React from "react";
-import {Icon, Button, Input} from "react-materialize";
+import { Icon, Button, Input } from "react-materialize";
 
 const Navigation = props => {
   return (
     <div>
-      
-
       <div className="market-nav">
         <p>ENT3RPRISE</p>
 
@@ -27,7 +25,6 @@ const Navigation = props => {
             Logout
           </Button>
         </div>
-
       </div>
     </div>
   );
