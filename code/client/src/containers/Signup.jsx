@@ -1,84 +1,55 @@
 import React, { Component } from "react";
-import { Row, Input, Button } from "react-materialize";
+import "../App.css";
+import Banner from "../components/banner";
+import SignupForm from "../components/signup";
+import { Button } from "react-materialize";
+import EmailInput from "../components/emailInput";
+import PasswordInput from "../components/passwordInput";
+import FirstNameInput from "../components/firstNameInput";
+import LastNameInput from "../components/lastNameInput";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
-export default class Login extends Component {
-    constructor(props) {
-        super(props);
+export default class Signup extends Component {
+  constructor(props) {
+    super();
 
-        this.state = {
-            email: "",
-            password: ""
-        };
-    }
+  }
 
-    validateForm() {
-        return this.state.email.length > 0 && this.state.password.length > 0;
-    }
+  validateForm() {
+    return this.state.email.length > 0 && this.state.password.length > 0;
+  }
 
-    handleChange = event => {
-        this.setState({
-            [event.target.name]: event.target.value
-        });
-    }
-
-    handleSubmit = event => {
-        event.preventDefault();
-    }
-
-    render() {
-        return (
-            <form id="sign" className={this.props.displaySignup ? "active-comp" : "inactive-comp"}>
-            <Row className="infowidth">
-              <h4>Sign Up</h4>
-              <span>Fill out the form to join your company's 3nterprise Catalog</span>
-            </Row>
-            <Row>
-              <Input
-                required
-                placeholder="John"
-                s={12}
-                label="First Name"
-                id="firstname"
-                name="firstName"
-                value={this.props.firstName}
-                onChange={this.props.handleChange}
-              />
-              <Input
-                required
-                placeholder="Smith"
-                s={12}
-                label="Last Name"
-                id="lastname"
-                name="lastName"
-                value={this.props.lastName}
-                onChange={this.props.handleChange}
-              />
-              <Input
-                required
-                placeholder="Password"
-                autoComplete="new-password"
-                type="password"
-                s={12}
-                label="Password"
-                id="pass"
-                name="password"
-                value={this.props.password}
-                onChange={this.props.handleChange}
-              />
-              <Input
-                required
-                placeholder="example@example.com"
-                type="email"
-                s={12}
-                label="E-mail"
-                id="email"
-                name="email"
-                value={this.props.email}
-                onChange={this.props.handleChange}
-              />
-            </Row>
-          </form>
-        );
-    }
+  render() {
+    return (
+      <div>
+        <Banner />
+        <div className="form right">
+          <div className="formcontainer">
+            <SignupForm >
+              <FirstNameInput handleChange={this.props.handleChange} firstName={this.props.firstName} />
+              <LastNameInput handleChange={this.props.handleChange} lastName={this.props.lastName} />
+              <EmailInput handleChange={this.props.handleChange} email={this.props.email} />
+              <PasswordInput handleChange={this.props.handleChange} password={this.props.password} />
+            </SignupForm>
+            <div id="signup-btns" className="right">
+              <Link to="/login">
+                <Button waves="light" className="no-button" id="3">
+                  Login
+                </Button>
+              </Link>
+              <Button
+                waves="light"
+                className="button"
+                id="4"
+                onClick={this.props.handleSignup}
+              >
+                Sign Up
+              </Button>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
 }
