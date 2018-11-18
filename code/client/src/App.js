@@ -2,6 +2,7 @@ import React from "react";
 import "./App.css";
 import axios from "axios";
 import AuthRoutes from "./routes/AuthRoutes";
+import {Link} from "react-router-dom";
 
 class App extends React.Component {
   constructor() {
@@ -28,6 +29,7 @@ class App extends React.Component {
 
   componentDidMount() {
     console.log("Mounted");
+    this.getData();
   }
 
   userHasAuthenticated = (authenticated) => {
@@ -110,6 +112,7 @@ class App extends React.Component {
   };
 
   handleSubmit = () => {
+    console.log('test');
     axios({
         method: "post",
         url: "/api/login",
@@ -130,7 +133,8 @@ class App extends React.Component {
           lastName: data.data.data.lastName,
           admin: data.data.data.admin
         });
-        this.props.history.push("/");
+        <Link to="/"></Link>
+        //this.props.history.push("/");
       });
 }
 

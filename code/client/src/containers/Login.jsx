@@ -13,8 +13,7 @@ import axios from "axios";
 
 export default class Login extends Component {
   constructor(props) {
-    super();
-
+    super(props);
   }
 
   validateForm() {
