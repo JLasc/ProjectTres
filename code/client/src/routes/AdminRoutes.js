@@ -11,7 +11,6 @@ import Market from "../components/market";
 import Orders from "../views/OrderHistory";
 import ShoppingCart from "../views/ShoppingCart";
 import UserPage from "../containers/UserPage";
-import AdminPage from "../containers/AdminPage";
 
 export default ({childProps}) =>
   <Switch>
