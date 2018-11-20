@@ -29,7 +29,7 @@ render (){
       }
     }
     const displayProducts = this.props.productsData.map((each, i )=>
-    <div className="eachProduct">
+    <div className="eachProduct" key={i}>
     <div className="productName">
     <p className="nameText">{each.name}: {each.model}</p>
     </div>
