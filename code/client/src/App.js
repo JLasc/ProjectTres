@@ -127,7 +127,7 @@ class App extends React.Component {
           lastName: data.data.data.lastName,
           admin: data.data.data.admin
         });
-        <Link to="/"></Link>
+        <Link to="/market"></Link>
         //this.props.history.push("/");
      });
 }

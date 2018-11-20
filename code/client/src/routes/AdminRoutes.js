@@ -1,6 +1,7 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
 import AdminDashboard from "../views/AdminDashboard";
+import MarketPage from "../views/MarketPage";
 import NotFound from "../views/NotFound";
 import Users from "../views/allusers";
 import AdminProducts from "../views/AdminProducts";
@@ -14,7 +15,7 @@ import UserPage from "../containers/UserPage";
 
 export default ({childProps}) =>
   <Switch>
-    <AppliedRoute path="/" exact component={AdminDashboard} props={childProps} />
+    <AppliedRoute path="/market" exact component={MarketPage} props={childProps} />
     <AppliedRoute path="/users" exact component={Users} props={childProps} />
     <AppliedRoute path="/orders" exact component={Orders} props={childProps} />
     <AppliedRoute path="/cart" exact component={ShoppingCart} props={childProps} />

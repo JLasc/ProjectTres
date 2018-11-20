@@ -8,12 +8,12 @@ import LinkSupport from "../components/linkSupport";
 import LinkCart from "../components/linkCart"
 
 class UserPage extends React.Component {
-    constructor(props){
-        super(props)
+  constructor(props){
+    super()
+  }
   
-    }
+render(){
 
-   render() {
     return (
       <div>
         <Sidebar userOptions={this.props.userOptions} displayOptions={this.props.displayOptions}>
@@ -28,7 +28,7 @@ class UserPage extends React.Component {
         </div>
       </div>
     );
-  }
+}
 }
 
 export default UserPage;
