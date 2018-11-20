@@ -1,7 +1,7 @@
 import React from "react";
 import Sidebar from "../components/sidebar";
 import AdminNavigation from "../components/adminNavigation";
-import Routes from "../routes/AdminRoutes";
+import Routes from "../routes/UserRoutes";
 import LinkMarket from "../components/linkMarket";
 import LinkHistory from "../components/linkHistory"
 import LinkSupport from "../components/linkSupport";
@@ -11,7 +11,9 @@ class UserPage extends React.Component {
   constructor(props){
     super()
   }
+  
 render(){
+
     return (
       <div>
         <Sidebar userOptions={this.props.userOptions} displayOptions={this.props.displayOptions}>

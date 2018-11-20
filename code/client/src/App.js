@@ -28,7 +28,6 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    console.log("Mounted");
     this.getData();
   }
 
@@ -82,15 +81,10 @@ class App extends React.Component {
 
   signOut = () => {
     axios.get('api/logout').then((response) => {
-      window.location.href = "http://192.168.15.10:3000/";
+      this.userHasAuthenticated(false);
       this.setState({
-        isAuthenticated: false,
-        uid: '',
-        email: '',
-        firstName: '',
-        lastName: '',
-        admin: ''
-      });
+        isAuthenticated: false
+      })
     });
   };
 
@@ -124,7 +118,7 @@ class App extends React.Component {
           password: this.state.password
         }
       }).then(data => {
-        console.log(data.data.data);
+        console.log(data);
         this.setState({
           isAuthenticated: true,
           uid: data.data.data.id,
@@ -135,7 +129,7 @@ class App extends React.Component {
         });
         <Link to="/market"></Link>
         //this.props.history.push("/");
-      });
+     });
 }
 
   render() {
