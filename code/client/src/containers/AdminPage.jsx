@@ -9,7 +9,7 @@ import LinkCart from "../components/linkCart"
 
 class AdminPage extends React.Component {
     constructor(props){
-        super()
+        super(props)
   
     }
 
