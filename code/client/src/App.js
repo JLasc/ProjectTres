@@ -24,12 +24,16 @@ class App extends React.Component {
       orders: false,
       cart: false,
       support: false,
+      usersData:[],
+      ordersData: []
     };
   }
 
   componentDidMount() {
     console.log("Mounted");
     this.getData();
+    this.getAllUsers();
+    this.getAllOrders();
   }
 
   userHasAuthenticated = (authenticated) => {
@@ -44,6 +48,31 @@ class App extends React.Component {
     }).then((data) => {
       this.setState({
         productsData: data.data
+      })
+    })
+  }
+
+  getAllUsers = () => {
+    console.log("user testing");
+    axios({
+      method: "get",
+      url: "/api/users",
+
+    }).then((data) => {
+      this.setState({
+        usersData: data.data
+      })
+    })
+  }
+
+  getAllOrders = () => {
+    axios({
+      method: "get",
+      url: "/api/orders",
+
+    }).then((data) => {
+      this.setState({
+        ordersData: data.data
       })
     })
   }
@@ -159,6 +188,10 @@ class App extends React.Component {
       order: this.state.orders,
       cart: this.state.cart,
       support: this.state.support,
+      getAllUsers: this.getAllUsers,
+      usersData: this.state.usersData,
+      ordersData: this.state.ordersData,
+      getAllOrders: this.getAllOrders
     };
 
     return (
