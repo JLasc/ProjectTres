@@ -1,12 +1,12 @@
 import React from "react";
 import history from "../products.svg";
-import {Link} from "react-router-dom";
+import {NavLink} from "react-router-dom";
 
 const linkHistory = props => {
   return (
     <span>
       <img src={history}/>
-      <Link to="/orders" className={props.history ? "active" : " "}>Order History</Link>
+      <NavLink to="/orders" activeClassName="active">Order History</NavLink>
     </span>
   );
 };

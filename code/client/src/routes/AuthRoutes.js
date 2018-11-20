@@ -12,5 +12,5 @@ export default ({ childProps }) =>
     <Switch>
         <UnauthenticatedRoute path="/login" exact component={Login} props={childProps} />
         <UnauthenticatedRoute path="/signup" exact component={Signup} props={childProps} />
-        <AuthenticatedRoute path='/' props={childProps} component={AdminPage} />
+        <AuthenticatedRoute path="/" props={childProps} component={UserPage} />
     </Switch>

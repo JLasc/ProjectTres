@@ -8,12 +8,10 @@ import LinkSupport from "../components/linkSupport";
 import LinkCart from "../components/linkCart"
 
 class UserPage extends React.Component {
-    constructor(props){
-        super()
-  
-    }
-
-   render() {
+  constructor(props){
+    super()
+  }
+render(){
     return (
       <div>
         <Sidebar userOptions={this.props.userOptions} displayOptions={this.props.displayOptions}>
@@ -23,12 +21,12 @@ class UserPage extends React.Component {
           <LinkSupport support={this.props.support} />
         </Sidebar>
         <div className="dashboardcontainer">
-          <AdminNavigation props={this.props.childProps} />
-          <Routes childProps={this.props.childProps} />
+          <AdminNavigation props={this.props} />
+          <Routes childProps={this.props} />
         </div>
       </div>
     );
-  }
+}
 }
 
 export default UserPage;
