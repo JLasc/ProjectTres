@@ -41,7 +41,7 @@ const Market = props => {
   return (
     
     <div>
-      {/* <Sidebar
+      <Sidebar
         activeLink={props.activeLink}
         active={props.active}
         displayOptions={props.displayOptions}
@@ -50,7 +50,7 @@ const Market = props => {
       <div className="dashboardcontainer">
         <Navigation signOut={props.signOut} />
           
-      </div> */}
+      </div>
       
     </div>
   );

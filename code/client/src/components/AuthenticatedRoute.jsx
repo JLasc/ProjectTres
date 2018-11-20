@@ -8,7 +8,6 @@ export default ({ component: C, props: cProps, ...rest }) =>
       cProps.isAuthenticated
         ? <C {...props} {...cProps} />
         : <Redirect
-            to={`/login?redirect=${props.location.pathname}${props.location
-              .search}`}
+            to={`/login`}
           />}
   />;

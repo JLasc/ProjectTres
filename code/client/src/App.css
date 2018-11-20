@@ -381,6 +381,12 @@ nav ul a:hover {
   color: white;
 }
 
+.activeLink {
+  border-left: 4px solid blue;
+  background-color: hsla(0, 0%, 78%, 0.4);
+  text-transform: capitalize;
+  color: white;
+}
 /* Links on mouse-over */
 .sidebar a:hover:not(.active) {
   background-color: hsla(0, 0%, 78%, 0.2);
