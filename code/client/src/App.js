@@ -118,7 +118,7 @@ class App extends React.Component {
           password: this.state.password
         }
       }).then(data => {
-        console.log(data.data.data);
+        console.log(data);
         this.setState({
           isAuthenticated: true,
           uid: data.data.data.id,
