@@ -23,7 +23,7 @@ class AdminPage extends React.Component {
           <LinkSupport support={this.props.support} />
         </Sidebar>
         <div className="dashboardcontainer">
-          <AdminNavigation props={this.props} />
+          <AdminNavigation childProps={this.props} />
           <Routes childProps={this.props} />
         </div>
       </div>

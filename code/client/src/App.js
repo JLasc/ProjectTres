@@ -33,10 +33,25 @@ class App extends React.Component {
     this.getData();
     this.getAllUsers();
     this.getAllOrders();
+    this.checkforAuth();
   }
 
   userHasAuthenticated = (authenticated) => {
     this.setState({ isAuthenticated: authenticated });
+  }
+
+  checkforAuth = () => {
+    var user = JSON.parse(localStorage.getItem("user"));
+    if(user){
+      this.setState({
+        isAuthenticated: true,
+        uid: user.data.data.id,
+        email: user.data.data.email,
+        firstName: user.data.data.firstName,
+        lastName: user.data.data.lastName,
+        admin: user.data.data.admin
+      });
+    }
   }
 
   getData = () => {
@@ -109,11 +124,13 @@ class App extends React.Component {
   };
 
   signOut = () => {
+    console.log("testing logout");
     axios.get('api/logout').then((response) => {
       this.userHasAuthenticated(false);
       this.setState({
         isAuthenticated: false
       })
+      localStorage.removeItem("user");
     });
   };
 
@@ -156,6 +173,7 @@ class App extends React.Component {
           lastName: data.data.data.lastName,
           admin: data.data.data.admin
         });
+        localStorage.setItem("user",JSON.stringify(data));
         <Link to="/market"></Link>
         //this.props.history.push("/");
      });
@@ -185,7 +203,8 @@ class App extends React.Component {
       getAllUsers: this.getAllUsers,
       usersData: this.state.usersData,
       ordersData: this.state.ordersData,
-      getAllOrders: this.getAllOrders
+      getAllOrders: this.getAllOrders,
+      signOut: this.signOut
     };
 
     return (
