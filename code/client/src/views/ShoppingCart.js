@@ -1,5 +1,5 @@
 import React from "react";
-import { Icon, Button, Input } from "react-materialize";
+import { Icon } from "react-materialize";
 import mbp15 from "../mbp_15.jpg";
 import iphoneXR from "../iphone_xr.jpg";
 import mbp13 from "../mbp_13.jpg";
