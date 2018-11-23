@@ -23,7 +23,7 @@ const ShoppingCart = props => {
     }
   };
   const displayCart = props.cart.map((each, i) => (
-    <div className="eachOrder">
+    <div className="eachOrder" key={i}>
       <div className="productImg">{pickImage(each.image)}</div>
       <div className="nameText">
         <p>{each.name}</p>
