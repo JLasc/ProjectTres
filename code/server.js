@@ -6,6 +6,7 @@ const db = require("./models");
 const routes = require("./routes");
 const session = require("express-session");
 const passport = require("./config/passport/passport.js");
+const path= require("path");
 
 
 // Define middleware here
@@ -27,7 +28,7 @@ app.use(passport.session())
 //   app.use(express.static("client/build"));
 // }
 
-app.use(express.static("client/build"));
+app.use(express.static(path.join("./client/build")));
 
 require("./routes/api/authenticate.js")(app);
 app.use(routes);
