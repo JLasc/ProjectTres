@@ -22,7 +22,7 @@ const ShoppingCart = props => {
         return <img src={magicMouse} alt={magicMouse} />;
     }
   };
-  const displayCart = props.productsData.map((each, i) => (
+  const displayCart = props.cart.map((each, i) => (
     <div className="eachOrder">
       <div className="productImg">{pickImage(each.image)}</div>
       <div className="nameText">
