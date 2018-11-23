@@ -23,9 +23,12 @@ app.use(passport.initialize())
 app.use(passport.session())
 
 // Serve up static assets (usually on heroku)
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static("client/build"));
-}
+// if (process.env.NODE_ENV === "production") {
+//   app.use(express.static("client/build"));
+// }
+
+app.use('/counselling/triage/', express.static(path.join(__dirname, '/build')));
+
 require("./routes/api/authenticate.js")(app);
 app.use(routes);
 
