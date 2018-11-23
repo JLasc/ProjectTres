@@ -1,5 +1,5 @@
 import React from "react";
-import { Icon, Button, Input } from "react-materialize";
+import { Icon } from "react-materialize";
 import mbp15 from "../mbp_15.jpg";
 import iphoneXR from "../iphone_xr.jpg";
 import mbp13 from "../mbp_13.jpg";
@@ -22,8 +22,8 @@ const ShoppingCart = props => {
         return <img src={magicMouse} alt={magicMouse} />;
     }
   };
-  const displayCart = props.productsData.map((each, i) => (
-    <div className="eachOrder">
+  const displayCart = props.cart.map((each, i) => (
+    <div className="eachOrder" key={i}>
       <div className="productImg">{pickImage(each.image)}</div>
       <div className="nameText">
         <p>{each.name}</p>
