@@ -3,7 +3,8 @@ import Sidebar from "../components/sidebar";
 import Navigation from "../components/navigation";
 import UserList from "../components/Userlist";
 import axios from "axios";
-import Button from 'react-materialize';
+import {Button} from 'react-materialize';
+import {Link} from 'react-router-dom';
 
 class AllUsers extends React.Component {
   constructor(props) {
@@ -40,7 +41,7 @@ class AllUsers extends React.Component {
           users={this.state.users}
           searchUsers={this.state.searchUsers}
         />
-        {/* <Button className="button">Add User </Button> */}
+        <Link to="/users/new"><Button>Add User</Button></Link>
       </div>
     );
   }
