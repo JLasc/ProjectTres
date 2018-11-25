@@ -3,6 +3,7 @@ import Sidebar from "../components/sidebar";
 import Navigation from "../components/navigation";
 import UserList from "../components/Userlist";
 import axios from "axios";
+import Button from 'react-materialize';
 
 class AllUsers extends React.Component {
   constructor(props) {
@@ -14,11 +15,13 @@ class AllUsers extends React.Component {
   }
 
   componentDidMount () {
-    axios.get("/api/users")
-    .then(res => {
+    axios({
+      method: "get",
+      url: "/api/users",
+    }).then((data) => {
       this.setState({
-        users: res.data,
-        searchUsers: res.data
+        users: data.data,
+        searchUsers: data.data
       })
     })
   } 
@@ -37,6 +40,7 @@ class AllUsers extends React.Component {
           users={this.state.users}
           searchUsers={this.state.searchUsers}
         />
+        {/* <Button className="button">Add User </Button> */}
       </div>
     );
   }
