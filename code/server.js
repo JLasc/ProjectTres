@@ -20,7 +20,7 @@ app.use(
   })
 )
 app.use(passport.initialize())
-app.use(passport.session())
+
 
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
@@ -28,7 +28,7 @@ if (process.env.NODE_ENV === "production") {
 }
 require("./routes/api/authenticate.js")(app);
 app.use(routes);
-
+app.use(passport.session())
 // Define API routes here
 
 const syncOptions = { force: false };
