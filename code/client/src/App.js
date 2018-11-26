@@ -64,8 +64,6 @@ class App extends React.Component {
     });
   };
 
-
-
   getData = () => {
     axios({
       method: "get",
@@ -106,19 +104,17 @@ class App extends React.Component {
   };
 
   changeQty = event => {
-    const cartArr = this.state.cart;
+    let cartArr = this.state.cart;
     const productId = event.target.dataset.id;
-    const modifiedProduct = cartArr[productId];
+    let modifiedProduct = cartArr[productId];
     modifiedProduct.qty = event.target.value;
     modifiedProduct.subtotal = (modifiedProduct.qty * modifiedProduct.price).toFixed(2)
     cartArr.splice(productId, 1, modifiedProduct)
 
-    this.setState = ({
-      cart: cartArr,
+    this.setState({
+      cart: cartArr
       
     })
-
-    this.forceUpdate();
   }
 
   handleSignup = () => {
