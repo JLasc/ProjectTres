@@ -34,6 +34,7 @@ class App extends React.Component {
     this.getData();
     this.getAllUsers();
     this.getAllOrders();
+    this.checkforAuth();
   }
 
   userHasAuthenticated = authenticated => {
@@ -50,6 +51,21 @@ class App extends React.Component {
       inCart: this.state.inCart - 1
     });
   };
+
+
+  checkforAuth = () => {
+    var user = JSON.parse(localStorage.getItem("user"));
+    if(user){
+      this.setState({
+        isAuthenticated: true,
+        uid: user.data.data.id,
+        email: user.data.data.email,
+        firstName: user.data.data.firstName,
+        lastName: user.data.data.lastName,
+        admin: user.data.data.admin
+      });
+    }
+  }
 
   addToCart = event => {
     const productID = event.target.dataset.id;
@@ -144,11 +160,13 @@ class App extends React.Component {
   };
 
   signOut = () => {
-    axios.get("api/logout").then(response => {
+    console.log("testing logout");
+    axios.get('api/logout').then((response) => {
       this.userHasAuthenticated(false);
       this.setState({
         isAuthenticated: false
-      });
+      })
+      localStorage.removeItem("user");
     });
   };
 
@@ -170,28 +188,31 @@ class App extends React.Component {
 
   handleSubmit = () => {
     axios({
-      method: "post",
-      url: "/api/login",
-      headers: {
-        "content-type": "application/json"
-      },
-      data: {
-        username: this.state.email,
-        password: this.state.password
-      }
-    }).then(data => {
-      console.log(data);
-      this.setState({
-        isAuthenticated: true,
-        uid: data.data.data.id,
-        email: data.data.data.email,
-        firstName: data.data.data.firstName,
-        lastName: data.data.data.lastName,
-        admin: data.data.data.admin
-      });
-      <Link to="/market" />;
-    });
-  };
+        method: "post",
+        url: "/api/login",
+        headers: {
+          "content-type": "application/json"
+        },
+        data: {
+          username: this.state.email,
+          password: this.state.password
+        }
+      }).then(data => {
+        console.log(data);
+        this.setState({
+          isAuthenticated: true,
+          uid: data.data.data.id,
+          email: data.data.data.email,
+          firstName: data.data.data.firstName,
+          lastName: data.data.data.lastName,
+          admin: data.data.data.admin
+        });
+        localStorage.setItem("user",JSON.stringify(data));
+        <Link to="/market"></Link>
+        //this.props.history.push("/");
+     });
+}
+
 
   render() {
     const childProps = {
@@ -218,6 +239,7 @@ class App extends React.Component {
       usersData: this.state.usersData,
       ordersData: this.state.ordersData,
       getAllOrders: this.getAllOrders,
+      signOut: this.signOut
     };
 
     return (

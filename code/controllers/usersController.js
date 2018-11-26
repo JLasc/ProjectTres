@@ -22,14 +22,13 @@ module.exports = {
     },
     update: function (req, res) {
         db.User
-            .findOneAndUpdate({ _id: req.params.id }, req.body)
+            .update(req.body, {where: { id: req.params.id }} )
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
     },
     remove: function (req, res) {
         db.User
-            .findById({ _id: req.params.id })
-            .then(dbModel => dbModel.remove())
+            .destroy({where: { id: req.params.id }} )
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
     }
