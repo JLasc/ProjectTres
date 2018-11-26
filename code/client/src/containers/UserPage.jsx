@@ -17,13 +17,13 @@ render(){
     return (
       <div>
         <Sidebar userOptions={this.props.userOptions} displayOptions={this.props.displayOptions}>
-          <LinkMarket market={this.props.market} />
-          <LinkHistory orders={this.props.orders} />
-          <LinkCart cart={this.props.cart} />
-          <LinkSupport support={this.props.support} />
+          <LinkMarket />
+          <LinkHistory />
+          <LinkCart />
+          <LinkSupport />
         </Sidebar>
         <div className="dashboardcontainer">
-          <AdminNavigation props={this.props} />
+          <AdminNavigation inCart={this.props.inCart}/>
           <Routes childProps={this.props} />
         </div>
       </div>

@@ -2,7 +2,7 @@ import React from "react";
 import "./App.css";
 import axios from "axios";
 import AuthRoutes from "./routes/AuthRoutes";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 
 class App extends React.Component {
   constructor() {
@@ -19,11 +19,15 @@ class App extends React.Component {
       uid: "",
       admin: false,
       showProducts: true,
-      productsData:[],
+      productsData: [],
       cart: [],
-      usersData:[],
-      ordersData: []
+      inCart: 0,
+      usersData: [],
+      ordersData: [],
+      
     };
+
+    this.changeQty = this.changeQty.bind(this)
   }
 
   componentDidMount() {
@@ -33,9 +37,20 @@ class App extends React.Component {
     this.checkforAuth();
   }
 
-  userHasAuthenticated = (authenticated) => {
+  userHasAuthenticated = authenticated => {
     this.setState({ isAuthenticated: authenticated });
-  }
+  };
+
+  removeFromCart = event => {
+    const productID = event.target.dataset.id;
+    let cartItem = this.state.cart;
+    const removeItem = cartItem.splice(productID, 1);
+
+    this.setState({
+      cart: cartItem,
+      inCart: this.state.inCart - 1
+    });
+  };
 
 
   checkforAuth = () => {
@@ -54,60 +69,74 @@ class App extends React.Component {
 
   addToCart = event => {
     const productID = event.target.dataset.id;
-    const productData = this.state.cart.concat(this.state.productsData[productID])
+    var productBeingAdded = this.state.productsData[productID];
+    productBeingAdded.qty = 1;
+    productBeingAdded.subtotal = productBeingAdded.price
+    const productData = this.state.cart.concat(productBeingAdded);
 
     this.setState({
-      cart: productData
+      cart: productData,
+      inCart: this.state.inCart + 1
     });
-  }
-  
+  };
+
   getData = () => {
     axios({
       method: "get",
-      url: "/api/products",
-
-    }).then((data) => {
+      url: "/api/products"
+    }).then(data => {
       this.setState({
         productsData: data.data
-      })
-    })
-  }
+      });
+    });
+  };
 
   getAllUsers = () => {
-    console.log("user testing");
     axios({
       method: "get",
-      url: "/api/users",
-
-    }).then((data) => {
+      url: "/api/users"
+    }).then(data => {
       this.setState({
         usersData: data.data
-      })
-    })
-  }
+      });
+    });
+  };
 
   getAllOrders = () => {
     axios({
       method: "get",
-      url: "/api/orders",
-
-    }).then((data) => {
+      url: "/api/orders"
+    }).then(data => {
       this.setState({
         ordersData: data.data
-      })
-    })
-  }
+      });
+    });
+  };
 
   handleChange = event => {
     this.setState({
-        [event.target.name]: event.target.value
+      [event.target.name]: event.target.value
     });
-}
+  };
+
+  changeQty = event => {
+    let cartArr = this.state.cart;
+    const productId = event.target.dataset.id;
+    let modifiedProduct = cartArr[productId];
+    modifiedProduct.qty = event.target.value;
+    modifiedProduct.subtotal = (modifiedProduct.qty * modifiedProduct.price).toFixed(2)
+    cartArr.splice(productId, 1, modifiedProduct)
+
+    this.setState({
+      cart: cartArr
+      
+    })
+  }
 
   handleSignup = () => {
     axios({
-      method: 'post',
-      url: '/api/signup',
+      method: "post",
+      url: "/api/signup",
       headers: {
         "content-type": "application/json"
       },
@@ -150,8 +179,7 @@ class App extends React.Component {
       this.setState({
         displayOptions: false
       });
-    }
-    else if (!this.state.displayOptions) {
+    } else if (!this.state.displayOptions) {
       this.setState({
         displayOptions: true
       });
@@ -159,7 +187,6 @@ class App extends React.Component {
   };
 
   handleSubmit = () => {
-    console.log('test');
     axios({
         method: "post",
         url: "/api/login",
@@ -186,13 +213,16 @@ class App extends React.Component {
      });
 }
 
+
   render() {
-   
     const childProps = {
       isAuthenticated: this.state.isAuthenticated,
       userHasAuthenticated: this.userHasAuthenticated,
       productsData: this.state.productsData,
       addToCart: this.addToCart,
+      removeFromCart: this.removeFromCart,
+      changeQty: this.changeQty,
+      inCart: this.state.inCart,
       handleChange: this.handleChange,
       userOptions: this.userOptions,
       displayOptions: this.state.displayOptions,
@@ -216,7 +246,6 @@ class App extends React.Component {
       <div className="App">
         <AuthRoutes childProps={childProps} />
       </div>
-
     );
   }
 }

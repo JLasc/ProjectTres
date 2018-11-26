@@ -1,5 +1,5 @@
 import React from "react";
-import { Icon } from "react-materialize";
+import { Icon, Button } from "react-materialize";
 import mbp15 from "../mbp_15.jpg";
 import iphoneXR from "../iphone_xr.jpg";
 import mbp13 from "../mbp_13.jpg";
@@ -7,7 +7,6 @@ import magicKeyboard from "../magic_keyboard.jpg";
 import magicMouse from "../magic_mouse.jpg";
 
 const ShoppingCart = props => {
-  console.log(props.productsData)
    const pickImage = imgString => {
     switch (imgString) {
       case "mbp15":
@@ -22,36 +21,47 @@ const ShoppingCart = props => {
         return <img src={magicMouse} alt={magicMouse} />;
     }
   };
+  
   const displayCart = props.cart.map((each, i) => (
     <div className="eachOrder" key={i}>
       <div className="productImg">{pickImage(each.image)}</div>
       <div className="nameText">
         <p>{each.name}</p>
-        <p>
-          <Icon>attach_money</Icon>
+        <p>Model: {each.model}</p>
+        <p className="cartDescription">{each.description}</p>     
+        </div>
+        <div>
+      <div className="orderPrice">
+      <Icon>attach_money</Icon>
           {each.price}
-        </p>
-        <p>DELETE ITEM</p>
       </div>
-      <div className="orderModel">
-        <p>Model:</p>
-        <p>{each.model}</p>
       </div>
-
-      <div className="quantity">
-        <p>QUANITY</p>
-        <form>
-          <select>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-          </select>
-          <input type="submit"></input>
-        </form>
+      <div>
+      <select data-id={i} onChange={props.changeQty} defaultValue={props.cart[i].qty}>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+      </select>
       </div>
+      <div className="subPrice"><Icon>attach_money</Icon>{props.cart[i].subtotal}</div>
+      <div className="remove"><Button onClick={props.removeFromCart} data-id={i}>&#x2716;</Button></div>
+        
     </div>
   ));
-  return <div className="shoppingContainer">{displayCart}</div>;
+  return <div className="shoppingContainer">
+          <div className="labels">
+          <div>Product</div>
+          <div>
+          <div className="qtyPrice">Unit Price</div>
+          </div>
+          <div>Qty</div>
+          <div>Subtotal</div>
+          <div></div>
+          </div>
+  
+            {displayCart}</div>;
 };
 
 export default ShoppingCart;
