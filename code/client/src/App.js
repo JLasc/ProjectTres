@@ -20,10 +20,7 @@ class App extends React.Component {
       admin: false,
       showProducts: true,
       productsData:[],
-      market: true,
-      orders: false,
-      cart: false,
-      support: false,
+      cart: [],
       usersData:[],
       ordersData: []
     };
@@ -40,6 +37,7 @@ class App extends React.Component {
     this.setState({ isAuthenticated: authenticated });
   }
 
+
   checkforAuth = () => {
     var user = JSON.parse(localStorage.getItem("user"));
     if(user){
@@ -54,6 +52,15 @@ class App extends React.Component {
     }
   }
 
+  addToCart = event => {
+    const productID = event.target.dataset.id;
+    const productData = this.state.cart.concat(this.state.productsData[productID])
+
+    this.setState({
+      cart: productData
+    });
+  }
+  
   getData = () => {
     axios({
       method: "get",
@@ -185,6 +192,7 @@ class App extends React.Component {
       isAuthenticated: this.state.isAuthenticated,
       userHasAuthenticated: this.userHasAuthenticated,
       productsData: this.state.productsData,
+      addToCart: this.addToCart,
       handleChange: this.handleChange,
       userOptions: this.userOptions,
       displayOptions: this.state.displayOptions,
@@ -196,10 +204,7 @@ class App extends React.Component {
       uid: this.state.uid,
       admin: this.state.admin,
       showProducts: this.state.showProducts,
-      market: this.state.market,
-      order: this.state.orders,
       cart: this.state.cart,
-      support: this.state.support,
       getAllUsers: this.getAllUsers,
       usersData: this.state.usersData,
       ordersData: this.state.ordersData,
