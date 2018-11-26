@@ -61,14 +61,6 @@ class App extends React.Component {
     });
   };
 
-  add = event => {
-   
-  }
-
-  subtract() {
-
-  }
-
   getData = () => {
     axios({
       method: "get",
