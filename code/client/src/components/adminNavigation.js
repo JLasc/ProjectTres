@@ -1,5 +1,6 @@
 import React from "react";
 import { Icon, Button, Input } from "react-materialize";
+import { Link } from "react-router-dom";
 
 const AdminNavigation = props => {
   return (
@@ -13,10 +14,10 @@ const AdminNavigation = props => {
         </div>
 
         <div className="nested-grid">
-          <a id="cart" href="get-started.html">
-            <Icon>shopping_cart</Icon>
-          </a>
-
+        <div id="cart"><Link to="/cart"><Icon>shopping_cart</Icon></Link>
+        <div className="inCart">{props.inCart}</div>
+        </div>
+          
           <a id="profile" href="get-started.html">
             <Icon>perm_identity</Icon>
           </a>

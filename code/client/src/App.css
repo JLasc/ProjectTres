@@ -11,6 +11,8 @@ body {
 
 select {
   display: block;
+  margin: 0 auto;
+  width: 75px;
 }
 
 .infowidth {
@@ -288,6 +290,22 @@ nav {
 #cart {
   margin-top: 7px;
   text-align: right;
+  position: relative;
+}
+
+.inCart{
+  position: absolute;
+  height: 20px;
+  width: 20px;
+  border-radius: 10px;
+  background-color: blue;
+  color: white;
+  text-align: center;
+  top: 0;
+  right: 0;
+  margin-top: -10px;
+  margin-right: -10px;
+  font-family: "Montserrat", sans-serif;
 }
 
 #profile {
@@ -416,14 +434,69 @@ div.content {
 }
 
 .eachOrder {
-  padding: 20px;
+  padding: 15px;
+  padding-left: 0px;
   background-color: white;
   border-radius: 12px;
   margin-bottom: 20px;
   box-shadow: 0 6px 10px -4px rgba(0, 0, 0, 0.3);
   position: relative;
   display: grid;
-  grid-template-columns: 1fr 1fr 2fr 1fr 1fr
+  grid-template-columns: 1fr 1fr 2fr 1fr .5fr .5fr;
+}
+
+.labels{
+  display: grid;
+  grid-template-columns: 2fr 2fr 1fr .75fr .25fr;
+  padding: 15px;
+  background-color: rgb(0, 0, 199);
+  box-shadow: 0 6px 10px -4px rgba(0, 0, 0, 0.3);
+  height: 50px;
+  margin-bottom: 10px;
+  text-align: center;
+  color: white;
+}
+
+.cartDescription{
+  font-size: 9px;
+  max-width: 100%;
+  max-height: 103px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  
+}
+
+.nameText p{
+  margin: 0;
+}
+
+.remove{
+  position: relative;
+}
+
+.remove button.btn{
+  color: white!important;
+  font-weight: bold;
+  font-size: 130%;
+  position: absolute;
+  top: 35%;
+  right: 0;
+  cursor: pointer;
+  padding: 0px;
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  background-color: black!important;
+  box-shadow: none!important;
+  line-height: 30px;
+
+}
+
+.productImg Img{
+  display: block;
+  margin: 0 auto;
+  margin-top: 10px;
+  width: 100px;
 }
 
 .eachOrder a{
@@ -449,6 +522,36 @@ div.content {
 .productPrice .material-icons{
   float: left;
   margin-top: -2px;
+}
+
+.orderPrice{
+  float:right;
+  margin-right: 50px;
+  color: green;
+  padding: 10px;
+  font-family: "Montserrat", sans-serif;
+}
+
+.orderPrice .material-icons{
+  float: left;
+  margin-top: -2px;
+}
+
+.subPrice{
+  float:right;
+  color: green;
+  padding: 10px;
+  font-family: "Montserrat", sans-serif;
+}
+
+.subPrice .material-icons{
+  float: left;
+  margin-top: -2px;
+}
+
+.qtyPrice{
+  float:right;
+  margin-right: 60px;
 }
 
 .money{
@@ -478,10 +581,6 @@ div.content {
   font-size: 14px;
   text-align: left;
   font-family: "Montserrat", sans-serif;
-}
-
-.productImg img{
-  width: 100px;
 }
 
 .nameText {

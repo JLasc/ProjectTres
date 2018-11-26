@@ -2,7 +2,7 @@ import React from "react";
 import "./App.css";
 import axios from "axios";
 import AuthRoutes from "./routes/AuthRoutes";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 
 class App extends React.Component {
   constructor() {
@@ -19,10 +19,12 @@ class App extends React.Component {
       uid: "",
       admin: false,
       showProducts: true,
-      productsData:[],
+      productsData: [],
       cart: [],
-      usersData:[],
-      ordersData: []
+      inCart: 0,
+      usersData: [],
+      ordersData: [],
+      
     };
   }
 
@@ -32,66 +34,84 @@ class App extends React.Component {
     this.getAllOrders();
   }
 
-  userHasAuthenticated = (authenticated) => {
+  userHasAuthenticated = authenticated => {
     this.setState({ isAuthenticated: authenticated });
-  }
+  };
+
+  removeFromCart = event => {
+    const productID = event.target.dataset.id;
+    let cartItem = this.state.cart;
+    const removeItem = cartItem.splice(productID, 1);
+
+    this.setState({
+      cart: cartItem,
+      inCart: this.state.inCart - 1
+    });
+  };
 
   addToCart = event => {
     const productID = event.target.dataset.id;
-    const productData = this.state.cart.concat(this.state.productsData[productID])
+    const productData = this.state.cart.concat(
+      this.state.productsData[productID]
+    );
 
     this.setState({
-      cart: productData
+      cart: productData,
+      inCart: this.state.inCart + 1
     });
+  };
+
+  add = event => {
+   
   }
-  
+
+  subtract() {
+
+  }
+
   getData = () => {
     axios({
       method: "get",
-      url: "/api/products",
-
-    }).then((data) => {
+      url: "/api/products"
+    }).then(data => {
       this.setState({
         productsData: data.data
-      })
-    })
-  }
+      });
+    });
+  };
 
   getAllUsers = () => {
-    console.log("user testing");
     axios({
       method: "get",
-      url: "/api/users",
-
-    }).then((data) => {
+      url: "/api/users"
+    }).then(data => {
       this.setState({
         usersData: data.data
-      })
-    })
-  }
+      });
+    });
+  };
 
   getAllOrders = () => {
     axios({
       method: "get",
-      url: "/api/orders",
-
-    }).then((data) => {
+      url: "/api/orders"
+    }).then(data => {
       this.setState({
         ordersData: data.data
-      })
-    })
-  }
+      });
+    });
+  };
 
   handleChange = event => {
     this.setState({
-        [event.target.name]: event.target.value
+      [event.target.name]: event.target.value
     });
-}
+  };
 
   handleSignup = () => {
     axios({
-      method: 'post',
-      url: '/api/signup',
+      method: "post",
+      url: "/api/signup",
       headers: {
         "content-type": "application/json"
       },
@@ -115,11 +135,11 @@ class App extends React.Component {
   };
 
   signOut = () => {
-    axios.get('api/logout').then((response) => {
+    axios.get("api/logout").then(response => {
       this.userHasAuthenticated(false);
       this.setState({
         isAuthenticated: false
-      })
+      });
     });
   };
 
@@ -132,8 +152,7 @@ class App extends React.Component {
       this.setState({
         displayOptions: false
       });
-    }
-    else if (!this.state.displayOptions) {
+    } else if (!this.state.displayOptions) {
       this.setState({
         displayOptions: true
       });
@@ -141,39 +160,40 @@ class App extends React.Component {
   };
 
   handleSubmit = () => {
-    console.log('test');
     axios({
-        method: "post",
-        url: "/api/login",
-        headers: {
-          "content-type": "application/json"
-        },
-        data: {
-          username: this.state.email,
-          password: this.state.password
-        }
-      }).then(data => {
-        console.log(data);
-        this.setState({
-          isAuthenticated: true,
-          uid: data.data.data.id,
-          email: data.data.data.email,
-          firstName: data.data.data.firstName,
-          lastName: data.data.data.lastName,
-          admin: data.data.data.admin
-        });
-        <Link to="/market"></Link>
-        //this.props.history.push("/");
-     });
-}
+      method: "post",
+      url: "/api/login",
+      headers: {
+        "content-type": "application/json"
+      },
+      data: {
+        username: this.state.email,
+        password: this.state.password
+      }
+    }).then(data => {
+      console.log(data);
+      this.setState({
+        isAuthenticated: true,
+        uid: data.data.data.id,
+        email: data.data.data.email,
+        firstName: data.data.data.firstName,
+        lastName: data.data.data.lastName,
+        admin: data.data.data.admin
+      });
+      <Link to="/market" />;
+    });
+  };
 
   render() {
-   
     const childProps = {
       isAuthenticated: this.state.isAuthenticated,
       userHasAuthenticated: this.userHasAuthenticated,
       productsData: this.state.productsData,
       addToCart: this.addToCart,
+      removeFromCart: this.removeFromCart,
+      add: this.add,
+      subtract: this.subtract,
+      inCart: this.state.inCart,
       handleChange: this.handleChange,
       userOptions: this.userOptions,
       displayOptions: this.state.displayOptions,
@@ -189,14 +209,13 @@ class App extends React.Component {
       getAllUsers: this.getAllUsers,
       usersData: this.state.usersData,
       ordersData: this.state.ordersData,
-      getAllOrders: this.getAllOrders
+      getAllOrders: this.getAllOrders,
     };
 
     return (
       <div className="App">
         <AuthRoutes childProps={childProps} />
       </div>
-
     );
   }
 }
