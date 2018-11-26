@@ -16,6 +16,7 @@ class SingleUser extends React.Component {
       firstName: '',
       lastName: '',
       email: '',
+      password: '',
       isadmin: null,
       redirect: false
     }
@@ -33,59 +34,31 @@ class SingleUser extends React.Component {
     });
   }
 
-
-  updateUser = () => {
+  createUser = () => {
     axios({
-      method: 'put',
-      url: `/api${this.props.location.pathname}`,
-      headers: {
-        "content-type": "application/json"
-      },
-      data: {
-        email: this.state.email,
-        firstName: this.state.firstName,
-        lastName: this.state.lastName,
-        admin: this.state.isadmin
-      }
-    })
-      .then(res => {
-        this.setState({
-          id: res.data.id,
-          firstName: res.data.firstName,
-          lastName: res.data.lastName,
-          email: res.data.email,
-          isadmin: res.data.admin,
-          redirect: true
-        })
-      })
-  }
-
-  deleteUser = () => {
-    axios.delete(`/api${this.props.location.pathname}`)
-      .then(res => {
-        this.setState({
-          id: '',
-          firstName: '',
-          lastName: '',
-          email: '',
-          isadmin: null,
-          redirect: true
-        })
-      })
-  }
-
-  componentDidMount() {
-    //   ask about this below
-    axios.get(`/api${this.props.location.pathname}`)
-      .then(res => {
-        console.log(res);
-        this.setState({
-          id: res.data.id,
-          firstName: res.data.firstName,
-          lastName: res.data.lastName,
-          email: res.data.email,
-          isadmin: res.data.admin
-        })
+        method: 'post',
+        url: '/api/signup',
+        headers: {
+          "content-type": "application/json"
+        },
+        data: {
+          email: this.state.email,
+          password: this.state.password,
+          firstName: this.state.firstName,
+          lastName: this.state.lastName,
+          admin: this.state.isadmin,
+          CompanyID: '8d5c4e88-a19c-41a1-86b2-2f2cc1cfd02f'
+        }
+      }).then(res => {
+          this.setState ({
+            id: '',
+            firstName: '',
+            lastName: '',
+            email: '',
+            password: '',
+            isadmin: null,
+            redirect: true
+          })
       })
   }
 
@@ -132,6 +105,16 @@ class SingleUser extends React.Component {
 
         <Input
           required
+          s={12}
+          label="Password"
+          id="password"
+          name="password"
+          value={this.state.password}
+          onChange={this.handleChange}
+        />
+
+        <Input
+          required
           type="checkbox"
           s={12}
           label="Admin"
@@ -142,10 +125,8 @@ class SingleUser extends React.Component {
         />
         {/* <p>Recent Orders</p>
         <table></table> */}
-        <Button onClick={this.updateUser}>Save</Button>
+        <Button onClick={this.createUser}>Save</Button>
         <Link to="/users"><Button>Close</Button></Link>
-        <p>DANGER ZONE</p>
-        <Button onClick={this.deleteUser}>Delete</Button>
       </div>
     );
   }

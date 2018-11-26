@@ -6,6 +6,7 @@ import LinkMarket from "../components/linkMarket";
 import LinkHistory from "../components/linkHistory"
 import LinkSupport from "../components/linkSupport";
 import LinkCart from "../components/linkCart"
+import LinkUsers from "../components/linkAllUsers";
 
 class AdminPage extends React.Component {
     constructor(props){
@@ -20,6 +21,7 @@ class AdminPage extends React.Component {
           <LinkMarket market={this.props.market} />
           <LinkHistory orders={this.props.orders} />
           <LinkCart cart={this.props.cart} />
+          <LinkUsers />
           <LinkSupport support={this.props.support} />
         </Sidebar>
         <div className="dashboardcontainer">
