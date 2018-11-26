@@ -26,6 +26,8 @@ class App extends React.Component {
       ordersData: [],
       
     };
+
+    this.changeQty = this.changeQty.bind(this)
   }
 
   componentDidMount() {
@@ -51,15 +53,18 @@ class App extends React.Component {
 
   addToCart = event => {
     const productID = event.target.dataset.id;
-    const productData = this.state.cart.concat(
-      this.state.productsData[productID]
-    );
+    var productBeingAdded = this.state.productsData[productID];
+    productBeingAdded.qty = 1;
+    productBeingAdded.subtotal = productBeingAdded.price
+    const productData = this.state.cart.concat(productBeingAdded);
 
     this.setState({
       cart: productData,
       inCart: this.state.inCart + 1
     });
   };
+
+
 
   getData = () => {
     axios({
@@ -99,6 +104,22 @@ class App extends React.Component {
       [event.target.name]: event.target.value
     });
   };
+
+  changeQty = event => {
+    const cartArr = this.state.cart;
+    const productId = event.target.dataset.id;
+    const modifiedProduct = cartArr[productId];
+    modifiedProduct.qty = event.target.value;
+    modifiedProduct.subtotal = (modifiedProduct.qty * modifiedProduct.price).toFixed(2)
+    cartArr.splice(productId, 1, modifiedProduct)
+
+    this.setState = ({
+      cart: cartArr,
+      
+    })
+
+    this.forceUpdate();
+  }
 
   handleSignup = () => {
     axios({
@@ -183,8 +204,7 @@ class App extends React.Component {
       productsData: this.state.productsData,
       addToCart: this.addToCart,
       removeFromCart: this.removeFromCart,
-      add: this.add,
-      subtract: this.subtract,
+      changeQty: this.changeQty,
       inCart: this.state.inCart,
       handleChange: this.handleChange,
       userOptions: this.userOptions,

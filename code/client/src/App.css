@@ -542,6 +542,7 @@ div.content {
   color: green;
   padding: 10px;
   font-family: "Montserrat", sans-serif;
+  padding-right: 0px;
 }
 
 .subPrice .material-icons{

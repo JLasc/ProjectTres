@@ -7,7 +7,6 @@ import magicKeyboard from "../magic_keyboard.jpg";
 import magicMouse from "../magic_mouse.jpg";
 
 const ShoppingCart = props => {
-  console.log(props.productsData)
    const pickImage = imgString => {
     switch (imgString) {
       case "mbp15":
@@ -37,7 +36,7 @@ const ShoppingCart = props => {
       </div>
       </div>
       <div>
-      <select>
+      <select data-id={i} onChange={props.changeQty} defaultValue={props.cart[i].qty}>
         <option value="1">1</option>
         <option value="2">2</option>
         <option value="3">3</option>
@@ -45,7 +44,7 @@ const ShoppingCart = props => {
         <option value="5">5</option>
       </select>
       </div>
-      <div className="subPrice"><Icon>attach_money</Icon>32454</div>
+      <div className="subPrice"><Icon>attach_money</Icon>{props.cart[i].subtotal}</div>
       <div className="remove"><Button onClick={props.removeFromCart} data-id={i}>&#x2716;</Button></div>
         
     </div>
