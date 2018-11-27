@@ -28,7 +28,7 @@ app.use(passport.initialize())
 //   app.use(express.static("client/build"));
 // }
 
-app.use(express.static(path.join("./client/build")));
+app.use(express.static("client/build"));
 
 require("./routes/api/authenticate.js")(app);
 app.use(routes);
