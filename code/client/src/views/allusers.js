@@ -36,12 +36,12 @@ class AllUsers extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="userContainer">
         <UserList 
           users={this.state.users}
           searchUsers={this.state.searchUsers}
         />
-        <Link to="/users/new"><Button>Add User</Button></Link>
+        <Link to="/users/new"><Button className="button right large-button">Add User</Button></Link>
       </div>
     );
   }

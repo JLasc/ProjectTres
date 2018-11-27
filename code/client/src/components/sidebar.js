@@ -25,7 +25,6 @@ class Sidebar extends React.Component {
         </div>
         <div className={"useroptions " + (this.props.displayOptions ? "active-comp" : "inactive-comp")}>
           <a href="/market/products">My Profile</a>
-          <a href="/market/support">Settings</a>
           <a href="/market/orders">Logout</a>
           
         </div>

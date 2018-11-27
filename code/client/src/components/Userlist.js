@@ -8,8 +8,8 @@ function UserList(props) {
     <div>
       <table>
         <thead>
-          <tr>
-            <th></th>
+          <tr className="tableHeader"> 
+            <th className="no-radius"></th>
             <th>First Name</th>
             <th>Last Name</th>
             <th>Email</th>

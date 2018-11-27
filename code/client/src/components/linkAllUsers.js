@@ -1,11 +1,11 @@
 import React from "react";
-import cart from "../cart.svg";
+import manage from "../manage.svg";
 import {NavLink} from "react-router-dom";
 
 const linkCart = props => {
   return (
     <span>
-      <img src={cart} />
+      <img src={manage} />
       
       <NavLink to="/users" activeClassName="activeLink">Manage Users</NavLink>
     </span>
