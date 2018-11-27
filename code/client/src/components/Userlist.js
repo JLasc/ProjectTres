@@ -16,7 +16,7 @@ function UserList(props) {
           </tr>
         </thead>
         {props.searchUsers.map((user, index) => (
-          <tbody>
+          <tbody key={index}>
             <UserItem
               key={index}
               id={user.id}
