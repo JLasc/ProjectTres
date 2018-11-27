@@ -25,7 +25,7 @@ class AdminPage extends React.Component {
           <LinkSupport support={this.props.support} />
         </Sidebar>
         <div className="dashboardcontainer">
-          <AdminNavigation childProps={this.props} />
+          <AdminNavigation inCart={this.props.inCart} signOut={this.props.signOut} />
           <Routes childProps={this.props} />
         </div>
       </div>
