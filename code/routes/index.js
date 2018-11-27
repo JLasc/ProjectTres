@@ -6,8 +6,8 @@ const apiRoutes = require("./api");
 router.use("/api", apiRoutes);
 
 //If no routes are hit send files
-// router.get('*', (req,res) =>{
-//   res.sendFile(path.join(__dirname, "../client/build/index.html"));
-// });
+router.use(function(req, res) {
+  res.sendFile(path.join(__dirname, "../client/build/index.html"));
+});
 
 module.exports = router;
