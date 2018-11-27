@@ -6,7 +6,7 @@ const AdminNavigation = props => {
   return (
     <div>
       <div className="market-nav">
-        <p>ENT3RPRISE</p>
+        <p>ENT3RPRISE </p>
 
         <div id="search">
           <Input placeholder="Search" />
