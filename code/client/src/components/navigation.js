@@ -14,8 +14,10 @@ const Navigation = props => {
         </div>
 
         <div className="nested-grid">
-        <a id="cart"><Link to="/cart"><Icon>shopping_cart</Icon></Link></a>
-      
+        <div id="cart"><Link to="/cart"><Icon>shopping_cart</Icon></Link>
+        <div className="inCart">{props.inCart}</div>
+        </div>
+          
           <a id="profile" href="get-started.html">
             <Icon>perm_identity</Icon>
           </a>

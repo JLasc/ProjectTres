@@ -13,7 +13,7 @@ class UserItem extends React.Component {
   render() {
     return (
       <tr className="useritem">
-        <td><Link to={`/users/${this.props.id}`}><Button><Icon>edit</Icon></Button></Link></td>
+        <td><Link to={`/users/${this.props.id}`}><Button className="button small-button"><Icon>edit</Icon></Button></Link></td>
         <td>{this.props.firstName}</td>
         <td>{this.props.lastName}</td>
         <td>{this.props.email}</td>

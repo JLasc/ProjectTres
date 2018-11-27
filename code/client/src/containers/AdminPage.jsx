@@ -18,11 +18,11 @@ class AdminPage extends React.Component {
     return (
       <div>
         <Sidebar userOptions={this.props.userOptions} displayOptions={this.props.displayOptions}>
-          <LinkMarket market={this.props.market} />
-          <LinkHistory orders={this.props.orders} />
-          <LinkCart cart={this.props.cart} />
+          <LinkMarket/>
+          <LinkHistory />
+          <LinkCart />
           <LinkUsers />
-          <LinkSupport support={this.props.support} />
+          <LinkSupport />
         </Sidebar>
         <div className="dashboardcontainer">
           <AdminNavigation inCart={this.props.inCart} signOut={this.props.signOut} />
