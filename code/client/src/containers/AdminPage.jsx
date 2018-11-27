@@ -1,6 +1,6 @@
 import React from "react";
 import Sidebar from "../components/sidebar";
-import AdminNavigation from "../components/adminNavigation";
+import AdminNavigation from "../components/AdminNavigation";
 import Routes from "../routes/AdminRoutes";
 import LinkMarket from "../components/linkMarket";
 import LinkHistory from "../components/linkHistory"
