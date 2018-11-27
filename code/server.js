@@ -6,8 +6,6 @@ const db = require("./models");
 const routes = require("./routes");
 const session = require("express-session");
 const passport = require("./config/passport/passport.js");
-const path= require("path");
-
 
 // Define middleware here
 app.use(bodyParser.urlencoded({ extended: true }));
