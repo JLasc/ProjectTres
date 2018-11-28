@@ -14,10 +14,12 @@ import Orders from "../views/OrderHistory";
 import ShoppingCart from "../views/ShoppingCart";
 import UserPage from "../containers/UserPage";
 import NewUser from "../views/NewUser";
+import UserProfile from "../views/UserProfile";
 
 export default ({childProps}) =>
   <Switch>
     <AppliedRoute path="/market" exact component={MarketPage} props={childProps} />
+    <AppliedRoute path="/profile" exact component={UserProfile} props={childProps} />
     <AppliedRoute path="/users" exact component={Users} props={childProps} />
     <AppliedRoute path="/users/new" exact component={NewUser} props={childProps} />
     <AppliedRoute path="/users/:id" exact component={SingleUser} props={childProps} />

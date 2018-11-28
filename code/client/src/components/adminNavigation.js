@@ -18,9 +18,10 @@ const AdminNavigation = props => {
         <div className="inCart">{props.inCart}</div>
         </div>
           
-          <a id="profile" href="get-started.html">
-            <Icon>perm_identity</Icon>
-          </a>
+          <div id="profile" >
+          <Link to="/profile" activeClassName="activeLink"><Icon>perm_identity</Icon></Link>
+            
+          </div>
 
           <Button className="button" onClick={props.signOut}>
             Logout
