@@ -52,11 +52,7 @@ const ShoppingCart = props => {
         </div>
       </div>
       <div>
-        <select
-          data-id={i}
-          onChange={props.changeQty}
-          defaultValue={props.cart[i].qty}
-        >
+        <select data-id={i} onChange={props.changeQty} value={each.qty}>
           <option value="1">1</option>
           <option value="2">2</option>
           <option value="3">3</option>
@@ -66,10 +62,10 @@ const ShoppingCart = props => {
       </div>
       <div className="subPrice">
         <Icon>attach_money</Icon>
-        {props.cart[i].subtotal}
+        {each.subtotal}
       </div>
       <div className="remove">
-        <Button onClick={props.removeFromCart} data-id={i}>
+        <Button onClick={props.removeFromCart} data-id={i} data-subtotal={each.subtotal}>
           &#x2716;
         </Button>
       </div>
@@ -80,8 +76,8 @@ const ShoppingCart = props => {
     <div className="shoppingContainer">
     <h4>Checkout</h4>
     <div className="complete">
-    <p className="total">Order Total: {props.orderTotal}</p>
-      <Button className="button right larger-button">Complete Order</Button>
+    <div><p className="total">Order Total: ${props.orderTotal}</p></div>
+    <div><Button className="button larger-button" onClick={props.checkOut}>Complete Order</Button></div>    
     </div>
       <div className="labels">
         <div>Product</div>

@@ -270,12 +270,19 @@ nav {
 .shoppingContainer {
   width: 100%;
   margin: 0 auto;
-  /* margin-top: 40px; */
   margin-bottom: 30px;
   height: auto;
   padding: 35px;
   background-color: rgb(240, 240, 240);
   background-repeat: repeat-y;
+  font-family: "Archivo", sans-serif;
+  
+}
+
+.shoppingContainer h4{
+  text-transform: uppercase;
+  color: black;
+  font-weight: bold;
 }
 
 .total{
@@ -286,6 +293,11 @@ nav {
   color: rgb(204, 0, 0);
   font-size: 125%;
   font-weight: bold;
+  font-family: "Montserrat", sans-serif;
+}
+
+.total i{
+  margin-top: 5px;
 }
 
 .userContainer {
@@ -514,6 +526,8 @@ td, th{
 }
 
 .larger-button{
+  clear:both;
+  float: right;
   width: 175px;
 }
 
@@ -542,7 +556,7 @@ td, th{
 
 .cartDescription{
   margin-top: 10px!important;
-  font-size: 11px;
+  font-size: 12px;
   max-width: 100%;
   max-height: 103px;
   overflow: hidden;
