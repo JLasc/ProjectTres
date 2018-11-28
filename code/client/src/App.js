@@ -112,7 +112,6 @@ class App extends React.Component {
   checkOut = () => {
     const cartItems = this.state.cart;
     cartItems.date = new Date();
-
     //setup for orderhistory and date of order
     this.setState({
       orderHistory: cartItems
