@@ -195,7 +195,6 @@ class App extends React.Component {
   };
 
   signOut = () => {
-    console.log("testing logout");
     axios.get("api/logout").then(response => {
       this.userHasAuthenticated(false);
       this.setState({
@@ -203,10 +202,6 @@ class App extends React.Component {
       });
       localStorage.removeItem("user");
     });
-  };
-
-  grabUsers = () => {
-    console.log("test");
   };
 
   userOptions = () => {
@@ -233,7 +228,6 @@ class App extends React.Component {
         password: this.state.password
       }
     }).then(data => {
-      console.log(data);
       this.setState({
         isAuthenticated: true,
         uid: data.data.data.id,
