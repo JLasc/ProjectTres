@@ -1,5 +1,6 @@
 import React from "react";
 import { Icon, Button } from "react-materialize";
+import { Redirect } from 'react-router-dom';
 import mbp15 from "../mbp_15.jpg";
 import iphoneXR from "../iphone_xr.jpg";
 import mbp13 from "../mbp_13.jpg";
@@ -71,6 +72,13 @@ const ShoppingCart = props => {
       </div>
     </div>
   ));
+
+  let orderCompleted = props.orderCompleted;
+
+  if (orderCompleted) {
+    return <Redirect to="/market" />;
+  }
+
   return (
     
     <div className="shoppingContainer">

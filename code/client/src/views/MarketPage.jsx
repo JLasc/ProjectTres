@@ -17,6 +17,10 @@ class MarketPage extends React.Component {
     super();
   }
 
+  componentDidMount() {
+    this.props.resetOrder();
+  }
+
   render() {
     console.log(this.props);
     const pickImage = (imgString) => {
