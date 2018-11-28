@@ -1,6 +1,7 @@
 import React from "react";
 import usericon from "../default_pic.svg";
 import downArrow from "../arrow_down.svg";
+import {NavLink} from 'react-router-dom';
 
 class Sidebar extends React.Component {
   constructor(props) {
@@ -24,7 +25,7 @@ class Sidebar extends React.Component {
           </div>
         </div>
         <div className={"useroptions " + (this.props.displayOptions ? "active-comp" : "inactive-comp")}>
-          <a href="/market/products">My Profile</a>
+          <NavLink to="/profile" activeClassName="activeLink">My Profile</NavLink>
           <a href="/market/orders">Logout</a>
           
         </div>

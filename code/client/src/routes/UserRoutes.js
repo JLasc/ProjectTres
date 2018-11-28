@@ -5,6 +5,7 @@ import NotFound from "../views/NotFound";
 import AppliedRoute from "../components/AppliedRoute";
 import Orders from "../views/OrderHistory";
 import ShoppingCart from "../views/ShoppingCart";
+import UserProfile from "../views/UserProfile";
 
 export default ({ childProps }) => (
   <Switch>
@@ -21,6 +22,7 @@ export default ({ childProps }) => (
       component={ShoppingCart}
       props={childProps}
     />
+    <AppliedRoute path="/profile" exact component={UserProfile} props={childProps} />
     {/* Finally, catch all unmatched routes */}
     <Route component={NotFound} />
   </Switch>
