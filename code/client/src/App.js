@@ -24,7 +24,7 @@ class App extends React.Component {
       inCart: 0,
       usersData: [],
       ordersData: [],
-      
+      orderTotal: 0
     };
 
     this.changeQty = this.changeQty.bind(this)
@@ -69,13 +69,15 @@ class App extends React.Component {
 
   addToCart = event => {
     const productID = event.target.dataset.id;
-    var productBeingAdded = this.state.productsData[productID];
+    let productBeingAdded = this.state.productsData[productID];
     productBeingAdded.qty = 1;
-    productBeingAdded.subtotal = productBeingAdded.price
+    productBeingAdded.subtotal = productBeingAdded.price;
+    let total = (Number(this.state.orderTotal) + Number(productBeingAdded.price)).toFixed(2);
     const productData = this.state.cart.concat(productBeingAdded);
-
+    window.Materialize.toast('Added to cart!', 1500)
     this.setState({
       cart: productData,
+      orderTotal: total,
       inCart: this.state.inCart + 1
     });
   };
@@ -125,11 +127,12 @@ class App extends React.Component {
     let modifiedProduct = cartArr[productId];
     modifiedProduct.qty = event.target.value;
     modifiedProduct.subtotal = (modifiedProduct.qty * modifiedProduct.price).toFixed(2)
+    let total = ((Number(this.state.orderTotal) - Number(modifiedProduct.price)) + Number(modifiedProduct.subtotal)).toFixed(2);
     cartArr.splice(productId, 1, modifiedProduct)
 
     this.setState({
-      cart: cartArr
-      
+      cart: cartArr,
+      orderTotal: total
     })
   }
 
@@ -239,7 +242,8 @@ class App extends React.Component {
       usersData: this.state.usersData,
       ordersData: this.state.ordersData,
       getAllOrders: this.getAllOrders,
-      signOut: this.signOut
+      signOut: this.signOut,
+      orderTotal: this.state.orderTotal
     };
 
     return (
