@@ -25,7 +25,8 @@ class App extends React.Component {
       usersData: [],
       ordersData: [],
       orderHistory: [],
-      orderTotal: 0
+      orderTotal: 0,
+      orderCompleted: false
     };
 
     this.changeQty = this.changeQty.bind(this);
@@ -88,6 +89,12 @@ class App extends React.Component {
     });
   };
 
+  resetOrder = () => {
+    this.setState({
+      orderCompleted: false
+    })
+  }
+
   changeQty = event => {
     let cartArr = this.state.cart;
     const productId = event.target.dataset.id;
@@ -114,14 +121,12 @@ class App extends React.Component {
     cartItems.date = new Date();
     //setup for orderhistory and date of order
     this.setState({
-      orderHistory: cartItems
-    });
-    this.setState({
+      orderHistory: cartItems,
       cart: [],
       inCart: 0,
-      orderTotal: 0
+      orderTotal: 0,
+      orderCompleted: true
     });
-    //Link to not working
   };
 
   getData = () => {
@@ -270,7 +275,9 @@ class App extends React.Component {
       checkOut: this.checkOut,
       getAllOrders: this.getAllOrders,
       signOut: this.signOut,
-      orderTotal: this.state.orderTotal
+      orderTotal: this.state.orderTotal,
+      orderCompleted: this.state.orderCompleted,
+      resetOrder: this.resetOrder
     };
 
     return (
