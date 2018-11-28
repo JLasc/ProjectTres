@@ -1,6 +1,6 @@
 import React from "react";
 import OrderHistory from "../views/OrderHistory";
-import { Icon, Button, Modal } from "react-materialize";
+import { Icon, Button, Modal, Toast } from "react-materialize";
 import mbp15 from "../mbp_15.jpg";
 import iphoneXR from "../iphone_xr.jpg";
 import mbp13 from "../mbp_13.jpg";
@@ -56,7 +56,7 @@ class MarketPage extends React.Component {
           </h4>
           <div className="productImg">{pickImage(each.image)}</div>
           <p className="detailDescription">{each.description}</p>
-          <div className="productPrice">
+          <div className="detailPrice">
             <div className="money">
               <Icon>attach_money</Icon>
               <p>{each.price}</p>

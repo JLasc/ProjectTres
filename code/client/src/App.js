@@ -2,7 +2,7 @@ import React from "react";
 import "./App.css";
 import axios from "axios";
 import AuthRoutes from "./routes/AuthRoutes";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 
 class App extends React.Component {
   constructor() {
@@ -24,10 +24,11 @@ class App extends React.Component {
       inCart: 0,
       usersData: [],
       ordersData: [],
-      
+      orderHistory: [],
+      orderTotal: 0
     };
 
-    this.changeQty = this.changeQty.bind(this)
+    this.changeQty = this.changeQty.bind(this);
   }
 
   componentDidMount() {
@@ -41,21 +42,9 @@ class App extends React.Component {
     this.setState({ isAuthenticated: authenticated });
   };
 
-  removeFromCart = event => {
-    const productID = event.target.dataset.id;
-    let cartItem = this.state.cart;
-    const removeItem = cartItem.splice(productID, 1);
-
-    this.setState({
-      cart: cartItem,
-      inCart: this.state.inCart - 1
-    });
-  };
-
-
   checkforAuth = () => {
     var user = JSON.parse(localStorage.getItem("user"));
-    if(user){
+    if (user) {
       this.setState({
         isAuthenticated: true,
         uid: user.data.data.id,
@@ -65,19 +54,74 @@ class App extends React.Component {
         admin: user.data.data.admin
       });
     }
-  }
+  };
 
   addToCart = event => {
     const productID = event.target.dataset.id;
-    var productBeingAdded = this.state.productsData[productID];
+    let productBeingAdded = this.state.productsData[productID];
     productBeingAdded.qty = 1;
-    productBeingAdded.subtotal = productBeingAdded.price
+    productBeingAdded.subtotal = productBeingAdded.price;
+    let total = (
+      Number(this.state.orderTotal) + Number(productBeingAdded.price)
+    ).toFixed(2);
     const productData = this.state.cart.concat(productBeingAdded);
-
+    window.Materialize.toast("Added to cart!", 1500);
     this.setState({
       cart: productData,
+      orderTotal: total,
       inCart: this.state.inCart + 1
     });
+  };
+
+  removeFromCart = event => {
+    const productID = event.target.dataset.id;
+    const productSubtotal = (
+      Number(this.state.orderTotal) - Number(event.target.dataset.subtotal)
+    ).toFixed(2);
+    let cartItem = this.state.cart;
+    const removeItem = cartItem.splice(productID, 1);
+
+    this.setState({
+      cart: cartItem,
+      orderTotal: productSubtotal,
+      inCart: this.state.inCart - 1
+    });
+  };
+
+  changeQty = event => {
+    let cartArr = this.state.cart;
+    const productId = event.target.dataset.id;
+    let modifiedProduct = cartArr[productId];
+    modifiedProduct.qty = event.target.value;
+    modifiedProduct.subtotal = (
+      modifiedProduct.qty * modifiedProduct.price
+    ).toFixed(2);
+    let total = (
+      Number(this.state.orderTotal) -
+      Number(modifiedProduct.price) +
+      Number(modifiedProduct.subtotal)
+    ).toFixed(2);
+    cartArr.splice(productId, 1, modifiedProduct);
+
+    this.setState({
+      cart: cartArr,
+      orderTotal: total
+    });
+  };
+
+  checkOut = () => {
+    const cartItems = this.state.cart;
+    cartItems.date = new Date();
+    //setup for orderhistory and date of order
+    this.setState({
+      orderHistory: cartItems
+    });
+    this.setState({
+      cart: [],
+      inCart: 0,
+      orderTotal: 0
+    });
+    //Link to not working
   };
 
   getData = () => {
@@ -119,20 +163,6 @@ class App extends React.Component {
     });
   };
 
-  changeQty = event => {
-    let cartArr = this.state.cart;
-    const productId = event.target.dataset.id;
-    let modifiedProduct = cartArr[productId];
-    modifiedProduct.qty = event.target.value;
-    modifiedProduct.subtotal = (modifiedProduct.qty * modifiedProduct.price).toFixed(2)
-    cartArr.splice(productId, 1, modifiedProduct)
-
-    this.setState({
-      cart: cartArr
-      
-    })
-  }
-
   handleSignup = () => {
     axios({
       method: "post",
@@ -161,11 +191,11 @@ class App extends React.Component {
 
   signOut = () => {
     console.log("testing logout");
-    axios.get('api/logout').then((response) => {
+    axios.get("api/logout").then(response => {
       this.userHasAuthenticated(false);
       this.setState({
         isAuthenticated: false
-      })
+      });
       localStorage.removeItem("user");
     });
   };
@@ -188,31 +218,29 @@ class App extends React.Component {
 
   handleSubmit = () => {
     axios({
-        method: "post",
-        url: "/api/login",
-        headers: {
-          "content-type": "application/json"
-        },
-        data: {
-          username: this.state.email,
-          password: this.state.password
-        }
-      }).then(data => {
-        console.log(data);
-        this.setState({
-          isAuthenticated: true,
-          uid: data.data.data.id,
-          email: data.data.data.email,
-          firstName: data.data.data.firstName,
-          lastName: data.data.data.lastName,
-          admin: data.data.data.admin
-        });
-        localStorage.setItem("user",JSON.stringify(data));
-        <Link to="/market"></Link>
-        //this.props.history.push("/");
-     });
-}
-
+      method: "post",
+      url: "/api/login",
+      headers: {
+        "content-type": "application/json"
+      },
+      data: {
+        username: this.state.email,
+        password: this.state.password
+      }
+    }).then(data => {
+      console.log(data);
+      this.setState({
+        isAuthenticated: true,
+        uid: data.data.data.id,
+        email: data.data.data.email,
+        firstName: data.data.data.firstName,
+        lastName: data.data.data.lastName,
+        admin: data.data.data.admin
+      });
+      localStorage.setItem("user", JSON.stringify(data));
+      <Link to="/market" />;
+    });
+  };
 
   render() {
     const childProps = {
@@ -238,8 +266,11 @@ class App extends React.Component {
       getAllUsers: this.getAllUsers,
       usersData: this.state.usersData,
       ordersData: this.state.ordersData,
+      orderHistory: this.state.orderHistory,
+      checkOut: this.checkOut,
       getAllOrders: this.getAllOrders,
-      signOut: this.signOut
+      signOut: this.signOut,
+      orderTotal: this.state.orderTotal
     };
 
     return (
