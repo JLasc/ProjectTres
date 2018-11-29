@@ -23,7 +23,7 @@ class MarketPage extends React.Component {
   }
 
   render() {
-     const pickImage = (imgString) => {
+    const pickImage = (imgString) => {
       switch (imgString) {
         case 'mbp15':
         return <img src={mbp15} alt={mbp15}/>;

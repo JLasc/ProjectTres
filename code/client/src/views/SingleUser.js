@@ -69,7 +69,6 @@ class SingleUser extends React.Component {
   componentDidMount() {
     //   ask about this below
     axios.get(`/api${this.props.location.pathname}`).then(res => {
-      console.log(res);
       this.setState({
         id: res.data.id,
         firstName: res.data.firstName,
