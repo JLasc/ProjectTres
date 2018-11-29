@@ -43,6 +43,39 @@ select {
   animation: slide-down 0.5s ease-in;
 }
 
+.logo{
+  float: left;
+  filter: invert(100%);
+}
+
+.logoContainer{
+  position: absolute;
+  top: 5%;
+  left: 5%;
+}
+
+.logoTextContainer{
+  float: right;
+}
+
+.logoText{
+  margin-top: -8px;
+  margin-left: 15px;
+  margin-bottom: 0px;
+  font-size: 200%;
+  font-family: "Montserrat", sans-serif;
+}
+
+.logoSlogan{
+  float: left;
+  margin: 0;
+  margin-top: -10px;
+  margin-left: 17px;
+  font-family: "Archivo", sans-serif;
+  text-transform: uppercase;
+  font-size: 90%;
+}
+
 .no-button {
   background-color: white;
   color: blue;
@@ -93,12 +126,14 @@ select {
 }
 
 .banner {
+  position: relative;
   min-width: 60%;
   height: 100vh;
   color: white;
   background: linear-gradient(rgba(38, 38, 65, 0.75), rgba(38, 38, 65, 0.75)),
     url("./1.jpg");
   overflow: hidden;
+  
 }
 
 .form {
@@ -864,25 +899,5 @@ tr.useritem {
     -moz-transform: translateY(0);
   }
 }
-/* On screens that are less than 700px wide, make the sidebar into a topbar */
-@media screen and (max-width: 700px) {
-  .sidebar {
-    width: 100%;
-    height: auto;
-    position: relative;
-  }
-  .sidebar a {
-    float: left;
-  }
-  div.content {
-    margin-left: 0;
-  }
-}
 
-/* On screens that are less than 400px, display the bar vertically, instead of horizontally */
-@media screen and (max-width: 400px) {
-  .sidebar a {
-    text-align: center;
-    float: none;
-  }
-}
+

@@ -71,19 +71,56 @@ class App extends React.Component {
 
   addToCart = event => {
     const productID = event.target.dataset.id;
+    console.log(productID)
     let productBeingAdded = this.state.productsData[productID];
-    productBeingAdded.qty = 1;
-    productBeingAdded.subtotal = productBeingAdded.price;
-    let total = (
-      Number(this.state.orderTotal) + Number(productBeingAdded.price)
-    ).toFixed(2);
-    const productData = this.state.cart.concat(productBeingAdded);
-    window.Materialize.toast("Added to cart!", 1500);
-    this.setState({
-      cart: productData,
-      orderTotal: total,
-      inCart: this.state.inCart + 1
-    });
+    const product = event.target.dataset.product
+    let productInCart = false;
+    console.log(productInCart)
+    for (let i = 0; i < this.state.cart.length; i++){
+      if (this.state.cart[i].id.includes(product)){
+        console.log("product is in the cart");
+        console.log(this.state.cart[i])
+        productInCart = true;
+        window.Materialize.toast("Quanity Updated", 1500);
+      }
+    }
+    if (productInCart) {
+      let cartArr = this.state.cart;
+      let modifiedProduct = cartArr[productID];
+      modifiedProduct.qty += 1;
+      modifiedProduct.subtotal = (
+        modifiedProduct.qty * modifiedProduct.price
+      ).toFixed(2);
+      let total = (
+        Number(this.state.orderTotal) -
+        Number(modifiedProduct.price) +
+        Number(modifiedProduct.subtotal)
+      ).toFixed(2);
+      cartArr.splice(productID, 1, modifiedProduct);
+
+      this.setState({
+        cart: cartArr,
+        orderTotal: total
+      });
+      
+    }
+
+    if (!productInCart){
+      productBeingAdded.qty = 1;
+      productBeingAdded.subtotal = productBeingAdded.price;
+  
+      let total = (Number(this.state.orderTotal) + Number(productBeingAdded.price)).toFixed(2);
+  
+      const productData = this.state.cart.concat(productBeingAdded);
+      window.Materialize.toast("Added to cart!", 1500);
+  
+      this.setState({
+        cart: productData,
+        orderTotal: total,
+        inCart: this.state.inCart + 1
+      });
+    }
+    
   };
 
   removeFromCart = event => {
