@@ -1,15 +1,21 @@
 import React from "react";
 import { Icon, Button, Input } from "react-materialize";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 
 const AdminNavigation = props => {
+
+  let returnToMarket = props.returnToMarket;
+  if (returnToMarket) {
+    return <Redirect to="/market" />;
+  }
+
   return (
     <div>
       <div className="market-nav">
         <p>ENT3RPRISE</p>
 
         <div id="search">
-          <Input placeholder="Search" />
+          <Input placeholder="Search" onClick={props.toMakret} onChange={props.handleSearch} />
           <Icon>search</Icon>
         </div>
 

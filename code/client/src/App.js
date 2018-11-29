@@ -2,7 +2,6 @@ import React from "react";
 import "./App.css";
 import axios from "axios";
 import AuthRoutes from "./routes/AuthRoutes";
-import { Link, Redirect } from "react-router-dom";
 
 class App extends React.Component {
   constructor() {
@@ -25,6 +24,8 @@ class App extends React.Component {
       usersData: [],
       ordersData: [],
       orderHistory: [],
+      returnToMarket: false,
+      filtered: [],
       shipping: 0,
       shoppingRedirect: false,
       orderTotal: 0,
@@ -39,6 +40,15 @@ class App extends React.Component {
     this.getAllUsers();
     this.getAllOrders();
     this.checkforAuth();
+  }
+
+  componentWillMount(){
+    this.getData();
+    const products = this.state.productsData;
+
+    this.setState({
+      productData: products
+    })
   }
 
   userHasAuthenticated = authenticated => {
@@ -82,7 +92,7 @@ class App extends React.Component {
       Number(this.state.orderTotal) - Number(event.target.dataset.subtotal)
     ).toFixed(2);
     let cartItem = this.state.cart;
-    const removeItem = cartItem.splice(productID, 1);
+    let removeItem = cartItem.splice(productID, 1);
 
     this.setState({
       cart: cartItem,
@@ -131,17 +141,55 @@ class App extends React.Component {
       orderHistory: [],
       shoppingRedirect: true
     });
-  }
+  };
 
   resetOrder = () => {
     this.setState({
       orderCompleted: false
     })
-  }
+  };
 
   continue = () => {
     this.setState({
       shoppingRedirect: false
+    });
+  };
+
+  toMakret = () => {
+    let location = window.location.pathname
+    if (location !== "/market") {
+      this.setState({
+        returnToMarket: true
+      });
+    };
+  };
+
+  stopRedirect = () => {
+    this.setState({
+      returnToMarket: false
+    });
+  }
+
+
+  handleSearch = event => {
+    console.log("working")
+    let products = this.state.productsData;
+    let filterProducts = this.state.filtered;
+    
+    if (event.target.value !== "") {
+       filterProducts = filterProducts.filter((item) => {
+        return item.name.toLowerCase().search(
+          event.target.value.toLowerCase()) !== -1;
+      });
+      this.setState({ filtered: filterProducts });
+    }
+    else {
+      // If the search bar is empty, set newList to original task list
+      filterProducts = products;
+    }
+    // Set the filtered state based on what our rules added to newList
+    this.setState({
+      filtered: filterProducts
     });
   }
 
@@ -151,7 +199,8 @@ class App extends React.Component {
       url: "/api/products"
     }).then(data => {
       this.setState({
-        productsData: data.data
+        productsData: data.data,
+        filtered: data.data
       });
     });
   };
@@ -259,7 +308,6 @@ class App extends React.Component {
         admin: data.data.data.admin
       });
       localStorage.setItem("user", JSON.stringify(data));
-      <Link to="/market" />;
     });
   };
 
@@ -271,6 +319,11 @@ class App extends React.Component {
       shipping: this.state.shipping,
       userHasAuthenticated: this.userHasAuthenticated,
       productsData: this.state.productsData,
+      filtered: this.state.filtered,
+      returnToMarket: this.state.returnToMarket,
+      stopRedirect: this.stopRedirect,
+      toMakret: this.toMakret,
+      handleSearch: this.handleSearch,
       addToCart: this.addToCart,
       removeFromCart: this.removeFromCart,
       changeQty: this.changeQty,

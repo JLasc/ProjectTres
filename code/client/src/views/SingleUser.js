@@ -1,12 +1,7 @@
 import React from "react";
-import Sidebar from "../components/sidebar";
-import Navigation from "../components/navigation";
 import axios from "axios";
 import { Button, Input } from "react-materialize";
 import { Link, Redirect } from "react-router-dom";
-import LastNameInput from "../components/lastNameInput";
-import FirstNameInput from "../components/firstNameInput";
-import EmailInput from "../components/emailInput";
 
 class SingleUser extends React.Component {
   constructor(props) {

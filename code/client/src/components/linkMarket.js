@@ -6,7 +6,7 @@ const linkMarket = props => {
 
   return (
     <span>
-      <img src={market} />
+      <img src={market} alt="" />
       <NavLink activeClassName="activeLink" to="/market">Market</NavLink>
     </span>
   );

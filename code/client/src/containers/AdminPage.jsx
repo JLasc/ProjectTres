@@ -10,7 +10,7 @@ import LinkUsers from "../components/linkAllUsers";
 
 class AdminPage extends React.Component {
     constructor(props){
-        super(props)
+        super()
   
     }
 
@@ -25,7 +25,7 @@ class AdminPage extends React.Component {
           <LinkSupport />
         </Sidebar>
         <div className="dashboardcontainer">
-          <AdminNavigation inCart={this.props.inCart} signOut={this.props.signOut} />
+          <AdminNavigation inCart={this.props.inCart} toMakret={this.props.toMakret} returnToMarket={this.props.returnToMarket} handleSearch={this.props.handleSearch} signOut={this.props.signOut} />
           <Routes childProps={this.props} />
         </div>
       </div>

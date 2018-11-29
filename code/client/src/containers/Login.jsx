@@ -1,19 +1,15 @@
 import React, { Component } from "react";
 import "../App.css";
 import Banner from "../components/banner";
-import Signup from "../components/signup";
 import LoginForm from "../components/login";
-import { Row, Input, Button } from "react-materialize";
+import { Button } from "react-materialize";
 import EmailInput from "../components/emailInput";
 import PasswordInput from "../components/passwordInput";
-import FirstNameInput from "../components/firstNameInput";
-import LastNameInput from "../components/lastNameInput";
 import { Link } from "react-router-dom";
-import axios from "axios";
 
 export default class Login extends Component {
   constructor(props) {
-    super(props);
+    super();
   }
 
   validateForm() {
