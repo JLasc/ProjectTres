@@ -8,7 +8,7 @@ import LastNameInput from '../components/lastNameInput';
 import FirstNameInput from '../components/firstNameInput';
 import EmailInput from '../components/emailInput';
 
-class SingleUser extends React.Component {
+class NewUser extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -132,4 +132,4 @@ class SingleUser extends React.Component {
   }
 }
 
-export default SingleUser;
+export default NewUser;
