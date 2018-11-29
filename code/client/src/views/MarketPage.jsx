@@ -22,7 +22,6 @@ class MarketPage extends React.Component {
   }
 
   render() {
-    console.log(this.props);
     const pickImage = (imgString) => {
       switch (imgString) {
         case 'mbp15':
