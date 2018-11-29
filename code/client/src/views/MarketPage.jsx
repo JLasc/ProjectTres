@@ -19,6 +19,7 @@ class MarketPage extends React.Component {
 
   componentDidMount() {
     this.props.resetOrder();
+    this.props.continue();
   }
 
   render() {

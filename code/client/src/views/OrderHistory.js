@@ -4,7 +4,7 @@ import React from "react";
 const orderHistory = () => {
   return (
     <div>
-      <h1>History</h1>
+      <h1>Under Construction</h1>
       </div>
   
   );
