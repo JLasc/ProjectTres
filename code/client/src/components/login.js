@@ -6,7 +6,7 @@ const LoginForm = (props) => {
     <form>
       <Row className="infowidth">
         <h4>Login</h4>
-        <span>Login to your company's 3nterprise Catalog</span>
+        <span>Login to your company's Ent3rprise Catalog</span>
       </Row>
       <Row>
           {props.children}

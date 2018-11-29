@@ -7,7 +7,7 @@ const Signup = props => {
     <form id="sign">
       <Row className="infowidth">
         <h4>Sign Up</h4>
-        <span>Fill out the form to join your company's 3nterprise Catalog</span>
+        <span>Fill out the form to join your company's Ent3rprise Catalog</span>
       </Row>
       <Row>{props.children}</Row>
     </form>

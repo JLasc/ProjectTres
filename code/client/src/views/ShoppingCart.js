@@ -76,7 +76,7 @@ const ShoppingCart = props => {
   let orderCompleted = props.orderCompleted;
 
   if (orderCompleted) {
-    return <Redirect to="/market" />;
+    return <Redirect to="/thankyou" />;
   }
 
   return (

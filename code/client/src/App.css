@@ -311,6 +311,41 @@ nav {
   background-color: rgb(240, 240, 240);
   background-repeat: repeat-y;
 }
+
+.completeContainer {
+  width: 95%;
+  margin: 0 auto;
+  height: auto;
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 6px 10px -4px rgba(0, 0, 0, 0.3);
+  padding: 20px;
+  padding-top: 5px;
+}
+
+.finishContainer {
+  width: 95%;
+  margin: 0 auto;
+  margin-top: 15px;
+  height: auto;
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 6px 10px -4px rgba(0, 0, 0, 0.3);
+  padding: 5px;
+  padding-left: 20px;
+  display: grid;
+  grid-template-columns: 6fr 1fr;
+}
+
+.finish{
+  font-size: 110%;
+  font-weight: bold;
+}
+
+.margin-right-20{
+  margin-right: 20px;
+}
+
 .market-nav {
   background-color: rgb(0, 0, 199);
   display: grid;
@@ -484,6 +519,14 @@ div.content {
   grid-template-columns: 1fr 2fr 1fr 1fr .5fr .5fr;
 }
 
+.eachComplete{
+  display: grid;
+  grid-template-columns: 3fr 1fr 1fr 1fr;
+  padding: 5px;
+  border-bottom:1px solid hsla(0, 0%, 78%, 0.4);
+  text-align: center;
+}
+
 .labels{
   display: grid;
   grid-template-columns: 2fr 2fr 1fr .75fr .25fr;
@@ -494,6 +537,21 @@ div.content {
   margin-bottom: 10px;
   text-align: center;
   color: white;
+}
+
+.completelabels{
+  margin: 0 auto;
+  margin-top: 35px;
+  width: 95%;
+  display: grid;
+  grid-template-columns: 3fr 1fr 1fr 1fr;
+  padding: 15px;
+  background-color: white;
+  box-shadow: 0 6px 10px -4px rgba(0, 0, 0, 0.3);
+  height: 50px;
+  margin-bottom: 10px;
+  text-align: center;
+  color: blue;
 }
 
 .tableHeader{
@@ -511,8 +569,18 @@ div.content {
 td, th{
   border-radius: 0px!important;
 }
-.useritem {
-  box-shadow: 0 6px 10px -4px rgba(0, 0, 0, 0.3);
+
+tr.useritem {
+ box-shadow: 0 6px 10px -4px rgba(0, 0, 0, 0.3);
+}
+
+.thanksMsg{
+  height: 50px;
+  line-height: 50px;
+  background: linear-gradient(rgb(0, 0, 80), rgb(39, 39, 65));
+  color: white;
+  font-family: "Montserrat", sans-serif;
+  text-align: center;
 }
 
 .small-button{
@@ -529,6 +597,15 @@ td, th{
   clear:both;
   float: right;
   width: 175px;
+}
+
+.largest-button{
+  clear:both;
+  float: right;
+  width: 200px;
+  margin-top: 25px;
+  margin-right: 35px;
+  margin-bottom: 30px;
 }
 
 .close-button{
@@ -717,7 +794,6 @@ td, th{
 .productName {
   padding-top: 5px;
   padding-bottom: 5px;
-  /* background: linear-gradient(left, rgb(0, 0, 146), rgb(0, 0, 199)); */
   background-color: white;
   box-shadow: 0 6px 10px -4px rgba(0, 0, 0, 0.3);
   text-align: center;

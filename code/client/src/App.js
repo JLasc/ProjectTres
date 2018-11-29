@@ -25,6 +25,8 @@ class App extends React.Component {
       usersData: [],
       ordersData: [],
       orderHistory: [],
+      shipping: 0,
+      shoppingRedirect: false,
       orderTotal: 0,
       orderCompleted: false
     };
@@ -89,12 +91,6 @@ class App extends React.Component {
     });
   };
 
-  resetOrder = () => {
-    this.setState({
-      orderCompleted: false
-    })
-  }
-
   changeQty = event => {
     let cartArr = this.state.cart;
     const productId = event.target.dataset.id;
@@ -118,16 +114,36 @@ class App extends React.Component {
 
   checkOut = () => {
     const cartItems = this.state.cart;
-    cartItems.date = new Date();
-    //setup for orderhistory and date of order
+    
     this.setState({
       orderHistory: cartItems,
       cart: [],
+      shipping: 25.00,
       inCart: 0,
-      orderTotal: 0,
       orderCompleted: true
     });
   };
+
+  continueShopping = () => {
+    this.setState({
+      shipping: 0,
+      orderTotal: 0,
+      orderHistory: [],
+      shoppingRedirect: true
+    });
+  }
+
+  resetOrder = () => {
+    this.setState({
+      orderCompleted: false
+    })
+  }
+
+  continue = () => {
+    this.setState({
+      shoppingRedirect: false
+    });
+  }
 
   getData = () => {
     axios({
@@ -244,11 +260,15 @@ class App extends React.Component {
   render() {
     const childProps = {
       isAuthenticated: this.state.isAuthenticated,
+      shoppingRedirect: this.state.shoppingRedirect,
+      continue: this.continue,
+      shipping: this.state.shipping,
       userHasAuthenticated: this.userHasAuthenticated,
       productsData: this.state.productsData,
       addToCart: this.addToCart,
       removeFromCart: this.removeFromCart,
       changeQty: this.changeQty,
+      continueShopping: this.continueShopping,
       inCart: this.state.inCart,
       handleChange: this.handleChange,
       userOptions: this.userOptions,

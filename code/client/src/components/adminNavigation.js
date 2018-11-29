@@ -19,7 +19,7 @@ const AdminNavigation = props => {
         </div>
           
           <div id="profile" >
-          <Link to="/profile" activeClassName="activeLink"><Icon>perm_identity</Icon></Link>
+          <Link to="/profile"><Icon>perm_identity</Icon></Link>
             
           </div>
 
