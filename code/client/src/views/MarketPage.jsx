@@ -1,6 +1,5 @@
 import React from "react";
-import OrderHistory from "../views/OrderHistory";
-import { Icon, Button, Modal, Toast } from "react-materialize";
+import { Icon, Button, Modal } from "react-materialize";
 import mbp15 from "../mbp_15.jpg";
 import iphoneXR from "../iphone_xr.jpg";
 import mbp13 from "../mbp_13.jpg";
@@ -20,10 +19,11 @@ class MarketPage extends React.Component {
   componentDidMount() {
     this.props.resetOrder();
     this.props.continue();
+    this.props.stopRedirect();
   }
 
   render() {
-    const pickImage = (imgString) => {
+     const pickImage = (imgString) => {
       switch (imgString) {
         case 'mbp15':
         return <img src={mbp15} alt={mbp15}/>;
@@ -47,7 +47,7 @@ class MarketPage extends React.Component {
         return <img src={hplaptop} alt={hplaptop}/>;
       }
     }
-    const displayProducts = this.props.productsData.map((each, i) => (
+    const displayProducts = this.props.filtered.map((each, i) => (
       <div className="eachProduct" key={i}>
         <div className="productName">
           <p className="nameText">
@@ -73,7 +73,7 @@ class MarketPage extends React.Component {
             <Icon>attach_money</Icon>
             <p>{each.price}</p>
           </div>
-          <Button onClick={this.props.addToCart} className="button" data-id={i}>
+          <Button onClick={this.props.addToCart} className="button" data-product={each.id} data-id={i}>
             Add
           </Button>
         </div>

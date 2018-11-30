@@ -6,7 +6,8 @@ const Support = props => {
   return (
          
       <span>
-        <img src={support}/><Link to="/support" className={props.cart ? "active" : " "}>Support</Link>
+        <img src={support} alt="" />
+        <Link to="/support" className={props.cart ? "active" : " "}>Support</Link>
         </span>
       
   

@@ -1,6 +1,4 @@
 import React from "react";
-import Sidebar from "../components/sidebar";
-import Navigation from "../components/navigation";
 import UserList from "../components/Userlist";
 import axios from "axios";
 import {Button} from 'react-materialize';

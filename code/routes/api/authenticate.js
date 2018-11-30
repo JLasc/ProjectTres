@@ -6,11 +6,13 @@ module.exports = (app) => {
     app.post('/api/login',
         passport.authenticate('local'),
         function (req, res) {
+            console.log(req);
             res.json({data:req.user.dataValues});
         })
 
     // Used for creating an account
     app.post("/api/signup", function (req, res) {
+        console.log(req.body)
         db.User.create({
             email: req.body.email,
             password: req.body.password,
@@ -26,6 +28,7 @@ module.exports = (app) => {
     });
 
     app.get("/api/logout", function (req, res) {
+        console.log(req);
         req.logout();
         res.send(200)
     });

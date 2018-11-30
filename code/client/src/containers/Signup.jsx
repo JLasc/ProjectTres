@@ -8,7 +8,6 @@ import PasswordInput from "../components/passwordInput";
 import FirstNameInput from "../components/firstNameInput";
 import LastNameInput from "../components/lastNameInput";
 import { Link } from "react-router-dom";
-import axios from "axios";
 
 export default class Signup extends Component {
   constructor(props) {

@@ -1,14 +1,9 @@
 import React from "react";
-import Sidebar from "../components/sidebar";
-import Navigation from "../components/navigation";
 import axios from "axios";
 import { Button, Input } from "react-materialize";
 import { Link, Redirect } from "react-router-dom";
-import LastNameInput from '../components/lastNameInput';
-import FirstNameInput from '../components/firstNameInput';
-import EmailInput from '../components/emailInput';
 
-class NewUser extends React.Component {
+class SingleUser extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -132,4 +127,4 @@ class NewUser extends React.Component {
   }
 }
 
-export default NewUser;
+export default SingleUser;

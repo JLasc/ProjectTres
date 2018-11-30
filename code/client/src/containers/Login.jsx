@@ -1,19 +1,16 @@
 import React, { Component } from "react";
 import "../App.css";
+import logo from "../../src/ent3rprise.svg"
 import Banner from "../components/banner";
-import Signup from "../components/signup";
 import LoginForm from "../components/login";
-import { Row, Input, Button } from "react-materialize";
+import { Button } from "react-materialize";
 import EmailInput from "../components/emailInput";
 import PasswordInput from "../components/passwordInput";
-import FirstNameInput from "../components/firstNameInput";
-import LastNameInput from "../components/lastNameInput";
 import { Link } from "react-router-dom";
-import axios from "axios";
 
 export default class Login extends Component {
   constructor(props) {
-    super(props);
+    super();
   }
 
   validateForm() {
@@ -23,7 +20,9 @@ export default class Login extends Component {
   render() {
     return (
       <div>
-        <Banner />
+        <Banner>
+        <div className="logoContainer"><img className="logo" src={logo} /><div className="logoTextContainer"><p className="logoText">ENT3RPRISE</p><p className="logoSlogan">procure different</p></div></div>
+        </Banner>
         <div className="form right">
           <div className="formcontainer">
             <LoginForm>

@@ -5,7 +5,7 @@ import {NavLink} from "react-router-dom";
 const linkCart = props => {
   return (
     <span>
-      <img src={cart} />
+      <img src={cart} alt="" />
       
       <NavLink to="/cart" activeClassName="activeLink">Shopping Cart</NavLink>
     </span>

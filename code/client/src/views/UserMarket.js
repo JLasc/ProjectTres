@@ -14,6 +14,7 @@ const Market = props => {
   <div className="productPrice"><div className="money"><Icon>attach_money</Icon><p>{each.price}</p></div><Button className="button">Add</Button></div>
   </div>
   )
+  console.log(props.productsData)
   return (
     
     <div>

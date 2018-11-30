@@ -2,7 +2,7 @@ import React from "react";
 import Construction from "../../src/construction.png"
 
 
-const orderHistory = () => {
+const support = () => {
   return (
     <div className="construction">
       <img src={Construction}/>
@@ -11,4 +11,4 @@ const orderHistory = () => {
   );
 };
 
-export default orderHistory;
+export default support;

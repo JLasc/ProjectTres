@@ -46,6 +46,7 @@ class UserProfile extends React.Component {
 
   componentDidMount() {
     axios.get(`/api/users/${this.props.uid}`).then(res => {
+      console.log(res);
       this.setState({
         id: res.data.id,
         firstName: res.data.firstName,
