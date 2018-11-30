@@ -46,6 +46,7 @@ select {
 .logo{
   float: left;
   filter: invert(100%);
+  height: 80px;
 }
 
 .logoContainer{
@@ -74,6 +75,58 @@ select {
   font-family: "Archivo", sans-serif;
   text-transform: uppercase;
   font-size: 90%;
+}
+
+.navLogo{
+  line-height: 42.4px;
+  margin-left: 25px;
+  color: White;
+  font-family: "Montserrat", sans-serif;
+}
+
+.navLogo img{
+  margin-top: 3px;
+  margin-right: 10px;
+  height: 35px;
+}
+
+.sidebarLogoContainer{
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  color: rgba(180, 180, 180, 0.4);
+  margin-left: 15px;
+  margin-bottom: 10px;
+}
+
+.sidebarLogoContainer img{
+  height: 26px;
+  opacity: 0.4;
+}
+
+.sidebarLogoContainer .logoText{
+  font-size: 100%;
+}
+
+.sidebarLogoContainer .logoSlogan{
+  margin-top: -5px;
+  font-size: 70%;
+}
+
+.sidebarLogoContainer .logoTextContainer{
+  margin-top: 6px;
+  margin-left: -4px;
+}
+
+.construction{
+  margin: 0 auto;
+  margin-top: 75px;
+  height: 500px;
+  width: 421px;
+}
+
+.construction img{
+  height: 500px;
 }
 
 .no-button {

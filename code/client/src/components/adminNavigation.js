@@ -12,7 +12,7 @@ const AdminNavigation = props => {
   return (
     <div>
       <div className="market-nav">
-        <p>ENT3RPRISE</p>
+        <p className="navLogo">COMPANY LOGO</p>
 
         <div id="search">
           <Input placeholder="Search" onClick={props.toMakret} onChange={props.handleSearch} />
