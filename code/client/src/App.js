@@ -71,32 +71,26 @@ class App extends React.Component {
 
   addToCart = event => {
     const productID = event.target.dataset.id;
-    console.log(productID)
     let productBeingAdded = this.state.productsData[productID];
     const product = event.target.dataset.product
     let productInCart = false;
-    console.log(productInCart)
+    
     for (let i = 0; i < this.state.cart.length; i++){
       if (this.state.cart[i].id.includes(product)){
-        console.log("product is in the cart");
-        console.log(this.state.cart[i])
         productInCart = true;
         window.Materialize.toast("Quanity Updated", 1500);
       }
     }
+
     if (productInCart) {
       let cartArr = this.state.cart;
       let modifiedProduct = cartArr[productID];
-      modifiedProduct.qty += 1;
-      modifiedProduct.subtotal = (
-        modifiedProduct.qty * modifiedProduct.price
-      ).toFixed(2);
-      let total = (
-        Number(this.state.orderTotal) -
-        Number(modifiedProduct.price) +
-        Number(modifiedProduct.subtotal)
-      ).toFixed(2);
-      cartArr.splice(productID, 1, modifiedProduct);
+      modifiedProduct.subtotal = Number(modifiedProduct.subtotal).toFixed(2)
+      modifiedProduct.qty += 1
+      modifiedProduct.subtotal = (Number(modifiedProduct.subtotal) + Number(modifiedProduct.price)).toFixed(2)
+
+      let total = (Number(this.state.orderTotal) + Number(modifiedProduct.price)).toFixed(2);
+        cartArr.splice(productID, 1, modifiedProduct);
 
       this.setState({
         cart: cartArr,
@@ -110,10 +104,10 @@ class App extends React.Component {
       productBeingAdded.subtotal = productBeingAdded.price;
   
       let total = (Number(this.state.orderTotal) + Number(productBeingAdded.price)).toFixed(2);
-  
       const productData = this.state.cart.concat(productBeingAdded);
       window.Materialize.toast("Added to cart!", 1500);
   
+      console.log(productBeingAdded.subtotal)
       this.setState({
         cart: productData,
         orderTotal: total,
@@ -142,15 +136,10 @@ class App extends React.Component {
     let cartArr = this.state.cart;
     const productId = event.target.dataset.id;
     let modifiedProduct = cartArr[productId];
+    let currentSubtotal = modifiedProduct.subtotal
     modifiedProduct.qty = event.target.value;
-    modifiedProduct.subtotal = (
-      modifiedProduct.qty * modifiedProduct.price
-    ).toFixed(2);
-    let total = (
-      Number(this.state.orderTotal) -
-      Number(modifiedProduct.price) +
-      Number(modifiedProduct.subtotal)
-    ).toFixed(2);
+    modifiedProduct.subtotal = (modifiedProduct.qty * modifiedProduct.price).toFixed(2);
+    let total = (Number(this.state.orderTotal) - Number(currentSubtotal) + Number(modifiedProduct.subtotal)).toFixed(2);
     cartArr.splice(productId, 1, modifiedProduct);
 
     this.setState({
@@ -192,7 +181,7 @@ class App extends React.Component {
     });
   };
 
-  toMakret = () => {
+  toMarket = () => {
     let location = window.location.pathname
     if (location !== "/market") {
       this.setState({
@@ -209,7 +198,6 @@ class App extends React.Component {
 
 
   handleSearch = event => {
-    console.log("working")
     let products = this.state.productsData;
     let filterProducts = this.state.filtered;
     
@@ -221,10 +209,9 @@ class App extends React.Component {
       this.setState({ filtered: filterProducts });
     }
     else {
-      // If the search bar is empty, set newList to original task list
       filterProducts = products;
     }
-    // Set the filtered state based on what our rules added to newList
+    
     this.setState({
       filtered: filterProducts
     });
@@ -297,18 +284,13 @@ class App extends React.Component {
   };
 
   signOut = () => {
-    console.log("testing logout");
-    axios.get("api/logout").then(response => {
+     axios.get("api/logout").then(response => {
       this.userHasAuthenticated(false);
       this.setState({
         isAuthenticated: false
       });
       localStorage.removeItem("user");
     });
-  };
-
-  grabUsers = () => {
-    console.log("test");
   };
 
   userOptions = () => {
@@ -335,7 +317,6 @@ class App extends React.Component {
         password: this.state.password
       }
     }).then(data => {
-      console.log(data);
       this.setState({
         isAuthenticated: true,
         uid: data.data.data.id,
@@ -359,7 +340,7 @@ class App extends React.Component {
       filtered: this.state.filtered,
       returnToMarket: this.state.returnToMarket,
       stopRedirect: this.stopRedirect,
-      toMakret: this.toMakret,
+      toMarket: this.toMarket,
       handleSearch: this.handleSearch,
       addToCart: this.addToCart,
       removeFromCart: this.removeFromCart,

@@ -31,8 +31,8 @@ const OrderComplete = props => {
       </div>
       <div className="completeContainer">{displayOrders}</div>
       <div className="finishContainer"><div><p className="finish">Subtotal:</p></div><div><p className="right margin-right-20">${props.orderTotal}</p></div></div>
-      <div className="finishContainer"><div><p className="finish">Shipping:</p></div><div><p className="right margin-right-20">${props.shipping}</p></div></div>
-      <div className="finishContainer"><div><p className="finish">Total:</p></div><div><p className="right margin-right-20">${Number(props.orderTotal) + Number(props.shipping)}</p></div></div>
+      <div className="finishContainer"><div><p className="finish">Shipping:</p></div><div><p className="right margin-right-20">${props.shipping}.00</p></div></div>
+      <div className="finishContainer"><div><p className="finish">Total:</p></div><div><p className="right margin-right-20">${Number(props.orderTotal) + Number(props.shipping)}.00</p></div></div>
       <div><Button className="button largest-button" onClick={props.continueShopping}>Continue Shopping</Button></div> 
     </div>
   );

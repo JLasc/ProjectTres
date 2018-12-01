@@ -20,6 +20,7 @@ class MarketPage extends React.Component {
     this.props.resetOrder();
     this.props.continue();
     this.props.stopRedirect();
+    
   }
 
   render() {
