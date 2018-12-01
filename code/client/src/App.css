@@ -26,6 +26,8 @@ select {
 #lastname:focus,
 #pass:focus,
 #email:focus,
+#problem:focus,
+#subject:focus,
 #loginEmail:focus {
   border-bottom: 1px solid blue;
   box-shadow: 0 1px 0 0 blue;
@@ -931,6 +933,18 @@ tr.useritem {
   margin-left: 15px;
   margin-right: 15px;
 }
+
+.supportForm {
+  background-color: #ffffff;
+  padding: 20px;
+  padding-top:40px;
+  width: 65%;
+  margin: 0 auto;
+}
+
+.supportForm textarea.materialize-textarea {
+  height:200px !important;
+} 
 
 @keyframes slide-down {
   0% {
