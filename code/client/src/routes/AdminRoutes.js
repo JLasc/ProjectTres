@@ -10,7 +10,8 @@ import ShoppingCart from "../views/ShoppingCart";
 import NewUser from "../views/NewUser";
 import UserProfile from "../views/UserProfile";
 import OrderComplete from "../views/OrderComplete";
-import Support from "../views/Support"
+import Support from "../views/Support";
+import TicketSubmitted from "../views/TicketSubmitted";
 
 export default ({childProps}) =>
   <Switch>
@@ -22,6 +23,7 @@ export default ({childProps}) =>
     <AppliedRoute path="/orders" exact component={Orders} props={childProps} />
     <AppliedRoute path="/cart" exact component={ShoppingCart} props={childProps} />
     <AppliedRoute path="/thankyou" exact component={OrderComplete} props={childProps} />
+    <AppliedRoute path="/thanks" exact component={TicketSubmitted} props={childProps} />
     <AppliedRoute path="/support" exact component={Support} props={childProps} />
     { /* Finally, catch all unmatched routes */ }
     <Route component={NotFound} />
