@@ -1,6 +1,4 @@
 import React from "react";
-import Construction from "../../src/construction.png"
-
 
 const orderHistory = (props) => {
   const displayHistory = props.history.map((each, i) => (
