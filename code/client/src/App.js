@@ -24,6 +24,7 @@ class App extends React.Component {
       usersData: [],
       ordersData: [],
       orderHistory: [],
+      history:[],
       returnToMarket: false,
       filtered: [],
       shipping: 0,
@@ -161,11 +162,23 @@ class App extends React.Component {
   };
 
   continueShopping = () => {
+    let order = this.state.orderHistory
+    var currentDate = new Date()
+    let newOrder = {items: order,
+                    x: "EN3-" + (Math.floor(Math.random() * 1001)),
+                    number: order.length,
+                     date: (currentDate.getMonth() + 1) + '/' + currentDate.getDate() + '/' +  currentDate.getFullYear(),
+                     total: this.state.orderTotal
+                   }
+
+    let addToHistory = this.state.history.concat(newOrder)
+
     this.setState({
       shipping: 0,
-      orderTotal: 0,
-      orderHistory: [],
-      shoppingRedirect: true
+      history: addToHistory,
+      orderHistory: order,
+      shoppingRedirect: true,
+      orderTotal: 0
     });
   };
 
@@ -335,6 +348,7 @@ class App extends React.Component {
       shoppingRedirect: this.state.shoppingRedirect,
       continue: this.continue,
       shipping: this.state.shipping,
+      history: this.state.history,
       userHasAuthenticated: this.userHasAuthenticated,
       productsData: this.state.productsData,
       filtered: this.state.filtered,
