@@ -27,7 +27,7 @@ class Sidebar extends React.Component {
         </div>
         <div className={"useroptions " + (this.props.displayOptions ? "active-comp" : "inactive-comp")}>
           <NavLink to="/profile" activeClassName="activeLink">My Profile</NavLink>
-          <a href="/market/orders">Logout</a>
+          <NavLink to="/logout" onClick={this.props.signOut}>Logout</NavLink>
           
         </div>
         <div className="links">
